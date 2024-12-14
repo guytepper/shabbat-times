@@ -1,6 +1,12 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "✨" : {
+
+    },
+    "🕯️" : {
+
+    },
     "Candle Lighting" : {
       "localizations" : {
         "he" : {
@@ -10,6 +16,9 @@
           }
         }
       }
+    },
+    "Error" : {
+
     },
     "Error loading times" : {
       "localizations" : {
@@ -21,16 +30,16 @@
         }
       }
     },
-    "Kadimah Zoran" : {
+    "Get Current Location" : {
 
     },
-    "Local Time: %@" : {
+    "Let's set up your location to get accurate Shabbat times" : {
 
     },
-    "Mishpatim (“Laws”) recounts a series of God’s laws that Moses gives to the Israelites. These include laws about treatment of slaves, damages, loans, returning lost property, the Sabbath, the sabbatical year, holidays, and destroying idolatry. The portion ends as Moses ascends Mount Sinai for 40 days." : {
+    "New York" : {
 
     },
-    "Parashat Mishpatim" : {
+    "OK" : {
 
     },
     "Retry" : {
@@ -45,6 +54,12 @@
           }
         }
       }
+    },
+    "Shabbat Shalom!" : {
+
+    },
+    "We'll only access your location once to determine your city for Shabbat times." : {
+
     }
   },
   "version" : "1.0"
