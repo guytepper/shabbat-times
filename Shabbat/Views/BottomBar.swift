@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct BottomBar: View {
+  @State private var showLocationPicker = false
+
   var body: some View {
     // Settings Button
     HStack {
@@ -15,6 +17,7 @@ struct BottomBar: View {
       
       // Location Button
       Button(action: {
+        showLocationPicker = true
       }) {
         HStack(spacing: 4) {
           Image(systemName: "location.fill")
@@ -23,6 +26,11 @@ struct BottomBar: View {
             .fontDesign(.rounded)
         }
         .foregroundColor(.white)
+      }
+      .fullScreenCover(isPresented: $showLocationPicker) {
+          LocationSelectionView { city in
+              print("Selected city: \(city.name)")
+          }
       }
       
       Spacer()
