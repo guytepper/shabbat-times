@@ -1,14 +1,39 @@
 import SwiftUI
+import MapKit
 
 struct LocationSelectionView: View {
   @Environment(\.dismiss) private var dismiss
   @State private var viewModel = LocationSelectionViewModel()
+  @FocusState private var focused: Bool
   var onLocationSelected: (City) -> Void
+  
+  func onCitySelection(_ city: City) async {
+    Task {
+      // Get coordinates for the selected city
+      if let completion = viewModel.searchCompletions.first(where: { $0.title == city.title }) {
+        do {
+          let coordinate = try await viewModel.getCoordinatesForCity(completion)
+          let selectedCity = City(
+            name: city.name,
+            title: city.title,
+            subtitle: city.subtitle,
+            coordinate: coordinate
+          )
+          onLocationSelected(selectedCity)
+          dismiss()
+        } catch {
+          print("Error getting coordinates: \(error)")
+        }
+      }
+    }
+  }
+  
   
   var body: some View {
     NavigationView {
       VStack {
         searchField
+          .focused($focused)
         
         if viewModel.isSearching {
           ProgressView()
@@ -29,6 +54,9 @@ struct LocationSelectionView: View {
             dismiss()
           }
         }
+      }
+      .onAppear {
+        focused = true
       }
     }
   }
@@ -64,8 +92,10 @@ struct LocationSelectionView: View {
   private var citiesList: some View {
     List(viewModel.cities) { city in
       Button {
-        onLocationSelected(city)
-        dismiss()
+        Task {
+          await onCitySelection(city)
+          dismiss()
+        }
       } label: {
         VStack(alignment: .leading) {
           Text(city.title)

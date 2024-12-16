@@ -6,6 +6,7 @@ final class LocationSelectionViewModel: NSObject {
   private var searchCompleter: MKLocalSearchCompleter
   var searchText = ""
   var cities: [City] = []
+  var searchCompletions: [MKLocalSearchCompletion] = []
   var isSearching = false
   var error: Error?
   
@@ -26,17 +27,33 @@ final class LocationSelectionViewModel: NSObject {
     
     searchCompleter.queryFragment = text
   }
+  
+  func getCoordinatesForCity(_ searchResult: MKLocalSearchCompletion) async throws -> CLLocationCoordinate2D {
+    let searchRequest = MKLocalSearch.Request()
+    searchRequest.naturalLanguageQuery = searchResult.title
+    
+    let search = MKLocalSearch(request: searchRequest)
+    let response = try await search.start()
+    
+    guard let coordinate = response.mapItems.first?.placemark.coordinate else {
+      throw NSError(domain: "LocationSearch", code: 1, userInfo: [NSLocalizedDescriptionKey: "No coordinates found"])
+    }
+    
+    return coordinate
+  }
+
 }
 
 extension LocationSelectionViewModel: MKLocalSearchCompleterDelegate {
   func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
     Task { @MainActor in
+      searchCompletions = completer.results
       cities = completer.results.map { result in
         City(
           name: result.title,
           title: result.title,
           subtitle: result.subtitle,
-          coordinate: CLLocationCoordinate2D(latitude: result., longitude: <#T##CLLocationDegrees#>) // Placeholder until we perform the search
+          coordinate: CLLocationCoordinate2D() // Placeholder until we perform the coordinate search
         )
       }
     }
