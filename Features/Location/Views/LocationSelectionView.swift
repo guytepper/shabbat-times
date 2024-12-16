@@ -1,76 +1,4 @@
 import SwiftUI
-import MapKit
-
-struct City: Identifiable, Hashable {
-    let id = UUID()
-    let name: String
-    let title: String
-    let subtitle: String
-    let coordinate: CLLocationCoordinate2D
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-    
-    static func == (lhs: City, rhs: City) -> Bool {
-        lhs.id == rhs.id
-    }
-}
-
-@Observable
-final class LocationSelectionViewModel: NSObject {
-    private var searchCompleter: MKLocalSearchCompleter
-    var searchText = ""
-    var cities: [City] = []
-    var isSearching = false
-    var error: Error?
-    
-    override init() {
-        searchCompleter = MKLocalSearchCompleter()
-        super.init()
-        searchCompleter.resultTypes = .address
-        searchCompleter.delegate = self
-    }
-    
-    func updateSearchText(_ text: String) {
-        searchText = text
-        
-        guard !text.isEmpty else {
-            cities = []
-            return
-        }
-        
-        searchCompleter.queryFragment = text
-    }
-  
-  func setup() {
-      // Need to set delegate after self is initialized
-      searchCompleter.delegate = self
-  }
-  
-}
-
-extension LocationSelectionViewModel: MKLocalSearchCompleterDelegate {
-  func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-    Task { @MainActor in
-      cities = completer.results.map { result in
-        City(
-          name: result.title,
-          title: result.title,
-          subtitle: result.subtitle,
-          coordinate: CLLocationCoordinate2D() // Placeholder until we perform the search
-        )
-      }
-    }
-  }
-  
-  func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
-    Task { @MainActor in
-      self.error = error
-      cities = []
-    }
-  }
-}
 
 struct LocationSelectionView: View {
   @Environment(\.dismiss) private var dismiss
@@ -102,9 +30,6 @@ struct LocationSelectionView: View {
           }
         }
       }
-    }
-    .onAppear {
-      viewModel.setup()
     }
   }
   
@@ -157,6 +82,6 @@ struct LocationSelectionView: View {
 
 #Preview {
   LocationSelectionView { city in
-    print("Selected city: \(city.name)")
+    print("Selected city: \(city.coordinate)")
   }
 }
