@@ -6,16 +6,7 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		C10A34EA2D0F4A3800959606 /* LocationSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A34E92D0F4A2E00959606 /* LocationSelectionView.swift */; };
-		C10A34F22D0FF61700959606 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A34F02D0FF5F600959606 /* City.swift */; };
-		C10A34F32D0FF61C00959606 /* LocationSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A34F12D0FF61100959606 /* LocationSelectionViewModel.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
-		C10A34E92D0F4A2E00959606 /* LocationSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSelectionView.swift; sourceTree = "<group>"; };
-		C10A34F02D0FF5F600959606 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
-		C10A34F12D0FF61100959606 /* LocationSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSelectionViewModel.swift; sourceTree = "<group>"; };
 		C1DB9D8B2D049ABE00698722 /* Shabbat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shabbat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -51,54 +42,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C10A34EB2D0FF5B400959606 /* Features */ = {
-			isa = PBXGroup;
-			children = (
-				C10A34EC2D0FF5BD00959606 /* Location */,
-			);
-			path = Features;
-			sourceTree = "<group>";
-		};
-		C10A34EC2D0FF5BD00959606 /* Location */ = {
-			isa = PBXGroup;
-			children = (
-				C10A34EF2D0FF5DF00959606 /* Views */,
-				C10A34EE2D0FF5D800959606 /* ViewModels */,
-				C10A34ED2D0FF5CC00959606 /* Models */,
-			);
-			path = Location;
-			sourceTree = "<group>";
-		};
-		C10A34ED2D0FF5CC00959606 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				C10A34F02D0FF5F600959606 /* City.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		C10A34EE2D0FF5D800959606 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				C10A34F12D0FF61100959606 /* LocationSelectionViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		C10A34EF2D0FF5DF00959606 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				C10A34E92D0F4A2E00959606 /* LocationSelectionView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		C1DB9D822D049ABD00698722 = {
 			isa = PBXGroup;
 			children = (
 				C1DB9D8D2D049ABE00698722 /* Shabbat */,
 				C1DB9D8C2D049ABE00698722 /* Products */,
-				C10A34EB2D0FF5B400959606 /* Features */,
 			);
 			sourceTree = "<group>";
 		};
@@ -185,9 +133,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C10A34F32D0FF61C00959606 /* LocationSelectionViewModel.swift in Sources */,
-				C10A34EA2D0F4A3800959606 /* LocationSelectionView.swift in Sources */,
-				C10A34F22D0FF61700959606 /* City.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,16 @@
     "🕯️" : {
 
     },
+    "Cancel" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ביטול"
+          }
+        }
+      }
+    },
     "Candle Lighting" : {
       "localizations" : {
         "he" : {
@@ -18,7 +28,14 @@
       }
     },
     "Error" : {
-
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שגיאה"
+          }
+        }
+      }
     },
     "Error loading times" : {
       "localizations" : {
@@ -43,6 +60,12 @@
 
     },
     "Retry" : {
+
+    },
+    "Search for a city..." : {
+
+    },
+    "Select Location" : {
 
     },
     "Shabbat Ends" : {
