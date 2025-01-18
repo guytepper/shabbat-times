@@ -51,8 +51,7 @@ extension LocationSelectionViewModel: MKLocalSearchCompleterDelegate {
       cities = completer.results.map { result in
         City(
           name: result.title,
-          title: result.title,
-          subtitle: result.subtitle,
+          country: result.subtitle,
           coordinate: CLLocationCoordinate2D() // Placeholder until we perform the coordinate search
         )
       }

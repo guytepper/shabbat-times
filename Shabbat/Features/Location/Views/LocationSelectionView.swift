@@ -10,13 +10,12 @@ struct LocationSelectionView: View {
   func onCitySelection(_ city: City) async {
     Task {
       // Get coordinates for the selected city
-      if let completion = viewModel.searchCompletions.first(where: { $0.title == city.title }) {
+      if let completion = viewModel.searchCompletions.first(where: { $0.title == city.name }) {
         do {
           let coordinate = try await viewModel.getCoordinatesForCity(completion)
           let selectedCity = City(
             name: city.name,
-            title: city.title,
-            subtitle: city.subtitle,
+            country: city.country,
             coordinate: coordinate
           )
           onLocationSelected(selectedCity)
@@ -98,9 +97,9 @@ struct LocationSelectionView: View {
         }
       } label: {
         VStack(alignment: .leading) {
-          Text(city.title)
+          Text(city.name)
             .foregroundColor(.primary)
-          Text(city.subtitle)
+          Text(city.country)
             .font(.caption)
             .foregroundColor(.secondary)
         }
