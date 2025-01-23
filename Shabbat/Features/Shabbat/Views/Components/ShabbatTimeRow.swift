@@ -9,7 +9,6 @@ struct ShabbatTimeRow: View {
   var body: some View {
     HStack(alignment: .center) {
       Text(title)
-        .foregroundColor(.white)
         .font(.headline)
       
       Spacer()

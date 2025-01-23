@@ -1,17 +1,43 @@
 import SwiftUI
+import SwiftData
+import MapKit
 
 struct HomeView: View {
   @Environment(\.modelContext) private var modelContext
   @State private var service = ShabbatService()
   @State private var cityManager: CityManager?
   
+  var cityName: String{
+    cityManager?.getCurrentCity()?.name ?? ""
+  }
+  
   var body: some View {
     VStack {
       ScrollView {
         VStack(alignment: .center) {
-          Text("✨")
-            .font(.largeTitle)
-            .padding(.bottom, 62)
+          Text(cityName)
+            .font(.title3)
+            .fontWeight(.bold)
+            .foregroundStyle(.blue)
+            .padding(.bottom, 4)
+          
+          Text("🥖")
+            .font(.system(size: 120))
+            .rotationEffect(.degrees(-45))
+            .padding(.bottom, 16)
+          
+          VStack(spacing: 6) {
+            Text("next shabbat")
+              .fontWidth(.expanded)
+            
+            Text("24-25th January, 2024")
+              .font(.system(.title3, design: .serif).weight(.bold))
+            
+            Text("in 3 days")
+          }
+          .padding(.bottom, 24)
+          
+          
           
           if service.isLoading {
             ProgressView()
@@ -46,7 +72,8 @@ struct HomeView: View {
             .padding(20)
             .background(
               RoundedRectangle(cornerRadius: 16)
-                .fill(Color.hsl(h: 0, s: 0, l: 0))
+                .fill(Color(uiColor: .systemGroupedBackground))
+                .shadow(color: .black.opacity(0.1), radius: 10)
             )
             .padding(.bottom)
           }
@@ -62,7 +89,7 @@ struct HomeView: View {
           await loadShabbatTimes()
         }
       }
-
+      
       BottomBar(
         cityName: cityManager?.getCurrentCity()?.name ?? "Select City"
       ) { city in
@@ -83,8 +110,8 @@ struct HomeView: View {
   var gradientBackground: some ShapeStyle {
     LinearGradient(
       colors: [
-        .hsl(h: 220, s: 65, l: 10),
-        .hsl(h: 220, s: 55, l: 60)
+        .hsl(h: 0, s: 0, l: 100),
+        .hsl(h: 48, s: 55, l: 84)
       ],
       startPoint: .top,
       endPoint: .bottom
@@ -106,9 +133,13 @@ struct HomeView: View {
 }
 
 #Preview {
-  HomeView()
-    .modelContainer(for: City.self, inMemory: true)
-  //    .environment(\.locale, .init(identifier: "he"))
-  //    .environment(\.layoutDirection, .rightToLeft)
+  let container = try! ModelContainer(for: City.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+  
+  // Create and save a sample city
+  let sampleCity = City(name: "Jerusalem", country: "Israel", coordinate: CLLocationCoordinate2D(latitude: 31.7683, longitude: 35.2137))
+  try! container.mainContext.insert(sampleCity)
+  
+  return HomeView()
+    .modelContainer(container)
 }
 
