@@ -37,12 +37,17 @@ class ShabbatService {
   var error: Error?
   var isLoading = false
   
-  func fetchShabbatTimes(latitude: Double, longitude: Double) async {
+  func fetchShabbatTimes(for city: City) async {
     isLoading = true
-    defer { isLoading = false }
+    // Candle-lighting time minutes before sunset
+    // For Jerusalem, it's common to light candles 40 minutes before sunset.
+    // Otherwise, it's 18 minutes before sunset.
+    let beforeSunset = city.name == "Jerusalem" ? 40 : 18
+    let latitude = city.coordinate.latitude
+    let longitude = city.coordinate.longitude
     
-//    let urlString = "https://www.hebcal.com/shabbat?cfg=json&geo=pos&latitude=\(latitude)&longitude=\(longitude)&M=on"
-    let urlString = "https://www.hebcal.com/shabbat?cfg=json&geo=geoname&geonameid=11524864"
+    let urlString = "https://www.hebcal.com/shabbat?cfg=json&geo=pos&latitude=\(latitude)&longitude=\(longitude)&M=on&b=\(beforeSunset)"
+//    let urlString = "https://www.hebcal.com/shabbat?cfg=json&geo=geoname&geonameid=11524864"
     
     guard let url = URL(string: urlString) else {
       error = NSError(domain: "Invalid URL", code: -1)
@@ -55,7 +60,9 @@ class ShabbatService {
       
       candleLighting = response.items.first { $0.category == "candles" }
       havdalah = response.items.first { $0.category == "havdalah" }
+      print("Candle Lighting: \(candleLighting?.date ?? "Not found")")
       error = nil
+      isLoading = false
     } catch {
       self.error = error
     }

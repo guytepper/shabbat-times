@@ -1,7 +1,9 @@
 import SwiftUI
 
-struct ContentView: View {
+struct HomeView: View {
+  @Environment(\.modelContext) private var modelContext
   @State private var service = ShabbatService()
+  @State private var cityManager: CityManager?
   
   var body: some View {
     VStack {
@@ -23,20 +25,23 @@ struct ContentView: View {
             VStack(spacing: 16) {
               ShabbatTimeRow(
                 title: "Candle Lighting",
-                time: "18:32",
-                timeZone: "DST",
+                time: candleLighting.formattedDate?
+                  .formatted(date: .omitted, time: .shortened) ?? "N/A",
+                timeZone: TimeZone.current.abbreviation() ?? "Local",
                 timeColor: .orange
-              )
+              ).onTapGesture {
+                try? modelContext.delete(model: City.self)
+              }
               
               Divider()
               
               ShabbatTimeRow(
                 title: "Shabbat Ends",
-                time: "17:30",
-                timeZone: "DST",
+                time: havdalah.formattedDate?
+                  .formatted(date: .omitted, time: .shortened) ?? "N/A",
+                timeZone: TimeZone.current.abbreviation() ?? "Local",
                 timeColor: .purple
               )
-              
             }
             .padding(20)
             .background(
@@ -49,16 +54,30 @@ struct ContentView: View {
         .padding()
       }
       .onAppear {
+        // Initialize cityManager when the view appears
+        if cityManager == nil {
+          cityManager = CityManager(modelContext: modelContext)
+        }
         Task {
           await loadShabbatTimes()
         }
       }
-      
-      BottomBar()
-        .background(Color.black.opacity(0.3))
+
+      BottomBar(
+        cityName: cityManager?.getCurrentCity()?.name ?? "Select City"
+      ) { city in
+        cityManager?.saveCity(
+          name: city.name,
+          country: city.country,
+          coordinate: city.coordinate
+        )
+        Task {
+          await loadShabbatTimes()
+        }
+      }
+      .background(Color.black.opacity(0.3))
     }
     .background(gradientBackground)
-    
   }
   
   var gradientBackground: some ShapeStyle {
@@ -73,8 +92,10 @@ struct ContentView: View {
   }
   
   private func loadShabbatTimes() async {
-    // Example coordinates for Los Angeles
-    await service.fetchShabbatTimes(latitude: 34.0522, longitude: -118.2437)
+    if let city = cityManager?.getCurrentCity() {
+      print("Loading Shabbat times for \(city.name)")
+      await service.fetchShabbatTimes(for: city)
+    }
   }
   
   private func formatCurrentTime() -> String {
@@ -85,7 +106,9 @@ struct ContentView: View {
 }
 
 #Preview {
-  ContentView()
+  HomeView()
+    .modelContainer(for: City.self, inMemory: true)
   //    .environment(\.locale, .init(identifier: "he"))
   //    .environment(\.layoutDirection, .rightToLeft)
 }
+

@@ -1,36 +1,24 @@
-import SwiftUI
 
+import SwiftUI
+import SwiftData
 struct OnboardingView: View {
   @StateObject private var locationManager = LocationManager()
-  @State private var isLocating = false
-  @State private var showMainContent = false
-  @State private var showError = false
-  @State private var errorMessage = ""
+  @State private var showLocationPicker = false
+  
+  @Environment(\.modelContext) private var modelContext
+  private var cityManager: CityManager {
+    CityManager(modelContext: modelContext)
+  }
   
   var body: some View {
-    if showMainContent {
-      ContentView()
-    } else {
-      VStack(spacing: 32) {
-        headerView
-        locationButton
-                
-        Text("We'll only access your location once to determine your city for Shabbat times.")
-          .font(.callout)
-          .foregroundColor(.secondary)
-          .multilineTextAlignment(.center)
-          .padding(.horizontal)
-      }
-      .padding()
-      .frame(maxHeight: .infinity)
-      .background(Color(.systemBackground))
-      .alert("Error", isPresented: $showError) {
-        Button("OK", role: .cancel) {}
-      } message: {
-        Text(errorMessage)
-      }
-      .padding(.bottom, 32)
+    VStack(spacing: 32) {
+      headerView
+      selectCityButton
     }
+    .padding()
+    .frame(maxHeight: .infinity)
+    .background(Color(.systemBackground))
+    .padding(.bottom, 32)
   }
   
   private var headerView: some View {
@@ -43,24 +31,19 @@ struct OnboardingView: View {
         .font(.largeTitle)
         .fontWeight(.bold)
       
-      Text("Let's set up your location to get accurate Shabbat times")
+      Text("Choose your city to get Shabbat times for your location.")
         .font(.body)
         .multilineTextAlignment(.center)
     }
   }
   
-  private var locationButton: some View {
+  private var selectCityButton: some View {
     Button {
-      getLocation()
+      showLocationPicker = true
     } label: {
       HStack {
-        if isLocating {
-          ProgressView()
-            .tint(.white)
-        } else {
-          Image(systemName: "location.fill")
-          Text("Get Current Location")
-        }
+        //       Image(systemName: "house")
+        Text("Select City")
       }
       .frame(maxWidth: .infinity)
       .padding()
@@ -68,29 +51,20 @@ struct OnboardingView: View {
       .foregroundColor(.white)
       .cornerRadius(10)
     }
-    .disabled(isLocating)
-  }
-  
-  private func getLocation() {
-    isLocating = true
-    locationManager.requestOneTimeLocation()
-    
-    // Check for location after a short delay
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-      if let location = locationManager.location {
-        // Here you would make your API call to Hebcal
-        print("Location obtained: \(location.coordinate.latitude), \(location.coordinate.longitude)")
-        isLocating = false
-        showMainContent = true
-      } else if let error = locationManager.error {
-        showError = true
-        errorMessage = error.localizedDescription
-        isLocating = false
+    .fullScreenCover(isPresented: $showLocationPicker) {
+      LocationSelectionView { city in
+        cityManager.saveCity(
+          name: city.name,
+          country: city.country,
+          coordinate: city.coordinate
+        )
       }
     }
+    
   }
 }
 
 #Preview {
   OnboardingView()
+    .modelContainer(for: City.self, inMemory: true)
 }
