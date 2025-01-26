@@ -3,6 +3,7 @@ import SwiftData
 import MapKit
 
 struct HomeView: View {
+  @Environment(\.colorScheme) var colorScheme
   @Environment(\.modelContext) private var modelContext
   @State private var service = ShabbatService()
   @State private var cityManager: CityManager?
@@ -19,21 +20,25 @@ struct HomeView: View {
             .font(.title3)
             .fontWeight(.bold)
             .foregroundStyle(.blue)
-            .padding(.bottom, 4)
           
           Text("🥖")
             .font(.system(size: 120))
             .rotationEffect(.degrees(-45))
-            .padding(.bottom, 16)
+            .padding(.top, 12)
+            .padding(.bottom, 24)
           
           VStack(spacing: 6) {
             Text("next shabbat")
               .fontWidth(.expanded)
             
-            Text("24-25th January, 2024")
-              .font(.system(.title3, design: .serif).weight(.bold))
+            if let dates = nextShabbatDates {
+              Text(dates)
+                .font(.system(.title3, design: .serif).weight(.bold))
+            }
             
-            Text("in 3 days")
+            if let daysUntil = daysUntilShabbat {
+              Text(daysUntil)
+            }
           }
           .padding(.bottom, 24)
           
@@ -72,7 +77,7 @@ struct HomeView: View {
             .padding(20)
             .background(
               RoundedRectangle(cornerRadius: 16)
-                .fill(Color(uiColor: .systemGroupedBackground))
+                .fill(Color(uiColor: .secondarySystemGroupedBackground))
                 .shadow(color: .black.opacity(0.1), radius: 10)
             )
             .padding(.bottom)
@@ -90,28 +95,31 @@ struct HomeView: View {
         }
       }
       
-      BottomBar(
-        cityName: cityManager?.getCurrentCity()?.name ?? "Select City"
-      ) { city in
-        cityManager?.saveCity(
-          name: city.name,
-          country: city.country,
-          coordinate: city.coordinate
-        )
-        Task {
-          await loadShabbatTimes()
-        }
-      }
-      .background(Color.black.opacity(0.3))
+//      BottomBar(
+//        cityName: cityManager?.getCurrentCity()?.name ?? "Select City"
+//      ) { city in
+//        cityManager?.saveCity(
+//          name: city.name,
+//          country: city.country,
+//          coordinate: city.coordinate
+//        )
+//        Task {
+//          await loadShabbatTimes()
+//        }
+//      }
+//      .background(Color.black.opacity(0.3))
     }
     .background(gradientBackground)
   }
   
   var gradientBackground: some ShapeStyle {
-    LinearGradient(
-      colors: [
-        .hsl(h: 0, s: 0, l: 100),
-        .hsl(h: 48, s: 55, l: 84)
+    return LinearGradient(
+      colors: colorScheme == .dark ? [
+        .hsl(h: 0, s: 0, l: 2),    // Very dark gray
+        .hsl(h: 0, s: 0, l: 0)   // Dark warm brown
+      ] : [
+        .hsl(h: 0, s: 0, l: 100),   // White
+        .hsl(h: 48, s: 55, l: 84)   // Light warm beige
       ],
       startPoint: .top,
       endPoint: .bottom
@@ -120,7 +128,6 @@ struct HomeView: View {
   
   private func loadShabbatTimes() async {
     if let city = cityManager?.getCurrentCity() {
-      print("Loading Shabbat times for \(city.name)")
       await service.fetchShabbatTimes(for: city)
     }
   }
@@ -129,6 +136,52 @@ struct HomeView: View {
     let formatter = DateFormatter()
     formatter.dateFormat = "HH:mm (zzz)"
     return formatter.string(from: Date())
+  }
+
+  private var nextShabbatDates: String? {
+    guard let candleLighting = service.candleLighting?.formattedDate,
+          let havdalah = service.havdalah?.formattedDate else { return nil }
+    
+    let calendar = Calendar.current
+    let startDate = candleLighting
+    let endDate = havdalah
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "d"
+    
+    let monthFormatter = DateFormatter()
+    monthFormatter.dateFormat = "MMMM"
+    
+    let startDay = dateFormatter.string(from: startDate)
+    let endDay = dateFormatter.string(from: endDate)
+    
+    // Handle cases where the start & end dates are on different months
+    let startMonth = monthFormatter.string(from: startDate)
+    let endMonth = monthFormatter.string(from: endDate)
+    
+    if startMonth == endMonth {
+        return "\(startDay) - \(endDay) \(startMonth)"
+    } else {
+        return "\(startDay) \(startMonth) - \(endDay) \(endMonth)"
+    }
+  }
+
+  private var daysUntilShabbat: String? {
+    guard let candleLighting = service.candleLighting?.formattedDate else { return nil }
+    
+    let calendar = Calendar.current
+    let now = Date()
+    
+    let components = calendar.dateComponents([.day], from: now, to: candleLighting)
+    guard let days = components.day else { return nil }
+    
+    if days == 0 {
+      return "today"
+    } else if days == 1 {
+      return "tomorrow"
+    } else {
+      return "in \(days) days"
+    }
   }
 }
 
