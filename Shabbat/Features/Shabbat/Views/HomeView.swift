@@ -28,6 +28,9 @@ struct HomeView: View {
             .font(.title3)
             .fontWeight(.bold)
             .foregroundStyle(.blue)
+            .onTapGesture {
+              try? modelContext.delete(model: City.self)
+            }
           
           Text("🥖")
             .font(.system(size: 120))
@@ -49,7 +52,7 @@ struct HomeView: View {
             }
           }
           .padding(.bottom, 24)
-
+          
           
           if service.isLoading {
             ProgressView()
@@ -65,9 +68,7 @@ struct HomeView: View {
                 time: candleLighting ?? Date(),
                 timeZone: TimeZone(identifier: service.timeZone ?? TimeZone.current.identifier) ?? .current,
                 timeColor: .orange
-              ).onTapGesture {
-                try? modelContext.delete(model: City.self)
-              }
+              )
               
               Divider()
               
@@ -99,6 +100,7 @@ struct HomeView: View {
         }
       }
       .background(gradientBackground)
+    }
   }
   
   var gradientBackground: some ShapeStyle {
