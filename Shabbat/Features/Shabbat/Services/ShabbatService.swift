@@ -23,9 +23,10 @@ struct ShabbatItem: Codable, Identifiable {
     "\(category)-\(date)"
   }
   
-  var formattedDate: Date? {
+  func formattedDate(timeZone: String?) -> Date? {
     let formatter = ISO8601DateFormatter()
     formatter.formatOptions = [.withInternetDateTime]
+    formatter.timeZone = TimeZone(identifier: timeZone ?? TimeZone.current.identifier)
     return formatter.date(from: date)
   }
 }
@@ -34,6 +35,7 @@ struct ShabbatItem: Codable, Identifiable {
 class ShabbatService {
   var candleLighting: ShabbatItem?
   var havdalah: ShabbatItem?
+  var timeZone: String?
   var error: Error?
   var isLoading = false
   
@@ -59,12 +61,14 @@ class ShabbatService {
       let response = try JSONDecoder().decode(ShabbatResponse.self, from: data)
       
       candleLighting = response.items.first { $0.category == "candles" }
-      havdalah = response.items.first { $0.category == "havdalah" }
-      print("Candle Lighting: \(candleLighting?.date ?? "Not found")")
+      havdalah = response.items.first { $0.category == "havdalah" }    
+      timeZone = response.location.tzid
+      
       error = nil
       isLoading = false
     } catch {
       self.error = error
+      isLoading = false
     }
   }
 }

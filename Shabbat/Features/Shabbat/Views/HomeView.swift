@@ -12,6 +12,14 @@ struct HomeView: View {
     cityManager?.getCurrentCity()?.name ?? ""
   }
   
+  var candleLighting: Date? {
+    return service.candleLighting?.formattedDate(timeZone: service.timeZone)
+  }
+  
+  var havdalah: Date? {
+    service.havdalah?.formattedDate(timeZone: service.timeZone)
+  }
+  
   var body: some View {
     VStack {
       ScrollView {
@@ -41,8 +49,7 @@ struct HomeView: View {
             }
           }
           .padding(.bottom, 24)
-          
-          
+
           
           if service.isLoading {
             ProgressView()
@@ -51,14 +58,12 @@ struct HomeView: View {
             ErrorMessage(error: error, onRetry: loadShabbatTimes)
               .frame(maxWidth: .infinity)
               .padding()
-          } else if let candleLighting = service.candleLighting,
-                    let havdalah = service.havdalah {
+          } else {
             VStack(spacing: 16) {
               ShabbatTimeRow(
                 title: "Candle Lighting",
-                time: candleLighting.formattedDate?
-                  .formatted(date: .omitted, time: .shortened) ?? "N/A",
-                timeZone: TimeZone.current.abbreviation() ?? "Local",
+                time: candleLighting ?? Date(),
+                timeZone: TimeZone(identifier: service.timeZone ?? TimeZone.current.identifier) ?? .current,
                 timeColor: .orange
               ).onTapGesture {
                 try? modelContext.delete(model: City.self)
@@ -68,16 +73,15 @@ struct HomeView: View {
               
               ShabbatTimeRow(
                 title: "Shabbat Ends",
-                time: havdalah.formattedDate?
-                  .formatted(date: .omitted, time: .shortened) ?? "N/A",
-                timeZone: TimeZone.current.abbreviation() ?? "Local",
+                time: havdalah ?? Date(),
+                timeZone: TimeZone(identifier: service.timeZone ?? TimeZone.current.identifier) ?? .current,
                 timeColor: .purple
               )
             }
             .padding(20)
             .background(
               RoundedRectangle(cornerRadius: 16)
-                .fill(Color(uiColor: .secondarySystemGroupedBackground))
+                .fill(Color(uiColor: .systemGroupedBackground))
                 .shadow(color: .black.opacity(0.1), radius: 10)
             )
             .padding(.bottom)
@@ -94,29 +98,14 @@ struct HomeView: View {
           await loadShabbatTimes()
         }
       }
-      
-//      BottomBar(
-//        cityName: cityManager?.getCurrentCity()?.name ?? "Select City"
-//      ) { city in
-//        cityManager?.saveCity(
-//          name: city.name,
-//          country: city.country,
-//          coordinate: city.coordinate
-//        )
-//        Task {
-//          await loadShabbatTimes()
-//        }
-//      }
-//      .background(Color.black.opacity(0.3))
-    }
-    .background(gradientBackground)
+      .background(gradientBackground)
   }
   
   var gradientBackground: some ShapeStyle {
     return LinearGradient(
       colors: colorScheme == .dark ? [
-        .hsl(h: 0, s: 0, l: 2),    // Very dark gray
-        .hsl(h: 0, s: 0, l: 0)   // Dark warm brown
+        .hsl(h: 48, s: 0, l: 2),    // Very dark gray
+        .hsl(h: 48, s: 30, l: 10)   // Dark warm brown
       ] : [
         .hsl(h: 0, s: 0, l: 100),   // White
         .hsl(h: 48, s: 55, l: 84)   // Light warm beige
@@ -131,18 +120,12 @@ struct HomeView: View {
       await service.fetchShabbatTimes(for: city)
     }
   }
-  
-  private func formatCurrentTime() -> String {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "HH:mm (zzz)"
-    return formatter.string(from: Date())
-  }
 
   private var nextShabbatDates: String? {
-    guard let candleLighting = service.candleLighting?.formattedDate,
-          let havdalah = service.havdalah?.formattedDate else { return nil }
-    
-    let calendar = Calendar.current
+    let timeZone = service.timeZone ?? TimeZone.current.identifier
+    guard let candleLighting = service.candleLighting?.formattedDate(timeZone: timeZone),
+          let havdalah = service.havdalah?.formattedDate(timeZone: timeZone) else { return nil }
+
     let startDate = candleLighting
     let endDate = havdalah
     
@@ -167,7 +150,7 @@ struct HomeView: View {
   }
 
   private var daysUntilShabbat: String? {
-    guard let candleLighting = service.candleLighting?.formattedDate else { return nil }
+    guard let candleLighting = service.candleLighting?.formattedDate(timeZone: TimeZone.current.abbreviation() ?? "UTC") else { return nil }
     
     let calendar = Calendar.current
     let now = Date()
