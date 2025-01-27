@@ -28,7 +28,14 @@
       }
     },
     "Choose your city to get Shabbat times for your location." : {
-
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "בחרו עיר עבורה תרצו לקבל את זמני השבת."
+          }
+        }
+      }
     },
     "Error loading times" : {
       "localizations" : {
@@ -40,20 +47,65 @@
         }
       }
     },
+    "in %lld days" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "בעוד %lld ימים"
+          }
+        }
+      }
+    },
     "next shabbat" : {
-
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "השבת הבאה"
+          }
+        }
+      }
     },
     "Retry" : {
-
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "לנסות שוב"
+          }
+        }
+      }
     },
     "Search for a city..." : {
-
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "חיפוש עיר"
+          }
+        }
+      }
     },
     "Select City" : {
-
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "בחירת עיר"
+          }
+        }
+      }
     },
     "Select Location" : {
-
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "בחירת מיקום"
+          }
+        }
+      }
     },
     "Shabbat Ends" : {
       "localizations" : {
@@ -66,7 +118,34 @@
       }
     },
     "Shabbat Shalom!" : {
-
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שבת שלום!"
+          }
+        }
+      }
+    },
+    "today" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "היום"
+          }
+        }
+      }
+    },
+    "tomorrow" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "מחר"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

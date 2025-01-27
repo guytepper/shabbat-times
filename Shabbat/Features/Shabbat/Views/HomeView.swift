@@ -4,6 +4,7 @@ import MapKit
 
 struct HomeView: View {
   @Environment(\.colorScheme) var colorScheme
+  @Environment(\.layoutDirection) var layoutDirection
   @Environment(\.modelContext) private var modelContext
   @State private var service = ShabbatService()
   @State private var cityManager: CityManager?
@@ -34,7 +35,7 @@ struct HomeView: View {
           
           Text("🥖")
             .font(.system(size: 120))
-            .rotationEffect(.degrees(-45))
+            .rotationEffect(.degrees(layoutDirection == .rightToLeft ? 45 : -45))
             .padding(.top, 12)
             .padding(.bottom, 24)
           
@@ -44,7 +45,13 @@ struct HomeView: View {
             
             if let dates = nextShabbatDates {
               Text(dates)
-                .font(.system(.title3, design: .serif).weight(.bold))
+                .font(
+                  .system(
+                    layoutDirection == .rightToLeft ? .title2 : .title3,
+                    design: .serif
+                  )
+                  .weight(.bold)
+                )
             }
             
             if let daysUntil = daysUntilShabbat {
@@ -64,7 +71,7 @@ struct HomeView: View {
           } else {
             VStack(spacing: 16) {
               ShabbatTimeRow(
-                title: "Candle Lighting",
+                title: ShabbatTimeType.candleLighting.title,
                 time: candleLighting ?? Date(),
                 timeZone: TimeZone(identifier: service.timeZone ?? TimeZone.current.identifier) ?? .current,
                 timeColor: .orange
@@ -73,7 +80,7 @@ struct HomeView: View {
               Divider()
               
               ShabbatTimeRow(
-                title: "Shabbat Ends",
+                title: ShabbatTimeType.havdalah.title,
                 time: havdalah ?? Date(),
                 timeZone: TimeZone(identifier: service.timeZone ?? TimeZone.current.identifier) ?? .current,
                 timeColor: .purple
@@ -161,11 +168,11 @@ struct HomeView: View {
     guard let days = components.day else { return nil }
     
     if days == 0 {
-      return "today"
+      return String(localized: "today")
     } else if days == 1 {
-      return "tomorrow"
+      return String(localized: "tomorrow")
     } else {
-      return "in \(days) days"
+      return String(localized: "in \(days) days")
     }
   }
 }
