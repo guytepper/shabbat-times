@@ -30,16 +30,6 @@
     "Choose your city to get Shabbat times for your location." : {
 
     },
-    "Error" : {
-      "localizations" : {
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "שגיאה"
-          }
-        }
-      }
-    },
     "Error loading times" : {
       "localizations" : {
         "he" : {
@@ -50,16 +40,7 @@
         }
       }
     },
-    "Get Current Location" : {
-
-    },
-    "Let's set up your location to get accurate Shabbat times" : {
-
-    },
     "next shabbat" : {
-
-    },
-    "OK" : {
 
     },
     "Retry" : {
@@ -85,9 +66,6 @@
       }
     },
     "Shabbat Shalom!" : {
-
-    },
-    "We'll only access your location once to determine your city for Shabbat times." : {
 
     }
   },
