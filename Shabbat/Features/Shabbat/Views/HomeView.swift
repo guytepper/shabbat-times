@@ -25,13 +25,14 @@ struct HomeView: View {
     VStack {
       ScrollView {
         VStack(alignment: .center) {
-          Text(cityName)
-            .font(.title3)
-            .fontWeight(.bold)
-            .foregroundStyle(.blue)
-            .onTapGesture {
-              try? modelContext.delete(model: City.self)
-            }
+          Button(action: {
+            try? modelContext.delete(model: City.self)
+          }) {
+            Text(cityName)
+              .font(.title3)
+              .fontWeight(.bold)
+              .foregroundStyle(.blue)
+          }
           
           Text("🥖")
             .font(.system(size: 120))
