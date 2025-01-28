@@ -40,8 +40,7 @@ final class LocationSelectionViewModel: NSObject {
   
   func getCoordinatesForCity(_ searchResult: MKLocalSearchCompletion) async throws -> CLLocationCoordinate2D {
     let searchRequest = MKLocalSearch.Request()
-    searchRequest.naturalLanguageQuery = searchResult.title
-    
+    searchRequest.naturalLanguageQuery = "\(searchResult.title), \(searchResult.subtitle)"
     let search = MKLocalSearch(request: searchRequest)
     let response = try await search.start()
     
