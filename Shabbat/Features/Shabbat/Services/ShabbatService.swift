@@ -21,6 +21,19 @@ struct ShabbatItem: Codable, Identifiable {
   let hebrew: String
   var link: String?
   
+  init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    date = try container.decode(String.self, forKey: .date)
+    category = try container.decode(String.self, forKey: .category)
+    hebrew = try container.decode(String.self, forKey: .hebrew)
+    link = try container.decodeIfPresent(String.self, forKey: .link)
+    
+    // Set the title property based on app language
+    let appLanguage = Locale.current.language.languageCode?.identifier ?? "en"
+    let decodedTitle = try container.decode(String.self, forKey: .title)
+    title = appLanguage == "he" ? hebrew : decodedTitle
+  }
+  
   var id: String {
     "\(category)-\(date)"
   }
@@ -71,7 +84,6 @@ class ShabbatService {
       candleLighting = response.items.first { $0.category == "candles" }
       havdalah = response.items.first { $0.category == "havdalah" }
       parasah = response.items.first { $0.category == "parashat" }
-      
       timeZone = response.location.tzid
       
       error = nil

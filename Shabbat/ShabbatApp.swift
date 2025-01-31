@@ -14,13 +14,14 @@ struct ShabbatApp: App {
 
 struct MainView: View {
   @Query private var cities: [City]
+  @Environment(\.modelContext) private var modelContext
   
   var body: some View {
     Group {
       if cities.isEmpty {
         OnboardingView()
       } else {
-        HomeView()
+        HomeView(modelContext: modelContext)
            .transition(
               .asymmetric(
                 insertion: .move(edge: .trailing).combined(with: .opacity),

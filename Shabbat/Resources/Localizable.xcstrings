@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld days" : {
+
+    },
     "🕯️" : {
 
     },
@@ -37,7 +40,11 @@
         }
       }
     },
+    "Done" : {
+
+    },
     "Error loading times" : {
+      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
@@ -48,6 +55,7 @@
       }
     },
     "in %lld days" : {
+      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
@@ -67,7 +75,11 @@
         }
       }
     },
+    "parashat hashavua" : {
+
+    },
     "Retry" : {
+      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
@@ -127,6 +139,9 @@
         }
       }
     },
+    "Something went wrong" : {
+
+    },
     "today" : {
       "localizations" : {
         "he" : {
@@ -147,7 +162,11 @@
         }
       }
     },
+    "Try Again" : {
+
+    },
     "Weekly Torah Portion" : {
+      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
