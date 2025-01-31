@@ -6,7 +6,7 @@ struct ErrorMessage: View {
     
     var body: some View {
         VStack(spacing: 12) {
-            Text("Something went wrong")
+            Text("Oy! Something went wrong")
                 .font(.headline)
             
             Text(error.localizedDescription)

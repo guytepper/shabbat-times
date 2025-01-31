@@ -40,6 +40,10 @@ class ParashaService {
   
   private let baseURL = "https://www.sefaria.org/api/calendars"
   
+  private var isHebrewLocale: Bool {
+    Locale.current.language.languageCode?.identifier == "he"
+  }
+  
   @MainActor
   func fetchCurrentParasha() async throws {
     isLoading = true
@@ -65,10 +69,10 @@ class ParashaService {
     }
     
     self.parasah = ParashaInfo(
-      name: parashaItem.displayValue.en,
+      name: isHebrewLocale ? parashaItem.displayValue.he : parashaItem.displayValue.en,
       hebrewName: parashaItem.displayValue.he,
       url: parashaItem.url,
-      description: parashaItem.description?.en ?? "",
+      description: isHebrewLocale ? (parashaItem.description?.he ?? "") : (parashaItem.description?.en ?? ""),
       hebrewDescription: parashaItem.description?.he ?? ""
     )
   }

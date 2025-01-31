@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%lld days" : {
-
-    },
     "🕯️" : {
 
     },
@@ -40,22 +37,17 @@
         }
       }
     },
-    "Done" : {
-
-    },
-    "Error loading times" : {
-      "extractionState" : "stale",
+    "Close" : {
       "localizations" : {
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "שגיאה בטעינת הזמנים"
+            "value" : "סגירה"
           }
         }
       }
     },
     "in %lld days" : {
-      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
@@ -75,16 +67,22 @@
         }
       }
     },
-    "parashat hashavua" : {
-
-    },
-    "Retry" : {
-      "extractionState" : "stale",
+    "Oy! Something went wrong" : {
       "localizations" : {
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "לנסות שוב"
+            "value" : "אוי! משהו השתבש"
+          }
+        }
+      }
+    },
+    "parashat hashavua" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "פרשת השבוע"
           }
         }
       }
@@ -139,9 +137,6 @@
         }
       }
     },
-    "Something went wrong" : {
-
-    },
     "today" : {
       "localizations" : {
         "he" : {
@@ -163,15 +158,11 @@
       }
     },
     "Try Again" : {
-
-    },
-    "Weekly Torah Portion" : {
-      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "פרשת השבוע"
+            "value" : "נסו שנית"
           }
         }
       }

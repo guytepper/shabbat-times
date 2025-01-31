@@ -38,8 +38,11 @@ struct HomeView: View {
               nextShabbatDates: viewModel.nextShabbatDates,
               daysUntilShabbat: viewModel.daysUntilShabbat
             )
+            .padding(.bottom, 24)
+
             
             ShabbatTimesView(viewModel: viewModel)
+              .padding(.bottom, 8)
             
             ParashaButton(
               parasahName: viewModel.parashaName,

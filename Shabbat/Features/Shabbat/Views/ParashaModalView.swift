@@ -12,23 +12,26 @@ struct ParashaModalView: View {
           ProgressView()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else if let parasha = self.parasha {
-          VStack(alignment: .leading, spacing: 24) {
+          VStack(alignment: .leading) {
             Text(parasha.name)
-              .font(.system(.title, design: .serif))
+              .font(.title)
+              .fontDesign(.serif)
               .fontWeight(.bold)
+              .padding(.bottom, 8)
             
             Text(parasha.description)
-              .font(.body)
+              .lineSpacing(5)
           }
-          .padding()
+          .padding(.horizontal)
         }
       }
+      .background(.thinMaterial)
       .navigationBarTitleDisplayMode(.inline)
       .toolbar {
         ToolbarItem(placement: .topBarTrailing) {
-          Button("Done", action: dismiss)
+          Button("Close", action: dismiss)
         }
       }
     }
   }
-} 
+}

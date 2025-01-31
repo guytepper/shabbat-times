@@ -25,6 +25,5 @@ struct ShabbatDateInfo: View {
         Text(daysUntil)
       }
     }
-    .padding(.bottom, 24)
   }
 }

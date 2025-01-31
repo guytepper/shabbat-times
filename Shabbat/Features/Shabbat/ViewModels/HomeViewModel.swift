@@ -46,7 +46,7 @@ class HomeViewModel {
   var parashaName: String {
     shabbatService.parasah?.title ?? ""
   }
-
+  
   func loadShabbatTimes() async {
     if let city = cityManager?.getCurrentCity() {
       await shabbatService.fetchShabbatTimes(for: city)
@@ -64,35 +64,33 @@ class HomeViewModel {
       country: city.country,
       coordinate: city.coordinate
     )
-    }
-
-  var nextShabbatDates: String? {
-    guard let candleLighting = candleLighting,
-          let havdalah = havdalah else {
-      return nil
-    }
-    
-    let dateFormatter = DateFormatter()
-    dateFormatter.timeZone = timeZone
-    
-    // If both dates are in the same month
-    if Calendar.current.isDate(candleLighting, equalTo: havdalah, toGranularity: .month) {
-      dateFormatter.setLocalizedDateFormatFromTemplate("d")
-      let startDay = dateFormatter.string(from: candleLighting)
-      
-      dateFormatter.setLocalizedDateFormatFromTemplate("d MMMM")
-      let endDay = dateFormatter.string(from: havdalah)
-      
-      return "\(startDay)-\(endDay)"
-    } else {
-      dateFormatter.setLocalizedDateFormatFromTemplate("d MMMM")
-      let startDate = dateFormatter.string(from: candleLighting)
-      let endDate = dateFormatter.string(from: havdalah)
-      
-      return "\(startDate)-\(endDate)"
-    }
   }
   
+  var nextShabbatDates: String? {
+    let startDate = candleLighting ?? Date()
+    let endDate = havdalah ?? Date()
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "d"
+    dateFormatter.timeZone = timeZone
+    
+    let monthFormatter = DateFormatter()
+    monthFormatter.dateFormat = "MMMM"
+    monthFormatter.timeZone = timeZone
+    
+    let startDay = dateFormatter.string(from: startDate)
+    let endDay = dateFormatter.string(from: endDate)
+    
+    // Handle cases where the start & end dates are on different months
+    let startMonth = monthFormatter.string(from: startDate)
+    let endMonth = monthFormatter.string(from: endDate)
+    
+    if startMonth == endMonth {
+      return "\(startDay) - \(endDay) \(startMonth)"
+    } else {
+      return "\(startDay) \(startMonth) - \(endDay) \(endMonth)"
+    }
+  }
   var daysUntilShabbat: String? {
     guard let candleLighting = candleLighting else { return nil }
     
@@ -108,7 +106,7 @@ class HomeViewModel {
     case 1:
       return String(localized: "tomorrow")
     default:
-      return String(localized: "\(days) days")
+      return String(localized: "in \(days) days")
     }
   }
-} 
+}
