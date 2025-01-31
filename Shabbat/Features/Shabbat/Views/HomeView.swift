@@ -173,9 +173,11 @@ struct HomeView: View {
     
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "d"
+    dateFormatter.timeZone = TimeZone(identifier: timeZone) ?? .current
     
     let monthFormatter = DateFormatter()
     monthFormatter.dateFormat = "MMMM"
+    monthFormatter.timeZone = TimeZone(identifier: timeZone) ?? .current
     
     let startDay = dateFormatter.string(from: startDate)
     let endDay = dateFormatter.string(from: endDate)
