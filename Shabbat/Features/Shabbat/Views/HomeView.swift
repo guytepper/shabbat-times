@@ -8,6 +8,7 @@ struct HomeView: View {
   @Environment(\.modelContext) private var modelContext
   @State private var service = ShabbatService()
   @State private var cityManager: CityManager?
+  @State private var showLocationPicker = false
   
   var cityName: String{
     cityManager?.getCurrentCity()?.name ?? ""
@@ -26,7 +27,7 @@ struct HomeView: View {
       ScrollView {
         VStack(alignment: .center) {
           Button(action: {
-            try? modelContext.delete(model: City.self)
+            showLocationPicker = true
           }) {
             Text(cityName)
               .font(.title3)
@@ -94,6 +95,21 @@ struct HomeView: View {
                 .shadow(color: .black.opacity(0.1), radius: 10)
             )
             .padding(.bottom)
+            
+//            HStack {
+//              Spacer()
+//              Text("Parashat Vaera")
+//                .font(                    layoutDirection == .rightToLeft ? .title2 : .title3)
+//                .fontDesign(.serif)
+//                .bold()
+//              Spacer()
+//            }
+//            .padding(26)
+//            .background(
+//              RoundedRectangle(cornerRadius: 16)
+//                .fill(.amber)
+//                .shadow(color: .black.opacity(0.1), radius: 10)
+//            )
           }
         }
         .padding()
@@ -108,6 +124,22 @@ struct HomeView: View {
         }
       }
       .background(gradientBackground)
+      .fullScreenCover(isPresented: $showLocationPicker) {
+        LocationSelectionView { city in
+          try? modelContext.delete(model: City.self)
+          
+          cityManager?.saveCity(
+            name: city.name,
+            country: city.country,
+            coordinate: city.coordinate
+          )
+          
+          Task {
+            await loadShabbatTimes()
+          }
+        }
+      }
+
     }
   }
   
@@ -126,9 +158,8 @@ struct HomeView: View {
   }
   
   private func loadShabbatTimes() async {
-    
     if let city = cityManager?.getCurrentCity() {
-      await try service.fetchShabbatTimes(for: city)
+       await service.fetchShabbatTimes(for: city)
     }
   }
 
