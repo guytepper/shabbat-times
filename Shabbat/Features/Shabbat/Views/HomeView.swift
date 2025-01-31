@@ -184,6 +184,7 @@ struct HomeView: View {
   
   // Create and save a sample city
   let sampleCity = City(name: "Jerusalem", country: "Israel", coordinate: CLLocationCoordinate2D(latitude: 31.7683, longitude: 35.2137))
+//  let usaCity = City(name: "Arcata, CA", country: "USA", coordinate: CLLocationCoordinate2D(latitude: 40.86731, longitude: 124.08522))
   try! container.mainContext.insert(sampleCity)
   
   return HomeView()
