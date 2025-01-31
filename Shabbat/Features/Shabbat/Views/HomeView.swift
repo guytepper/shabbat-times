@@ -9,6 +9,7 @@ struct HomeView: View {
   @State private var service = ShabbatService()
   @State private var cityManager: CityManager?
   @State private var showLocationPicker = false
+  @State private var showParashaModal = false
   
   var cityName: String{
     cityManager?.getCurrentCity()?.name ?? ""
@@ -96,20 +97,23 @@ struct HomeView: View {
             )
             .padding(.bottom)
             
-//            HStack {
-//              Spacer()
-//              Text("Parashat Vaera")
-//                .font(                    layoutDirection == .rightToLeft ? .title2 : .title3)
-//                .fontDesign(.serif)
-//                .bold()
-//              Spacer()
-//            }
-//            .padding(26)
-//            .background(
-//              RoundedRectangle(cornerRadius: 16)
-//                .fill(.amber)
-//                .shadow(color: .black.opacity(0.1), radius: 10)
-//            )
+            HStack {
+              Spacer()
+              Text("Parashat Vaera")
+                .font(layoutDirection == .rightToLeft ? .title2 : .title3)
+                .fontDesign(.serif)
+                .bold()
+              Spacer()
+            }
+            .padding(26)
+            .background(
+              RoundedRectangle(cornerRadius: 16)
+                .fill(.amber)
+                .shadow(color: .black.opacity(0.1), radius: 10)
+            )
+            .onTapGesture {
+              showParashaModal = true
+            }
           }
         }
         .padding()
@@ -139,7 +143,20 @@ struct HomeView: View {
           }
         }
       }
-
+      .sheet(isPresented: $showParashaModal) {
+        NavigationView {
+          ParashaView()
+            .navigationTitle("Weekly Torah Portion")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+              ToolbarItem(placement: .cancellationAction) {
+                Button("Cancel") {
+                  showParashaModal = false
+                }
+              }
+            }
+        }
+      }
     }
   }
   
@@ -159,15 +176,15 @@ struct HomeView: View {
   
   private func loadShabbatTimes() async {
     if let city = cityManager?.getCurrentCity() {
-       await service.fetchShabbatTimes(for: city)
+      await service.fetchShabbatTimes(for: city)
     }
   }
-
+  
   private var nextShabbatDates: String? {
     let timeZone = service.timeZone ?? TimeZone.current.identifier
     guard let candleLighting = service.candleLighting?.formattedDate(timeZone: timeZone),
           let havdalah = service.havdalah?.formattedDate(timeZone: timeZone) else { return nil }
-
+    
     let startDate = candleLighting
     let endDate = havdalah
     
@@ -187,12 +204,12 @@ struct HomeView: View {
     let endMonth = monthFormatter.string(from: endDate)
     
     if startMonth == endMonth {
-        return "\(startDay) - \(endDay) \(startMonth)"
+      return "\(startDay) - \(endDay) \(startMonth)"
     } else {
-        return "\(startDay) \(startMonth) - \(endDay) \(endMonth)"
+      return "\(startDay) \(startMonth) - \(endDay) \(endMonth)"
     }
   }
-
+  
   private var daysUntilShabbat: String? {
     guard let candleLighting = service.candleLighting?.formattedDate(timeZone: TimeZone.current.abbreviation() ?? "UTC") else { return nil }
     
@@ -217,10 +234,9 @@ struct HomeView: View {
   
   // Create and save a sample city
   let sampleCity = City(name: "Jerusalem", country: "Israel", coordinate: CLLocationCoordinate2D(latitude: 31.7683, longitude: 35.2137))
-//  let usaCity = City(name: "Arcata, CA", country: "USA", coordinate: CLLocationCoordinate2D(latitude: 40.86731, longitude: 124.08522))
+  //  let usaCity = City(name: "Arcata, CA", country: "USA", coordinate: CLLocationCoordinate2D(latitude: 40.86731, longitude: 124.08522))
   try! container.mainContext.insert(sampleCity)
   
   return HomeView()
     .modelContainer(container)
 }
-

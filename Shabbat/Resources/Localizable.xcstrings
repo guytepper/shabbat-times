@@ -146,6 +146,16 @@
           }
         }
       }
+    },
+    "Weekly Torah Portion" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "פרשת השבוע"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
