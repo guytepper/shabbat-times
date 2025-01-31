@@ -18,6 +18,8 @@ struct ShabbatItem: Codable, Identifiable {
   let title: String
   let date: String
   let category: String
+  let hebrew: String
+  var link: String?
   
   var id: String {
     "\(category)-\(date)"
@@ -37,6 +39,7 @@ class ShabbatService {
   private(set) var timeZone: String?
   var candleLighting: ShabbatItem?
   var havdalah: ShabbatItem?
+  var parasah: ShabbatItem?
   var error: Error?
   
   @MainActor
@@ -55,7 +58,6 @@ class ShabbatService {
     let longitude = city.coordinate.longitude
     
     let urlString = "https://www.hebcal.com/shabbat?cfg=json&geo=pos&latitude=\(latitude)&longitude=\(longitude)&M=on&b=\(beforeSunset)"
-//    let urlString = "https://www.hebcal.com/shabbat?cfg=json&geo=geoname&geonameid=11524864"
     
     guard let url = URL(string: urlString) else {
       error = NSError(domain: "Invalid URL", code: -1)
@@ -67,7 +69,9 @@ class ShabbatService {
       let response = try JSONDecoder().decode(ShabbatResponse.self, from: data)
       
       candleLighting = response.items.first { $0.category == "candles" }
-      havdalah = response.items.first { $0.category == "havdalah" }    
+      havdalah = response.items.first { $0.category == "havdalah" }
+      parasah = response.items.first { $0.category == "parashat" }
+      
       timeZone = response.location.tzid
       
       error = nil

@@ -6,7 +6,10 @@ struct HomeView: View {
   @Environment(\.colorScheme) var colorScheme
   @Environment(\.layoutDirection) var layoutDirection
   @Environment(\.modelContext) private var modelContext
-  @State private var service = ShabbatService()
+  
+  @State private var shabbatService = ShabbatService()
+  @State private var parashaService = ParashaService()
+  
   @State private var cityManager: CityManager?
   @State private var showLocationPicker = false
   @State private var showParashaModal = false
@@ -16,11 +19,19 @@ struct HomeView: View {
   }
   
   var candleLighting: Date? {
-    return service.candleLighting?.formattedDate(timeZone: service.timeZone)
+    return shabbatService.candleLighting?.formattedDate(timeZone: shabbatService.timeZone)
   }
   
   var havdalah: Date? {
-    service.havdalah?.formattedDate(timeZone: service.timeZone)
+    shabbatService.havdalah?.formattedDate(timeZone: shabbatService.timeZone)
+  }
+  
+  var parasahName: String {
+    if let parasah = shabbatService.parasah {
+      return layoutDirection == .rightToLeft ? parasah.hebrew : parasah.title
+    }
+    
+    return ""
   }
   
   var body: some View {
@@ -64,10 +75,10 @@ struct HomeView: View {
           .padding(.bottom, 24)
           
           
-          if service.isLoading {
+          if shabbatService.isLoading {
             ProgressView()
               .frame(maxWidth: .infinity, maxHeight: .infinity)
-          } else if let error = service.error {
+          } else if let error = shabbatService.error {
             ErrorMessage(error: error, onRetry: loadShabbatTimes)
               .frame(maxWidth: .infinity)
               .padding()
@@ -76,7 +87,7 @@ struct HomeView: View {
               ShabbatTimeRow(
                 title: ShabbatTimeType.candleLighting.title,
                 time: candleLighting ?? Date(),
-                timeZone: TimeZone(identifier: service.timeZone ?? TimeZone.current.identifier) ?? .current,
+                timeZone: TimeZone(identifier: shabbatService.timeZone ?? TimeZone.current.identifier) ?? .current,
                 timeColor: .orange
               )
               
@@ -85,7 +96,7 @@ struct HomeView: View {
               ShabbatTimeRow(
                 title: ShabbatTimeType.havdalah.title,
                 time: havdalah ?? Date(),
-                timeZone: TimeZone(identifier: service.timeZone ?? TimeZone.current.identifier) ?? .current,
+                timeZone: TimeZone(identifier: shabbatService.timeZone ?? TimeZone.current.identifier) ?? .current,
                 timeColor: .purple
               )
             }
@@ -97,22 +108,23 @@ struct HomeView: View {
             )
             .padding(.bottom)
             
-            HStack {
-              Spacer()
-              Text("Parashat Vaera")
-                .font(layoutDirection == .rightToLeft ? .title2 : .title3)
-                .fontDesign(.serif)
-                .bold()
-              Spacer()
-            }
-            .padding(26)
-            .background(
-              RoundedRectangle(cornerRadius: 16)
-                .fill(.amber)
-                .shadow(color: .black.opacity(0.1), radius: 10)
-            )
-            .onTapGesture {
+            Button {
               showParashaModal = true
+            } label: {
+              HStack {
+                Spacer()
+                Text(parasahName)
+                  .font(layoutDirection == .rightToLeft ? .title2 : .title3)
+                  .fontDesign(.serif)
+                  .bold()
+                  .foregroundStyle(Color(uiColor: .label))
+                Spacer()
+              }
+              .padding(26)
+              .background(
+                RoundedRectangle(cornerRadius: 16)
+                  .fill(.amber)
+              )
             }
           }
         }
@@ -125,6 +137,7 @@ struct HomeView: View {
         }
         Task {
           await loadShabbatTimes()
+          try await parashaService.fetchCurrentParasha()
         }
       }
       .background(gradientBackground)
@@ -145,7 +158,7 @@ struct HomeView: View {
       }
       .sheet(isPresented: $showParashaModal) {
         NavigationView {
-          ParashaView()
+          ParashaView(parasha: parashaService.parasah, isLoading: parashaService.isLoading)
             .navigationTitle("Weekly Torah Portion")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -176,14 +189,15 @@ struct HomeView: View {
   
   private func loadShabbatTimes() async {
     if let city = cityManager?.getCurrentCity() {
-      await service.fetchShabbatTimes(for: city)
+      await shabbatService.fetchShabbatTimes(for: city)
     }
   }
   
   private var nextShabbatDates: String? {
-    let timeZone = service.timeZone ?? TimeZone.current.identifier
-    guard let candleLighting = service.candleLighting?.formattedDate(timeZone: timeZone),
-          let havdalah = service.havdalah?.formattedDate(timeZone: timeZone) else { return nil }
+    let timeZone = shabbatService.timeZone ?? TimeZone.current.identifier
+
+    guard let candleLighting = shabbatService.candleLighting?.formattedDate(timeZone: timeZone),
+          let havdalah = shabbatService.havdalah?.formattedDate(timeZone: timeZone) else { return nil }
     
     let startDate = candleLighting
     let endDate = havdalah
@@ -211,7 +225,7 @@ struct HomeView: View {
   }
   
   private var daysUntilShabbat: String? {
-    guard let candleLighting = service.candleLighting?.formattedDate(timeZone: TimeZone.current.abbreviation() ?? "UTC") else { return nil }
+    guard let candleLighting = shabbatService.candleLighting?.formattedDate(timeZone: TimeZone.current.abbreviation() ?? "UTC") else { return nil }
     
     let calendar = Calendar.current
     let now = Date()
