@@ -21,10 +21,11 @@ struct MainView: View {
         OnboardingView()
       } else {
         HomeView()
-                          .transition(.asymmetric(
-                        insertion: .move(edge: .trailing).combined(with: .opacity),
-                        removal: .move(edge: .trailing).combined(with: .opacity)
-                    ))
+           .transition(
+              .asymmetric(
+                insertion: .move(edge: .trailing).combined(with: .opacity),
+                removal: .move(edge: .trailing).combined(with: .opacity)
+              ))
       }
     }
     .transition(.opacity.combined(with: .move(edge: .trailing)))

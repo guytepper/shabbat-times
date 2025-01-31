@@ -69,7 +69,7 @@ struct HomeView: View {
             ErrorMessage(error: error, onRetry: loadShabbatTimes)
               .frame(maxWidth: .infinity)
               .padding()
-          } else {
+          } else  {
             VStack(spacing: 16) {
               ShabbatTimeRow(
                 title: ShabbatTimeType.candleLighting.title,
@@ -126,8 +126,9 @@ struct HomeView: View {
   }
   
   private func loadShabbatTimes() async {
+    
     if let city = cityManager?.getCurrentCity() {
-      await service.fetchShabbatTimes(for: city)
+      await try service.fetchShabbatTimes(for: city)
     }
   }
 

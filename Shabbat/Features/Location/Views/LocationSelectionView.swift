@@ -19,7 +19,10 @@ struct LocationSelectionView: View {
             coordinate: coordinate
           )
           onLocationSelected(selectedCity)
-          dismiss()
+
+          await MainActor.run {
+            dismiss()
+          }
         } catch {
           print("Error getting coordinates: \(error)")
         }
@@ -93,7 +96,6 @@ struct LocationSelectionView: View {
       Button {
         Task {
           await onCitySelection(city)
-          dismiss()
         }
       } label: {
         VStack(alignment: .leading) {

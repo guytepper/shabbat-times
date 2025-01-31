@@ -33,14 +33,20 @@ struct ShabbatItem: Codable, Identifiable {
 
 @Observable
 class ShabbatService {
+  @MainActor private(set) var isLoading = false
+  private(set) var timeZone: String?
   var candleLighting: ShabbatItem?
   var havdalah: ShabbatItem?
-  var timeZone: String?
   var error: Error?
-  var isLoading = false
   
+  @MainActor
   func fetchShabbatTimes(for city: City) async {
     isLoading = true
+    
+    defer {
+      isLoading = false
+    }
+    
     // Candle-lighting time minutes before sunset
     // For Jerusalem, it's common to light candles 40 minutes before sunset.
     // Otherwise, it's 18 minutes before sunset.
@@ -65,10 +71,9 @@ class ShabbatService {
       timeZone = response.location.tzid
       
       error = nil
-      isLoading = false
     } catch {
       self.error = error
-      isLoading = false
+      print(error)
     }
   }
 }
