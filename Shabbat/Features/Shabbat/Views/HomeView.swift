@@ -36,7 +36,8 @@ struct HomeView: View {
             
             ShabbatDateInfo(
               nextShabbatDates: viewModel.nextShabbatDates,
-              daysUntilShabbat: viewModel.daysUntilShabbat
+              daysUntilShabbat: viewModel.daysUntilShabbat,
+              isShabbat: viewModel.isShabbat
             )
             .padding(.bottom, 24)
 

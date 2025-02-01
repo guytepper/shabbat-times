@@ -4,10 +4,11 @@ struct ShabbatDateInfo: View {
   @Environment(\.layoutDirection) var layoutDirection
   let nextShabbatDates: String?
   let daysUntilShabbat: String?
+  let isShabbat: Bool
   
   var body: some View {
     VStack(spacing: 6) {
-      Text("next shabbat")
+      Text(isShabbat ? "shabbat shalom" : "next shabbat")
         .fontWidth(.expanded)
       
       if let dates = nextShabbatDates {
@@ -21,7 +22,7 @@ struct ShabbatDateInfo: View {
           )
       }
       
-      if let daysUntil = daysUntilShabbat {
+      if let daysUntil = daysUntilShabbat, !isShabbat {
         Text(daysUntil)
       }
     }

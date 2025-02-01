@@ -7,7 +7,6 @@ struct ShabbatApp: App {
     WindowGroup {
       MainView()
         .modelContainer(for: City.self)
-      
     }
   }
 }

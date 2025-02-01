@@ -47,6 +47,16 @@ class HomeViewModel {
     shabbatService.parasah?.title ?? ""
   }
   
+  var isShabbat: Bool {
+    guard let candleLighting = candleLighting,
+          let havdalah = havdalah else {
+      return false
+    }
+    
+    let now = Date()
+    return now >= candleLighting && now <= havdalah
+  }
+  
   func loadShabbatTimes() async {
     if let city = cityManager?.getCurrentCity() {
       await shabbatService.fetchShabbatTimes(for: city)

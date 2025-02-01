@@ -118,6 +118,7 @@
       }
     },
     "Preview failed: %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
@@ -173,6 +174,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "צאת שבת"
+          }
+        }
+      }
+    },
+    "shabbat shalom" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שבת שלום"
           }
         }
       }
