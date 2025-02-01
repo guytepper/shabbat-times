@@ -26,6 +26,18 @@ struct ParashaModalView: View {
             
             Text(parasha.description)
               .lineSpacing(5)
+              .padding(.bottom)
+              .contextMenu {
+                Button {
+                  UIPasteboard.general.string = parasha.description
+                } label: {
+                  Label("Copy", systemImage: "doc.on.doc")
+                }
+              }
+            
+            if !parasha.url.isEmpty {
+              externalLinkButton
+            }
           }
           .padding(.horizontal)
         }
