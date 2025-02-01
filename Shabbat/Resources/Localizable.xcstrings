@@ -4,9 +4,6 @@
     "🕯️" : {
 
     },
-    "🥖" : {
-
-    },
     "Cancel" : {
       "localizations" : {
         "he" : {
@@ -118,7 +115,6 @@
       }
     },
     "Preview failed: %@" : {
-      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
