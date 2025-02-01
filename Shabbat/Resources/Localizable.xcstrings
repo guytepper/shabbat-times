@@ -47,6 +47,16 @@
         }
       }
     },
+    "Copy" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "העתקה"
+          }
+        }
+      }
+    },
     "in %lld days" : {
       "localizations" : {
         "he" : {
@@ -67,12 +77,32 @@
         }
       }
     },
+    "OK" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "אישור"
+          }
+        }
+      }
+    },
     "Oy! Something went wrong" : {
       "localizations" : {
         "he" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "אוי! משהו השתבש"
+          }
+        }
+      }
+    },
+    "Oy! The link to Sefaria could not be opened." : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "לא הצלחנו לפתוח את הקישור לאתר ספרייה."
           }
         }
       }
@@ -93,6 +123,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "תצוגה מקדימה נכשלה: %@"
+          }
+        }
+      }
+    },
+    "Read on Sefaria" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "קריאת הפרשה"
           }
         }
       }
@@ -173,6 +213,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "נסו שנית"
+          }
+        }
+      }
+    },
+    "Unable to Open Link" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ארעה שגיאה בפתיחת הלינק"
           }
         }
       }
