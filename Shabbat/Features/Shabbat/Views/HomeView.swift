@@ -101,7 +101,9 @@ struct HomeView: View {
       coordinate: CLLocationCoordinate2D(latitude: 31.7683, longitude: 35.2137)
     )
     container.mainContext.insert(jerusalemCity)
+    
     return HomeView(modelContext: container.mainContext)
+      .modelContainer(container)
   } catch {
     return Text("Preview failed: \(error.localizedDescription)")
   }
@@ -117,6 +119,7 @@ struct HomeView: View {
     )
     container.mainContext.insert(nyCity)
     return HomeView(modelContext: container.mainContext)
+      .modelContainer(container)
   } catch {
     return Text("Preview failed: \(error.localizedDescription)")
   }

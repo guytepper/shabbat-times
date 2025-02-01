@@ -15,7 +15,7 @@ struct ShabbatDateInfo: View {
           .font(
             .system(
               layoutDirection == .rightToLeft ? .title2 : .title3,
-              design: .serif
+              design: layoutDirection == .rightToLeft ? .rounded : .serif
             )
             .weight(.bold)
           )

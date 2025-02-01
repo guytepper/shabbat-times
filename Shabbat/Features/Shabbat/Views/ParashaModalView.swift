@@ -5,6 +5,10 @@ struct ParashaModalView: View {
   let isLoading: Bool
   let dismiss: () -> Void
   
+  var isHebrewLocale: Bool {
+    Locale.current.language.languageCode?.identifier == "he"
+  }
+  
   var body: some View {
     NavigationStack {
       ScrollView {
@@ -14,8 +18,8 @@ struct ParashaModalView: View {
         } else if let parasha = self.parasha {
           VStack(alignment: .leading) {
             Text(parasha.name)
-              .font(.title)
-              .fontDesign(.serif)
+              .font(isHebrewLocale ? .largeTitle : .title)
+              .fontDesign(isHebrewLocale ? .rounded : .serif)
               .fontWeight(.bold)
               .padding(.bottom, 8)
             

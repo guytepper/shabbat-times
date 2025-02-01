@@ -15,7 +15,8 @@ struct ParashaButton: View {
           .fontWidth(.expanded)
         
         Text(parasahName)
-          .font(.system(isHebrewLocale ? .title2 : .title3, design: .serif))
+          .font(isHebrewLocale ? .title2 : .title3)
+          .fontDesign(isHebrewLocale ? .rounded : .serif)
           .fontWeight(.bold)
       }
       .frame(maxWidth: .infinity)
