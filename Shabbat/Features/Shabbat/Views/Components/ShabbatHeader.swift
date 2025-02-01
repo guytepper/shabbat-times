@@ -11,7 +11,7 @@ struct ShabbatHeader: View {
     
     // Friday icons
     if today == 6 {
-      // TODO: Replace this with actual candle lighting time from your data source
+      // TODO: Replace this with actual candle lighting time
       let candleLightingTime = calendar.date(bySettingHour: 16, minute: 0, second: 0, of: now) ?? now
       
       if now < candleLightingTime {

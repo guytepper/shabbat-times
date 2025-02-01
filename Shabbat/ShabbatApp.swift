@@ -20,12 +20,17 @@ struct MainView: View {
       if cities.isEmpty {
         OnboardingView()
       } else {
-        HomeView(modelContext: modelContext)
-           .transition(
-              .asymmetric(
-                insertion: .move(edge: .trailing).combined(with: .opacity),
-                removal: .move(edge: .trailing).combined(with: .opacity)
-              ))
+        TabView {
+          HomeView(modelContext: modelContext)
+            .tabItem {
+              Label("Shabbat Times", systemImage: "clock")
+            }
+          
+          SettingsView()
+            .tabItem {
+              Label("Settings", systemImage: "gearshape")
+            }
+        }
       }
     }
     .transition(.opacity.combined(with: .move(edge: .trailing)))

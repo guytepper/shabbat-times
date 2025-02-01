@@ -4,6 +4,19 @@
     "🕯️" : {
 
     },
+    "About the App" : {
+
+    },
+    "Bilingual" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "דו-לשוני"
+          }
+        }
+      }
+    },
     "Cancel" : {
       "localizations" : {
         "he" : {
@@ -50,6 +63,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "העתקה"
+          }
+        }
+      }
+    },
+    "Display Options" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הגדרות תצוגה"
+          }
+        }
+      }
+    },
+    "English" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "אנגלית"
+          }
+        }
+      }
+    },
+    "Hebrew" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "עברית"
           }
         }
       }
@@ -104,6 +147,16 @@
         }
       }
     },
+    "Parasha Language" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שפה הפרשה"
+          }
+        }
+      }
+    },
     "parashat hashavua" : {
       "localizations" : {
         "he" : {
@@ -115,11 +168,22 @@
       }
     },
     "Preview failed: %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "תצוגה מקדימה נכשלה: %@"
+          }
+        }
+      }
+    },
+    "Rate the App" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "דירוג האפליקצייה"
           }
         }
       }
@@ -130,6 +194,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "קריאת הפרשה"
+          }
+        }
+      }
+    },
+    "Reading the Parasha on the Sefaria website will be in the chosen language." : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "קריאת הפרשה באתר ״ספריה״ תהיה בשפה שנבחרה."
           }
         }
       }
@@ -164,6 +238,26 @@
         }
       }
     },
+    "Send Feedback" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שליחת פידבק"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הגדרות"
+          }
+        }
+      }
+    },
     "Shabbat Ends" : {
       "localizations" : {
         "he" : {
@@ -193,6 +287,28 @@
           }
         }
       }
+    },
+    "Shabbat Times" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shabbat"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "זמני שבת"
+          }
+        }
+      }
+    },
+    "Shabbat Times is an open source project created to ease the access to Shabbat information.\nWe would like to thank HebCal project for providing the candle lightning data, and for the Sefaria project for the Parasha summaries." : {
+
+    },
+    "Share the App" : {
+
     },
     "today" : {
       "localizations" : {
@@ -233,6 +349,9 @@
           }
         }
       }
+    },
+    "Version 1.0" : {
+
     }
   },
   "version" : "1.0"
