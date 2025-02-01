@@ -24,7 +24,7 @@ struct ShabbatTimesView: View {
      .padding(20)
      .background(
        RoundedRectangle(cornerRadius: 16)
-         .fill(Color(uiColor: .systemGroupedBackground))
+         .fill(Color(uiColor:.tertiarySystemBackground))
          .shadow(color: .black.opacity(0.1), radius: 10)
      )
   }
