@@ -87,6 +87,16 @@
         }
       }
     },
+    "Preview failed: %@" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "תצוגה מקדימה נכשלה: %@"
+          }
+        }
+      }
+    },
     "Search for a city..." : {
       "localizations" : {
         "he" : {
