@@ -69,8 +69,8 @@ struct ParashaModalView: View {
         Spacer()
       }
       .padding()
-      .background(.brown.gradient.tertiary)
-      .foregroundColor(.white)
+      .background(.brown.gradient.secondary)
+      .foregroundColor(Color(uiColor: .label))
       .cornerRadius(8)
     }
     .alert("Unable to Open Link", isPresented: $showErrorAlert) {
