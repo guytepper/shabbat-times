@@ -34,6 +34,9 @@
         }
       }
     },
+    "Candle lightning today at %@" : {
+
+    },
     "Choose your city to get Shabbat times for your location." : {
       "localizations" : {
         "he" : {
@@ -113,6 +116,9 @@
           }
         }
       }
+    },
+    "Notification Permission" : {
+
     },
     "OK" : {
       "localizations" : {

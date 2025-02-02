@@ -3,6 +3,11 @@ import SwiftData
 
 @main
 struct ShabbatApp: App {
+  init() {
+    // Register background task
+    BackgroundTaskService.shared.registerBackgroundTasks()
+  }
+  
   var body: some Scene {
     WindowGroup {
       MainView()
@@ -24,6 +29,9 @@ struct MainView: View {
           HomeView(modelContext: modelContext)
             .tabItem {
               Label("Shabbat Times", systemImage: "clock")
+            }
+            .onAppear {
+              BackgroundTaskService.shared.scheduleAppRefresh(Date())
             }
           
           SettingsView(modelContext: modelContext)

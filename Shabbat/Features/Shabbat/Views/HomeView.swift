@@ -49,6 +49,12 @@ struct HomeView: View {
               parasahName: viewModel.parashaName,
               action: { showParashaModal = true }
             )
+            Button("Notification Permission") {
+              Task {
+                let center = UNUserNotificationCenter.current()
+                try await center.requestAuthorization(options: [.alert, .sound, .badge])
+              }
+            }
           }
         }
         .padding()
