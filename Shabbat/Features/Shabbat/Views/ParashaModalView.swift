@@ -1,11 +1,15 @@
 import SwiftUI
 
 struct ParashaModalView: View {
+  @Environment(\.modelContext) var modelContext
+  
   let parasha: ParashaInfo?
   let isLoading: Bool
   let dismiss: () -> Void
-  @State private var showErrorAlert = false
   
+  @State var settings: Settings?
+  @State private var showErrorAlert = false
+    
   var isHebrewLocale: Bool {
     Locale.current.language.languageCode?.identifier == "he"
   }
@@ -49,15 +53,20 @@ struct ParashaModalView: View {
           Button("Close", action: dismiss)
         }
       }
+      .onAppear {
+        settings = SettingsManager(modelContext: modelContext).settings
+      }
     }
   }
   
   var externalLinkButton: some View {
     Button {
       let baseURL = "https://www.sefaria.org.il/"
-      let langPref = isHebrewLocale ? "?lang=he" : "?lang=en"
+      let parashaUrl = parasha!.url
+      let langParam = "?lang=\(settings?.parashaLanguage ?? "bi")"
+      let urlString = baseURL + parashaUrl + langParam
       
-      if let url = URL(string: baseURL + parasha!.url + langPref) {
+      if let url = URL(string: urlString) {
         UIApplication.shared.open(url)
       } else {
         showErrorAlert = true

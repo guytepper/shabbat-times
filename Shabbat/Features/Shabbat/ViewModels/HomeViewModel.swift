@@ -111,6 +111,9 @@ class HomeViewModel {
     guard let days = components.day else { return nil }
     
     switch days {
+    case -1:
+      // This happens when Shabbat ends and the day is still Shabbat
+      return String(localized: "today")
     case 0:
       return String(localized: "today")
     case 1:

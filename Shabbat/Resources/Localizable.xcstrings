@@ -4,9 +4,6 @@
     "🕯️" : {
 
     },
-    "About the App" : {
-
-    },
     "Bilingual" : {
       "localizations" : {
         "he" : {
@@ -179,6 +176,7 @@
       }
     },
     "Rate the App" : {
+      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
@@ -239,6 +237,7 @@
       }
     },
     "Send Feedback" : {
+      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
@@ -304,12 +303,6 @@
         }
       }
     },
-    "Shabbat Times is an open source project created to ease the access to Shabbat information.\nWe would like to thank HebCal project for providing the candle lightning data, and for the Sefaria project for the Parasha summaries." : {
-
-    },
-    "Share the App" : {
-
-    },
     "today" : {
       "localizations" : {
         "he" : {
@@ -349,9 +342,6 @@
           }
         }
       }
-    },
-    "Version 1.0" : {
-
     }
   },
   "version" : "1.0"

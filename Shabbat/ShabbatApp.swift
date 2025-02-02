@@ -6,7 +6,7 @@ struct ShabbatApp: App {
   var body: some Scene {
     WindowGroup {
       MainView()
-        .modelContainer(for: City.self)
+        .modelContainer(for: [City.self, Settings.self])
     }
   }
 }
@@ -26,7 +26,7 @@ struct MainView: View {
               Label("Shabbat Times", systemImage: "clock")
             }
           
-          SettingsView()
+          SettingsView(modelContext: modelContext)
             .tabItem {
               Label("Settings", systemImage: "gearshape")
             }
@@ -34,9 +34,5 @@ struct MainView: View {
       }
     }
     .transition(.opacity.combined(with: .move(edge: .trailing)))
-    .animation(
-      .spring(duration: 0.5, bounce: 0.2).delay(0.3),
-      value: cities.isEmpty
-    )
   }
 }
