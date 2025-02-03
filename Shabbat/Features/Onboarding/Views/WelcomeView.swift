@@ -1,7 +1,8 @@
 
 import SwiftUI
 import SwiftData
-struct OnboardingView: View {
+
+struct WelcomeView: View {
   @StateObject private var locationManager = LocationManager()
   @State private var showLocationPicker = false
   
@@ -17,7 +18,6 @@ struct OnboardingView: View {
     }
     .padding()
     .frame(maxHeight: .infinity)
-    .background(Color(.systemBackground))
     .padding(.bottom, 32)
   }
   
@@ -65,6 +65,6 @@ struct OnboardingView: View {
 }
 
 #Preview {
-  OnboardingView()
+  WelcomeView()
     .modelContainer(for: City.self, inMemory: true)
 }

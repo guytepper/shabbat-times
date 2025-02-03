@@ -37,23 +37,9 @@ struct SettingsView: View {
         }
       }
       .navigationTitle("Settings")
-      .background(gradientBackground)
+      .background(Color.gradientBackground(for: colorScheme))
       .scrollContentBackground(.hidden)
     }
-  }
-  
-  var gradientBackground: some ShapeStyle {
-    return LinearGradient(
-      colors: colorScheme == .dark ? [
-        .hsl(h: 48, s: 0, l: 2),    // Very dark gray
-        .hsl(h: 48, s: 30, l: 10)   // Dark warm brown
-      ] : [
-        .hsl(h: 0, s: 0, l: 100),   // White
-        .hsl(h: 48, s: 55, l: 84)   // Light warm beige
-      ],
-      startPoint: .top,
-      endPoint: .bottom
-    )
   }
 }
 

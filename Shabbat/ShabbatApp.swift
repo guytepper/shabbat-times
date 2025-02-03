@@ -18,12 +18,14 @@ struct ShabbatApp: App {
 
 struct MainView: View {
   @Query private var cities: [City]
+  @Query private var settings: [Settings]
+  @Environment(\.colorScheme) private var colorScheme
   @Environment(\.modelContext) private var modelContext
-  
+    
   var body: some View {
     Group {
-      if cities.isEmpty {
-        OnboardingView()
+      if settings.first?.finishedOnboarding != true {
+        OnboardingContainerView()
       } else {
         TabView {
           HomeView(modelContext: modelContext)
