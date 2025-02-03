@@ -15,7 +15,7 @@ struct SettingsView: View {
   }
   
   var body: some View {
-    NavigationView {
+    NavigationStack {
       List {
         Section(header: Text("Display Options")) {
           VStack(alignment: .leading, spacing: 6) {
