@@ -34,8 +34,15 @@
         }
       }
     },
-    "Candle lightning today at %@" : {
-
+    "Candle lightning today at %@. Shabbat Shalom!" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הדלקת נרות היום ב- %@. שבת שלום!"
+          }
+        }
+      }
     },
     "Choose your city to get Shabbat times for your location." : {
       "localizations" : {
@@ -117,9 +124,6 @@
         }
       }
     },
-    "Notification Permission" : {
-
-    },
     "OK" : {
       "localizations" : {
         "he" : {
@@ -166,28 +170,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "פרשת השבוע"
-          }
-        }
-      }
-    },
-    "Preview failed: %@" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "תצוגה מקדימה נכשלה: %@"
-          }
-        }
-      }
-    },
-    "Rate the App" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "דירוג האפליקצייה"
           }
         }
       }
