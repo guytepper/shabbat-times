@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "🕯️" : {
-
-    },
     "Bilingual" : {
       "localizations" : {
         "he" : {
@@ -45,6 +42,7 @@
       }
     },
     "Choose your city to get Shabbat times for your location." : {
+      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
@@ -93,6 +91,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "אנגלית"
+          }
+        }
+      }
+    },
+    "Find Shabbat times for your location." : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "מצאו את זמני השבת עבור מיקומכם."
           }
         }
       }

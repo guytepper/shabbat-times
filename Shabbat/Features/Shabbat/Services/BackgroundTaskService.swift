@@ -85,13 +85,12 @@ class BackgroundTaskService {
     
     // Create trigger using the system calendar and timezone
     // Test date for local development
-    let testDate = Date(timeIntervalSinceNow: 70)
+    // let testDate = Date(timeIntervalSinceNow: 70)
     
     let calendar = Calendar.current
     let components = calendar.dateComponents(
       [.year, .month, .day, .hour, .minute, .second],
-      // TODO: Switch to `candleLighningTime`
-      from: testDate
+      from: candleLightingTime
     )
     
     print("Components: \(components)")

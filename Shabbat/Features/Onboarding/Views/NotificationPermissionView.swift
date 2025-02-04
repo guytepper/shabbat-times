@@ -40,7 +40,7 @@ struct NotificationPermissionView: View {
                 )
                 .frame(maxHeight: 400)
         }
-        .ignoresSafeArea(.all)
+        
     }
 }
 
