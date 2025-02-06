@@ -1,51 +1,95 @@
 import SwiftUI
 
 struct NotificationPermissionView: View {
-    var body: some View {
-        VStack {
-            Rectangle()
-                .fill(Color.gray)
-                .overlay(Text("Placeholder").foregroundColor(.white))
-                .frame(maxHeight: .infinity)
-            
-            Rectangle()
-                .fill(Color(.systemBackground))
-                .overlay(
-                  VStack(spacing: 8) {
-                    Text("Shabbat Reminders")
-                      .font(.title)
-                      .fontWeight(.bold)
-                      .fontWidth(Font.Width(0.15))
-                    Text("Get the Shabbat Times on every friday morning.")
-                      .font(.title3)
-                      .multilineTextAlignment(.center)
-                      .padding(.bottom, 24)
-                    
-                    Button("Enable Reminders") {
-                      
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(16)
-                    .background(.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(16)
-                    .padding(.bottom, 8)
-                    
-                    Button("Not Now")  {
-                      
-                    }
-                    .foregroundStyle(.gray)
-
-                  }.padding(.horizontal)
-                )
-                .frame(maxHeight: 400)
+  @Environment(\.colorScheme) private var colorScheme
+  @Binding var tabSelection: Int
+  @State private var imageOpacity: Double = 0
+  @State private var imageScale: CGFloat = 0.5
+  @State private var showImage: Bool = false
+  
+  var body: some View {
+    VStack {
+      ZStack {
+        RoundedRectangle(cornerRadius: 0)
+          .fill(.black.opacity(0.8).gradient)
+          .frame(minHeight: 0, maxHeight: .infinity)
+          .ignoresSafeArea()
+          .opacity(showImage ? 1 : 0)
+          .animation(.easeIn(duration: 1).delay(colorScheme == .light ? 1 : 0), value: showImage)
+        
+        if showImage {
+          Image("notification_example")
+            .resizable()
+            .scaledToFit()
+            .padding(24)
+            .opacity(imageOpacity)
+            .scaleEffect(imageScale)
+            .animation(.interpolatingSpring(stiffness: 100, damping: 25), value: imageOpacity)
+        }
+      }
+      .onAppear {
+        withAnimation {
+          showImage = true
         }
         
+        // Background darkening is less interruptive on dark mode
+        let delay = colorScheme == .light ? 2.25 : 0.25
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+          imageOpacity = 1
+          imageScale = 1
+        }
+      }
+      
+      Spacer()
+      
+      VStack(spacing: 8) {
+        Text("Reminders")
+          .font(.title)
+          .fontWeight(.bold)
+          .fontWidth(Font.Width(0.05))
+        
+        Text("Receive candle lightning times every friday morning.")
+          .font(.body)
+          .multilineTextAlignment(.center)
+          .padding(.bottom, 12)
+        
+        Button("Enable Notifications") {
+          Task {
+            do {
+              let granted = try await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge])
+              if granted {
+                tabSelection += 1
+                print("Notification permission granted.")
+              } else {                
+                print("Notification permission denied.")
+              }
+            } catch {
+              print("Error requesting notification authorization: \(error.localizedDescription)")
+            }
+          }
+        }
+        .frame(maxWidth: .infinity)
+        .padding(16)
+        .background(.blue)
+        .foregroundColor(.white)
+        .cornerRadius(16)
+        .padding(.bottom, 8)
+        
+        Button("Not Now")  {
+          tabSelection += 1
+        }
+        .foregroundStyle(.black)
+      }
+      .padding()
     }
+  }
 }
 
 #Preview {
-  
-    NotificationPermissionView()
-    .background(Color.gradientBackground(for: .light))
+  TabView {
+    NotificationPermissionView(tabSelection: .constant(1))
+      .background(Color.gradientBackground(for: .light))
+  }.tabViewStyle(.page)
+    .ignoresSafeArea()
 }

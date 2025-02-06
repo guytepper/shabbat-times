@@ -11,6 +11,8 @@ struct WelcomeView: View {
     CityManager(modelContext: modelContext)
   }
   
+  @Binding var tabSelection: Int
+  
   var body: some View {
     VStack(spacing: 16) {
       Spacer()
@@ -20,14 +22,21 @@ struct WelcomeView: View {
       Spacer()
       
       VStack(spacing: 12) {
-        Text("Shabbat Shalom!")
-          .font(.largeTitle)
-          .fontWeight(.bold)
-          .fontWidth(Font.Width(0.05))
-          .shadow(color: colorScheme == .dark ? .white :  .black.opacity(0.2), radius: 8)
-
+        VStack(spacing: 6) {
+          Text("Welcome to")
+            .foregroundStyle(.brown)
+            .fontWeight(.semibold)
+            .font(.subheadline)
+          
+          Text("Shabbat Times")
+            .font(.largeTitle)
+            .fontWeight(.bold)
+            .fontWidth(Font.Width(0.05))
+            .shadow(color: colorScheme == .dark ? .white :  .black.opacity(0.2), radius: 8)
+        }
+        .padding(.bottom, 12)
         
-        Text("Find Shabbat times for your location.")
+        Text("Select a city to get local shabbat times for.")
           .font(.body)
           .multilineTextAlignment(.center)
           .padding(.bottom, 12)
@@ -41,7 +50,9 @@ struct WelcomeView: View {
   
   private var selectCityButton: some View {
     Button {
-      showLocationPicker = true
+      withAnimation {
+        tabSelection += 1}
+//      showLocationPicker = true
     } label: {
       HStack {
         Text("Select City")
@@ -59,6 +70,13 @@ struct WelcomeView: View {
           country: city.country,
           coordinate: city.coordinate
         )
+        
+        // Delay next page navigation for smooth transition
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+          withAnimation {
+            tabSelection += 1
+          }
+        }
       }
     }
     
@@ -66,7 +84,7 @@ struct WelcomeView: View {
 }
 
 #Preview {
-  WelcomeView()
+  WelcomeView(tabSelection: .constant(0))
     .modelContainer(for: City.self, inMemory: true)
     .background(Color.gradientBackground(for: .light))
 }

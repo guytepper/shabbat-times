@@ -82,8 +82,15 @@
         }
       }
     },
-    "Enable Reminders" : {
-
+    "Enable Notifications" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הפעלת התראות"
+          }
+        }
+      }
     },
     "English" : {
       "localizations" : {
@@ -96,6 +103,7 @@
       }
     },
     "Find Shabbat times for your location." : {
+      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
@@ -104,9 +112,6 @@
           }
         }
       }
-    },
-    "Get the Shabbat Times on every friday morning." : {
-
     },
     "Hebrew" : {
       "localizations" : {
@@ -139,7 +144,14 @@
       }
     },
     "Not Now" : {
-
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "לא כרגע"
+          }
+        }
+      }
     },
     "OK" : {
       "localizations" : {
@@ -191,9 +203,6 @@
         }
       }
     },
-    "Placeholder" : {
-
-    },
     "Read on Sefaria" : {
       "localizations" : {
         "he" : {
@@ -214,12 +223,42 @@
         }
       }
     },
+    "Receive candle lightning times every friday morning." : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "קבלו את זמני הדלקת הנרות כל שישי בבוקר."
+          }
+        }
+      }
+    },
+    "Reminders" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "תזכורות"
+          }
+        }
+      }
+    },
     "Search for a city..." : {
       "localizations" : {
         "he" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "חיפוש עיר"
+          }
+        }
+      }
+    },
+    "Select a city to get local shabbat times for." : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "בחרו עיר עבורה תרצו לקבל את זמני השבת."
           }
         }
       }
@@ -275,25 +314,12 @@
         }
       }
     },
-    "Shabbat Reminders" : {
-
-    },
     "shabbat shalom" : {
       "localizations" : {
         "he" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "שבת שלום"
-          }
-        }
-      }
-    },
-    "Shabbat Shalom!" : {
-      "localizations" : {
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "שבת שלום!"
           }
         }
       }
@@ -344,6 +370,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ארעה שגיאה בפתיחת הלינק"
+          }
+        }
+      }
+    },
+    "Welcome to" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ברוכים הבאים ל"
           }
         }
       }
