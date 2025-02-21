@@ -8,8 +8,10 @@ struct OnboardingContainerView: View {
     TabView(selection: $tabSelection) {
       WelcomeView(tabSelection: $tabSelection)
         .tag(0)
-      NotificationPermissionView(tabSelection: $tabSelection)
+      RemindersView(tabSelection: $tabSelection)
         .tag(1)
+      TipView()
+        .tag(2)
     }
     .background(Color.gradientBackground(for: colorScheme))
     .tabViewStyle(.page(indexDisplayMode: .never))

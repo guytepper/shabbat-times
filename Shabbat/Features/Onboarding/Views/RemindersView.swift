@@ -1,12 +1,19 @@
 import SwiftUI
+import SwiftData
 
-struct NotificationPermissionView: View {
+struct RemindersView: View {
   @Environment(\.colorScheme) private var colorScheme
+  @Environment(\.modelContext) private var modelContext
+
   @Binding var tabSelection: Int
   @State private var imageOpacity: Double = 0
   @State private var imageScale: CGFloat = 0.5
   @State private var showImage: Bool = false
   
+  private var settingsManager: SettingsManager {
+    SettingsManager(modelContext: modelContext)
+  }
+
   var body: some View {
     VStack {
       ZStack {
@@ -15,7 +22,7 @@ struct NotificationPermissionView: View {
           .frame(minHeight: 0, maxHeight: .infinity)
           .ignoresSafeArea()
           .opacity(showImage ? 1 : 0)
-          .animation(.easeIn(duration: 1).delay(colorScheme == .light ? 1 : 0), value: showImage)
+          .animation(.easeIn(duration: 1).delay(colorScheme == .light ? 0.75 : 0), value: showImage)
         
         if showImage {
           Image("notification_example")
@@ -33,7 +40,7 @@ struct NotificationPermissionView: View {
         }
         
         // Background darkening is less interruptive on dark mode
-        let delay = colorScheme == .light ? 2.25 : 0.25
+        let delay = colorScheme == .light ? 2 : 0.25
         
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
           imageOpacity = 1
@@ -58,10 +65,12 @@ struct NotificationPermissionView: View {
           Task {
             do {
               let granted = try await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge])
+
               if granted {
-                tabSelection += 1
-                print("Notification permission granted.")
-              } else {                
+                settingsManager.updateSettings { settings in
+                  settings.finishedOnboarding = true
+                }
+              } else {
                 print("Notification permission denied.")
               }
             } catch {
@@ -77,7 +86,12 @@ struct NotificationPermissionView: View {
         .padding(.bottom, 8)
         
         Button("Not Now")  {
-          tabSelection += 1
+//          withAnimation {
+//            tabSelection += 1
+//          }
+          settingsManager.updateSettings { settings in
+            settings.finishedOnboarding = true
+          }
         }
         .foregroundStyle(.black)
       }
@@ -88,7 +102,7 @@ struct NotificationPermissionView: View {
 
 #Preview {
   TabView {
-    NotificationPermissionView(tabSelection: .constant(1))
+    RemindersView(tabSelection: .constant(1))
       .background(Color.gradientBackground(for: .light))
   }.tabViewStyle(.page)
     .ignoresSafeArea()

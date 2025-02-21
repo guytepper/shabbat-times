@@ -51,8 +51,8 @@ struct WelcomeView: View {
   private var selectCityButton: some View {
     Button {
       withAnimation {
-        tabSelection += 1}
-//      showLocationPicker = true
+        showLocationPicker = true
+      }
     } label: {
       HStack {
         Text("Select City")
