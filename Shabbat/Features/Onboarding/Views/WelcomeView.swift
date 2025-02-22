@@ -94,14 +94,22 @@ struct EmojisView: View {
   @State private var animatedEmojis = Array(repeating: false, count: 5)
   
   let emojis = ["✨", "🕯️", "🍷", "📖", "🕍"]
-  let radius: CGFloat = 90
+  
+  // Adjust sizes based on device type
+  private var emojiSize: CGFloat {
+    UIDevice.current.userInterfaceIdiom == .pad ? 96 : 58
+  }
+  
+  private var radius: CGFloat {
+    UIDevice.current.userInterfaceIdiom == .pad ? 150 : 90
+  }
   
   var body: some View {
     ZStack {
       ForEach(Array(emojis.enumerated()), id: \.offset) { index, emoji in
         Text(emoji)
           .shadow(color: .black.opacity(0.1), radius: 6)
-          .font(.system(size: 58))
+          .font(.system(size: emojiSize))
           .offset(
             x: radius * cos(2 * .pi * Double(index) / Double(emojis.count)),
             y: radius * sin(2 * .pi * Double(index) / Double(emojis.count))
