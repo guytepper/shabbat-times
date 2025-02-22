@@ -41,17 +41,6 @@
         }
       }
     },
-    "Choose your city to get Shabbat times for your location." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "בחרו עיר עבורה תרצו לקבל את זמני השבת."
-          }
-        }
-      }
-    },
     "Close" : {
       "localizations" : {
         "he" : {
@@ -98,17 +87,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "אנגלית"
-          }
-        }
-      }
-    },
-    "Find Shabbat times for your location." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "מצאו את זמני השבת עבור מיקומכם."
           }
         }
       }
@@ -243,6 +221,16 @@
         }
       }
     },
+    "Reset Onboarding" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "איפוס למסך פתיחה"
+          }
+        }
+      }
+    },
     "Search for a city..." : {
       "localizations" : {
         "he" : {
@@ -269,27 +257,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "בחירת עיר"
-          }
-        }
-      }
-    },
-    "Select Location" : {
-      "localizations" : {
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "בחירת מיקום"
-          }
-        }
-      }
-    },
-    "Send Feedback" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "שליחת פידבק"
           }
         }
       }

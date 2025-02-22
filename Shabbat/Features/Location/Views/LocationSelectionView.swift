@@ -48,7 +48,7 @@ struct LocationSelectionView: View {
           citiesList
         }
       }
-      .navigationTitle("Select Location")
+      .navigationTitle("Select City")
       .navigationBarTitleDisplayMode(.inline)
       .toolbar {
         ToolbarItem(placement: .cancellationAction) {

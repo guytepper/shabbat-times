@@ -10,8 +10,6 @@ struct OnboardingContainerView: View {
         .tag(0)
       RemindersView(tabSelection: $tabSelection)
         .tag(1)
-      TipView()
-        .tag(2)
     }
     .background(Color.gradientBackground(for: colorScheme))
     .tabViewStyle(.page(indexDisplayMode: .never))
