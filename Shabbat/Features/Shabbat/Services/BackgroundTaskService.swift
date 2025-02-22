@@ -31,10 +31,22 @@ class BackgroundTaskService {
       task.setTaskCompleted(success: false)
     }
     
+    let container = try! ModelContainer(for: City.self, Settings.self)
+    let modelContext = ModelContext(container)
+    
     // Get the current selected city
-    let cityManager = CityManager(modelContext: ModelContext(try! ModelContainer(for: City.self)))
+    let cityManager = CityManager(modelContext: modelContext)
     guard let city = cityManager.getCurrentCity() else {
       task.setTaskCompleted(success: false)
+      return
+    }
+    
+
+    let settingsManager = SettingsManager(modelContext: modelContext)
+    let morningNotification = settingsManager.settings.morningNotification
+    
+    if morningNotification == false {
+      print("Cancelled notification schedualing")
       return
     }
     
@@ -88,12 +100,17 @@ class BackgroundTaskService {
     // let testDate = Date(timeIntervalSinceNow: 70)
     
     let calendar = Calendar.current
+    let notificationDate = calendar.date(
+      bySettingHour: 9,  // 9 AM
+      minute: 0,
+      second: 0,
+      of: candleLightingTime
+    ) ?? candleLightingTime
+    
     let components = calendar.dateComponents(
       [.year, .month, .day, .hour, .minute, .second],
-      from: candleLightingTime
+      from: notificationDate
     )
-    
-    print("Components: \(components)")
     
     let trigger: UNCalendarNotificationTrigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
     
@@ -104,13 +121,14 @@ class BackgroundTaskService {
     )
     
     do {
+//      center.removeAllPendingNotificationRequests()
       try await center.add(request)
-      print("Scheduled notification successfully")
+      print("Scheduled notification successfully for 9 AM")
       
       // For debugging purposes
-      // let pending = await center.pendingNotificationRequests()
-      // print("Pending notifications: \(pending.count)")
-      // pending.forEach { print($0.identifier) }
+       let pending = await center.pendingNotificationRequests()
+       print("Pending notifications: \(pending.count)")
+       pending.forEach { print($0.identifier) }
     } catch {
       print("Error scheduling notification: \(error)")
     }

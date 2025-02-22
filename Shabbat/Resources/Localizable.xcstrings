@@ -62,6 +62,7 @@
       }
     },
     "Display Options" : {
+      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
@@ -91,6 +92,9 @@
         }
       }
     },
+    "Friday morning shabbat times notification." : {
+
+    },
     "Hebrew" : {
       "localizations" : {
         "he" : {
@@ -110,6 +114,9 @@
           }
         }
       }
+    },
+    "Morning Notification" : {
+
     },
     "next shabbat" : {
       "localizations" : {
@@ -212,6 +219,7 @@
       }
     },
     "Reminders" : {
+      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
@@ -222,6 +230,7 @@
       }
     },
     "Reset Onboarding" : {
+      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
@@ -281,6 +290,9 @@
         }
       }
     },
+    "Shabbat Notification" : {
+
+    },
     "shabbat shalom" : {
       "localizations" : {
         "he" : {
@@ -295,7 +307,7 @@
       "localizations" : {
         "he" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "זמני שבת"
           }
         }

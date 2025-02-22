@@ -12,6 +12,9 @@ struct ShabbatApp: App {
     WindowGroup {
       MainView()
         .modelContainer(for: [City.self, Settings.self])
+        .onAppear {
+          BackgroundTaskService.shared.scheduleAppRefresh(Date())
+        }
     }
   }
 }
@@ -37,9 +40,6 @@ struct MainView: View {
           HomeView(modelContext: modelContext)
             .tabItem {
               Label("Shabbat Times", systemImage: "clock")
-            }
-            .onAppear {
-              BackgroundTaskService.shared.scheduleAppRefresh(Date())
             }
           
           SettingsView(modelContext: modelContext)

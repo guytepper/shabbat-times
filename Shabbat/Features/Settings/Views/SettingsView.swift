@@ -17,7 +17,22 @@ struct SettingsView: View {
   var body: some View {
     NavigationStack {
       List {
-        Section(header: Text("Display Options")) {
+        Section {
+          VStack(alignment: .leading, spacing: 6) {
+            Toggle("Morning Notification", isOn: Binding(
+              get: { settings.morningNotification },
+              set: { newValue in
+                settingsManager.updateSettings { settings in
+                  settings.morningNotification = newValue
+                }
+              }
+            ))
+            
+            Text("Friday morning shabbat times notification.")
+              .font(.caption)
+              .foregroundStyle(.secondary)
+          }
+          
           VStack(alignment: .leading, spacing: 6) {
             Picker("Parasha Language", selection: Binding(
               get: { settings.parashaLanguage },

@@ -51,7 +51,7 @@ struct RemindersView: View {
       Spacer()
       
       VStack(spacing: 8) {
-        Text("Reminders")
+        Text("Shabbat Notification")
           .font(.title)
           .fontWeight(.bold)
           .fontWidth(Font.Width(0.05))
@@ -69,10 +69,11 @@ struct RemindersView: View {
               if granted {
                 settingsManager.updateSettings { settings in
                   settings.finishedOnboarding = true
-                  
-                  // Register background notification task
-                  BackgroundTaskService.shared.registerBackgroundTasks()
+                  settings.morningNotification = true
                 }
+                
+                // Schedule a background notification refresh
+                BackgroundTaskService.shared.scheduleAppRefresh(Date())
               } else {
                 print("Notification permission denied.")
               }
