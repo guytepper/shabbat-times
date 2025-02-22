@@ -69,11 +69,11 @@ class HomeViewModel {
   
   func saveNewCity(city: City) {
     try? modelContext.delete(model: City.self)
-    cityManager?.saveCity(
-      name: city.name,
-      country: city.country,
-      coordinate: city.coordinate
-    )
+//    cityManager?.saveCity(
+//      name: city.name,
+//      country: city.country,
+//      coordinate: city.coordinate
+//    )
   }
   
   var nextShabbatDates: String? {

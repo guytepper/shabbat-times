@@ -11,6 +11,10 @@ struct HomeView: View {
   @State private var showLocationPicker = false
   @State private var showParashaModal = false
   
+  private var settingsManager: SettingsManager {
+    SettingsManager(modelContext: modelContext)
+  }
+  
   init(modelContext: ModelContext) {
     _viewModel = State(initialValue: HomeViewModel(modelContext: modelContext))
   }
@@ -49,6 +53,14 @@ struct HomeView: View {
               parasahName: viewModel.parashaName,
               action: { showParashaModal = true }
             )
+            
+            #if DEBUG
+            Button("Reset Onboarding") {
+              settingsManager.updateSettings { settings in
+                settings.finishedOnboarding = false
+              }
+            }
+            #endif
           }
         }
         .padding()

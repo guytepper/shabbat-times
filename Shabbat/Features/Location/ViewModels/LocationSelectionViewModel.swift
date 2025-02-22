@@ -12,19 +12,10 @@ final class LocationSelectionViewModel: NSObject {
   var error: Error?
   
   override init() {
-    let logger = Logger()
-    let start = CFAbsoluteTimeGetCurrent()
-
-    print("LocationSelectionVM init started")
-
     searchCompleter = MKLocalSearchCompleter()
     super.init()
     searchCompleter.resultTypes = .address
     searchCompleter.delegate = self
-    
-    let end = CFAbsoluteTimeGetCurrent()
-    logger.info("LocationSelectionVM init took \(end - start) seconds")
-
   }
   
   func updateSearchText(_ text: String) {

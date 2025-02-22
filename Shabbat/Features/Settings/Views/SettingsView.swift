@@ -15,9 +15,24 @@ struct SettingsView: View {
   }
   
   var body: some View {
-    NavigationView {
+    NavigationStack {
       List {
-        Section(header: Text("Display Options")) {
+        Section {
+          VStack(alignment: .leading, spacing: 6) {
+            Toggle("Morning Notification", isOn: Binding(
+              get: { settings.morningNotification },
+              set: { newValue in
+                settingsManager.updateSettings { settings in
+                  settings.morningNotification = newValue
+                }
+              }
+            ))
+            
+            Text("Friday morning shabbat times notification.")
+              .font(.caption)
+              .foregroundStyle(.secondary)
+          }
+          
           VStack(alignment: .leading, spacing: 6) {
             Picker("Parasha Language", selection: Binding(
               get: { settings.parashaLanguage },
@@ -37,23 +52,9 @@ struct SettingsView: View {
         }
       }
       .navigationTitle("Settings")
-      .background(gradientBackground)
+      .background(Color.gradientBackground(for: colorScheme))
       .scrollContentBackground(.hidden)
     }
-  }
-  
-  var gradientBackground: some ShapeStyle {
-    return LinearGradient(
-      colors: colorScheme == .dark ? [
-        .hsl(h: 48, s: 0, l: 2),    // Very dark gray
-        .hsl(h: 48, s: 30, l: 10)   // Dark warm brown
-      ] : [
-        .hsl(h: 0, s: 0, l: 100),   // White
-        .hsl(h: 48, s: 55, l: 84)   // Light warm beige
-      ],
-      startPoint: .top,
-      endPoint: .bottom
-    )
   }
 }
 

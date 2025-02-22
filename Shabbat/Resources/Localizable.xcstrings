@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "🕯️" : {
-
-    },
     "Bilingual" : {
       "localizations" : {
         "he" : {
@@ -34,12 +31,12 @@
         }
       }
     },
-    "Choose your city to get Shabbat times for your location." : {
+    "Candle lightning today at %@. Shabbat Shalom!" : {
       "localizations" : {
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "בחרו עיר עבורה תרצו לקבל את זמני השבת."
+            "value" : "הדלקת נרות היום ב- %@. שבת שלום!"
           }
         }
       }
@@ -65,11 +62,22 @@
       }
     },
     "Display Options" : {
+      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "הגדרות תצוגה"
+          }
+        }
+      }
+    },
+    "Enable Notifications" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הפעלת התראות"
           }
         }
       }
@@ -83,6 +91,9 @@
           }
         }
       }
+    },
+    "Friday morning shabbat times notification." : {
+
     },
     "Hebrew" : {
       "localizations" : {
@@ -104,12 +115,25 @@
         }
       }
     },
+    "Morning Notification" : {
+
+    },
     "next shabbat" : {
       "localizations" : {
         "he" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "השבת הבאה"
+          }
+        }
+      }
+    },
+    "Not Now" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "לא כרגע"
           }
         }
       }
@@ -164,28 +188,6 @@
         }
       }
     },
-    "Preview failed: %@" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "תצוגה מקדימה נכשלה: %@"
-          }
-        }
-      }
-    },
-    "Rate the App" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "דירוג האפליקצייה"
-          }
-        }
-      }
-    },
     "Read on Sefaria" : {
       "localizations" : {
         "he" : {
@@ -206,6 +208,38 @@
         }
       }
     },
+    "Receive candle lightning times every friday morning." : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "קבלו את זמני הדלקת הנרות כל שישי בבוקר."
+          }
+        }
+      }
+    },
+    "Reminders" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "תזכורות"
+          }
+        }
+      }
+    },
+    "Reset Onboarding" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "איפוס למסך פתיחה"
+          }
+        }
+      }
+    },
     "Search for a city..." : {
       "localizations" : {
         "he" : {
@@ -216,33 +250,22 @@
         }
       }
     },
+    "Select a city to get local shabbat times for." : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "בחרו עיר עבורה תרצו לקבל את זמני השבת."
+          }
+        }
+      }
+    },
     "Select City" : {
       "localizations" : {
         "he" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "בחירת עיר"
-          }
-        }
-      }
-    },
-    "Select Location" : {
-      "localizations" : {
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "בחירת מיקום"
-          }
-        }
-      }
-    },
-    "Send Feedback" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "שליחת פידבק"
           }
         }
       }
@@ -267,6 +290,9 @@
         }
       }
     },
+    "Shabbat Notification" : {
+
+    },
     "shabbat shalom" : {
       "localizations" : {
         "he" : {
@@ -277,24 +303,8 @@
         }
       }
     },
-    "Shabbat Shalom!" : {
-      "localizations" : {
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "שבת שלום!"
-          }
-        }
-      }
-    },
     "Shabbat Times" : {
       "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Shabbat"
-          }
-        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -339,6 +349,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ארעה שגיאה בפתיחת הלינק"
+          }
+        }
+      }
+    },
+    "Welcome to" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ברוכים הבאים ל"
           }
         }
       }
