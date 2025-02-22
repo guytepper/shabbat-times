@@ -120,7 +120,6 @@ class BackgroundTaskService {
   func scheduleAppRefresh(_ date: Date) {
     let request = BGAppRefreshTaskRequest(identifier: "com.guytepper.Shabbat.refreshShabbatTimes")
     
-    // Schedule refresh for 24 hours after the end date
      request.earliestBeginDate = date
 //    request.earliestBeginDate = Date(timeIntervalSinceNow: 10) // 10 secs
     

@@ -69,6 +69,9 @@ struct RemindersView: View {
               if granted {
                 settingsManager.updateSettings { settings in
                   settings.finishedOnboarding = true
+                  
+                  // Register background notification task
+                  BackgroundTaskService.shared.registerBackgroundTasks()
                 }
               } else {
                 print("Notification permission denied.")
@@ -86,9 +89,6 @@ struct RemindersView: View {
         .padding(.bottom, 8)
         
         Button("Not Now")  {
-//          withAnimation {
-//            tabSelection += 1
-//          }
           settingsManager.updateSettings { settings in
             settings.finishedOnboarding = true
           }
