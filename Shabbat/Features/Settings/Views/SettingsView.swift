@@ -21,6 +21,11 @@ struct SettingsView: View {
     pendingNotifications = await center.pendingNotificationRequests()
   }
   
+  func removePendingNotifications() {
+    let center = UNUserNotificationCenter.current()
+    center.removeAllPendingNotificationRequests()
+  }
+  
   var body: some View {
     NavigationStack {
       List {
@@ -31,6 +36,12 @@ struct SettingsView: View {
               set: { newValue in
                 settingsManager.updateSettings { settings in
                   settings.morningNotification = newValue
+                }
+                
+                if newValue == false {
+                  removePendingNotifications()
+                } else {
+                  BackgroundTaskService.shared.scheduleAppRefresh(Date())
                 }
               }
             ))
