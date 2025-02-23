@@ -57,7 +57,7 @@ struct WelcomeView: View {
       HStack {
         Text("Select City")
       }
-      .frame(maxWidth: .infinity)
+      .frame(maxWidth: 400)
       .padding()
       .background(Color.blue)
       .foregroundColor(.white)

@@ -83,7 +83,7 @@ struct RemindersView: View {
             }
           }
         }
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: 400)
         .padding(16)
         .background(.blue)
         .foregroundColor(.white)
