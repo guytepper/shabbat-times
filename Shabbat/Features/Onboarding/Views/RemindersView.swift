@@ -28,6 +28,7 @@ struct RemindersView: View {
           Image("notification_example")
             .resizable()
             .scaledToFit()
+            .frame(maxWidth: 400)
             .padding(24)
             .opacity(imageOpacity)
             .scaleEffect(imageScale)
