@@ -60,6 +60,7 @@ struct HomeView: View {
                 settings.finishedOnboarding = false
               }
             }
+            .foregroundStyle(Color(uiColor: .label))
             #endif
           }
         }

@@ -95,7 +95,7 @@ struct RemindersView: View {
             settings.finishedOnboarding = true
           }
         }
-        .foregroundStyle(.black)
+        .foregroundStyle(Color(uiColor: .label))
       }
       .padding()
     }

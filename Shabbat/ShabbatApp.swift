@@ -22,7 +22,6 @@ struct ShabbatApp: App {
 struct MainView: View {
   @Query private var cities: [City]
   @Query private var settings: [Settings]
-  @Environment(\.colorScheme) private var colorScheme
   @Environment(\.modelContext) private var modelContext
   @State private var isOnboarding: Bool = true // Track onboarding status
 
