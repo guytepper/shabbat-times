@@ -75,6 +75,10 @@ struct HomeView: View {
       .fullScreenCover(isPresented: $showLocationPicker) {
         LocationSelectionView { city in
           viewModel.saveNewCity(city: city)
+          
+          // Scheduale friday notification for the new selected city
+          BackgroundTaskService.shared.scheduleAppRefresh(Date())
+
           Task {
             await viewModel.loadShabbatTimes()
           }
