@@ -92,6 +92,13 @@ struct HomeView: View {
           dismiss: { showParashaModal = false }
         )
       }
+      .overlay(alignment: .top) {
+        GeometryReader { geom in
+          VariableBlurView(maxBlurRadius: 10)
+            .frame(height: geom.safeAreaInsets.top)
+            .ignoresSafeArea()
+        }
+      }
     }
   }
   
