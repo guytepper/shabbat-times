@@ -72,6 +72,14 @@ struct HomeView: View {
           try await viewModel.loadParasha()
         }
       }
+      .refreshable {
+        do {
+          await viewModel.loadShabbatTimes()
+          try await viewModel.loadParasha()
+        } catch {
+          // TODO: Handle errors
+        }
+      }
       .background(gradientBackground)
       .fullScreenCover(isPresented: $showLocationPicker) {
         LocationSelectionView { city in
