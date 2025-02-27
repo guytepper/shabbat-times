@@ -11,6 +11,9 @@
         }
       }
     },
+    "Body: %@" : {
+      "shouldTranslate" : false
+    },
     "Cancel" : {
       "localizations" : {
         "he" : {
@@ -61,6 +64,12 @@
         }
       }
     },
+    "Count: %lld" : {
+      "shouldTranslate" : false
+    },
+    "Debug - Pending Notifications" : {
+      "shouldTranslate" : false
+    },
     "Display Options" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -93,7 +102,14 @@
       }
     },
     "Friday morning shabbat times notification." : {
-
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "קבלת נוטיפקצייה עם זמני השבת בשישי בבוקר."
+          }
+        }
+      }
     },
     "Hebrew" : {
       "localizations" : {
@@ -104,6 +120,9 @@
           }
         }
       }
+    },
+    "ID: %@" : {
+      "shouldTranslate" : false
     },
     "in %lld days" : {
       "localizations" : {
@@ -116,7 +135,14 @@
       }
     },
     "Morning Notification" : {
-
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "נוטיפקציית בוקר שישי"
+          }
+        }
+      }
     },
     "next shabbat" : {
       "localizations" : {
@@ -127,6 +153,9 @@
           }
         }
       }
+    },
+    "Next trigger: %@" : {
+      "shouldTranslate" : false
     },
     "Not Now" : {
       "localizations" : {
@@ -218,19 +247,7 @@
         }
       }
     },
-    "Reminders" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "תזכורות"
-          }
-        }
-      }
-    },
     "Reset Onboarding" : {
-      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
@@ -291,7 +308,14 @@
       }
     },
     "Shabbat Notification" : {
-
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "נוטיפקציית זמני שבת"
+          }
+        }
+      }
     },
     "shabbat shalom" : {
       "localizations" : {
@@ -312,6 +336,9 @@
           }
         }
       }
+    },
+    "Title: %@" : {
+      "shouldTranslate" : false
     },
     "today" : {
       "localizations" : {
@@ -352,6 +379,9 @@
           }
         }
       }
+    },
+    "User Info: %@" : {
+      "shouldTranslate" : false
     },
     "Welcome to" : {
       "localizations" : {

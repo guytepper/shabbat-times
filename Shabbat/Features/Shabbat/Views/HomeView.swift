@@ -74,10 +74,11 @@ struct HomeView: View {
       }
       .refreshable {
         do {
-          await viewModel.loadShabbatTimes()
           try await viewModel.loadParasha()
+          await viewModel.loadShabbatTimes()
         } catch {
           // TODO: Handle errors
+          print(error)
         }
       }
       .background(gradientBackground)
