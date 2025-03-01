@@ -23,7 +23,7 @@ struct SettingsView: View {
   var body: some View {
     NavigationStack {
       List {
-        Section {
+        Section("Notifications") {
           VStack(alignment: .leading, spacing: 6) {
             Toggle("Morning Notification", isOn: Binding(
               get: { settings.morningNotification },
@@ -46,6 +46,48 @@ struct SettingsView: View {
           }
           
           VStack(alignment: .leading, spacing: 6) {
+            Toggle("Candle Lightning", isOn: Binding(
+              get: { settings.candleLightningNotification },
+              set: { newValue in
+                settingsManager.updateSettings { settings in
+                  settings.candleLightningNotification = newValue
+                }
+                
+                // Update this
+                if newValue == false {
+                  removePendingNotifications()
+                } else {
+                  BackgroundTaskService.shared.scheduleAppRefresh(Date())
+                }
+              }
+            ))
+            
+            Text("Receive a notification prior to the candle lighting time.")
+              .font(.caption)
+              .foregroundStyle(.secondary)
+            
+            if settings.candleLightningNotification {
+              Picker("Notification Time", selection: Binding(
+                get: { settings.candleLightingNotificationMinutes },
+                set: { newValue in
+                  settingsManager.updateSettings { settings in
+                    settings.candleLightingNotificationMinutes = newValue
+                  }
+                  // Reschedule notifications with new time
+                  BackgroundTaskService.shared.scheduleAppRefresh(Date())
+                }
+              )) {
+                ForEach(1...12, id: \.self) { index in
+                  let minutes = index * 5
+                  Text("\(minutes) minutes before").tag(minutes)
+                }
+              }
+            }
+          }
+        }
+        
+        Section {
+          VStack(alignment: .leading, spacing: 6) {
             Picker("Parasha Language", selection: Binding(
               get: { settings.parashaLanguage },
               set: { newValue in
@@ -62,10 +104,10 @@ struct SettingsView: View {
               .foregroundStyle(.secondary)
           }
         }
-        
-        #if DEBUG
+
+//        #if DEBUG
         NotificationDebugView()
-        #endif
+//        #endif
       }
       .navigationTitle("Settings")
       .background(Color.gradientBackground(for: colorScheme))
