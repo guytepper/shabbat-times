@@ -53,12 +53,8 @@ struct SettingsView: View {
                   settings.candleLightningNotification = newValue
                 }
                 
-                // Update this
-                if newValue == false {
-                  removePendingNotifications()
-                } else {
-                  BackgroundTaskService.shared.scheduleAppRefresh(Date())
-                }
+                removePendingNotifications()
+                BackgroundTaskService.shared.scheduleAppRefresh(Date())
               }
             ))
             
@@ -81,6 +77,7 @@ struct SettingsView: View {
                   Text(String(localized: "\(minutes) minutes before")).tag(minutes)
                 }
               }
+              .padding(.top, 12)
             }
           }
         }
