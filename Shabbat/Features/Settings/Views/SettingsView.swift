@@ -46,7 +46,7 @@ struct SettingsView: View {
           }
           
           VStack(alignment: .leading, spacing: 6) {
-            Toggle("Candle Lightning", isOn: Binding(
+            Toggle("Candle Lighting", isOn: Binding(
               get: { settings.candleLightningNotification },
               set: { newValue in
                 settingsManager.updateSettings { settings in
@@ -77,9 +77,8 @@ struct SettingsView: View {
                   BackgroundTaskService.shared.scheduleAppRefresh(Date())
                 }
               )) {
-                ForEach(1...12, id: \.self) { index in
-                  let minutes = index * 5
-                  Text("\(minutes) minutes before").tag(minutes)
+                ForEach([10, 15, 30, 45, 60], id: \.self) { minutes in
+                  Text(String(localized: "\(minutes) minutes before")).tag(minutes)
                 }
               }
             }

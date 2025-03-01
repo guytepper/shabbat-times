@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld minutes before" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld דקות לפני"
+          }
+        }
+      }
+    },
     "Bilingual" : {
       "localizations" : {
         "he" : {
@@ -34,7 +44,23 @@
         }
       }
     },
-    "Candle lightning today at %@. Shabbat Shalom!" : {
+    "Candle lighting is in %lld minutes, at %@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Candle lighting is in %1$lld minutes, at %2$@."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הדלקת נרות שבת בעוד %1$lld דקות, בשעה %2$@."
+          }
+        }
+      }
+    },
+    "Candle lighting today at %@. Shabbat Shalom!" : {
       "localizations" : {
         "he" : {
           "stringUnit" : {
@@ -167,6 +193,26 @@
         }
       }
     },
+    "Notification Time" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "זמן התראה"
+          }
+        }
+      }
+    },
+    "Notifications" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "התראות"
+          }
+        }
+      }
+    },
     "OK" : {
       "localizations" : {
         "he" : {
@@ -233,6 +279,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "קריאת הפרשה באתר ״ספריה״ תהיה בשפה שנבחרה."
+          }
+        }
+      }
+    },
+    "Receive a notification prior to the candle lighting time." : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "קבלו התראה לפני זמן הדלקת נרות השבת."
           }
         }
       }
