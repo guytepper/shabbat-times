@@ -41,12 +41,14 @@ class BackgroundTaskService {
       return
     }
     
-
     let settingsManager = SettingsManager(modelContext: modelContext)
     let morningNotification = settingsManager.settings.morningNotification
+    let candleLightingNotification = settingsManager.settings.candleLightningNotification
     
-    if morningNotification == false {
-      print("Cancelled notification schedualing")
+    // If both notifications are disabled, don't proceed
+    if morningNotification == false && candleLightingNotification == false {
+      print("Cancelled notification scheduling - all notifications disabled")
+      task.setTaskCompleted(success: true)
       return
     }
     
@@ -57,8 +59,20 @@ class BackgroundTaskService {
       if let candleLighting = shabbatService.candleLighting?.formattedDate(timeZone: shabbatService.timeZone),
          let havdalah = shabbatService.havdalah?.formattedDate(timeZone: shabbatService.timeZone) {
         
-        // Set up morning reminder notification
-        await scheduleNotification(for: candleLighting)
+        // Set up morning reminder notification if enabled
+        if morningNotification {
+          await scheduleMorningNotification(for: candleLighting)
+        }
+        
+        // Set up candle lighting reminder notification if enabled
+        if candleLightingNotification {
+          let minutesBefore = settingsManager.settings.candleLightingNotificationMinutes
+
+          await scheduleCandleLightingNotification(
+            for: candleLighting,
+            minutesBefore: minutesBefore
+          )
+        }
         
         let dayAfterHavdalah = Calendar.current.date(
           byAdding: .day,
@@ -66,7 +80,7 @@ class BackgroundTaskService {
           to: havdalah
         ) ?? havdalah
         
-        // Scheduale the next time a notification should be prepared
+        // Schedule the next time a notification should be prepared
         scheduleAppRefresh(dayAfterHavdalah)
       }
       
@@ -74,8 +88,8 @@ class BackgroundTaskService {
     }
   }
   
-  /// Scheduales the time a Candle Lightning time notification should be sent to the user
-  private func scheduleNotification(for candleLightingTime: Date) async {
+  /// Schedules the morning notification for Shabbat
+  private func scheduleMorningNotification(for candleLightingTime: Date) async {
     let center = UNUserNotificationCenter.current()
     
     // First, check if we have notification permissions
@@ -93,12 +107,9 @@ class BackgroundTaskService {
     let formatter = DateFormatter()
     formatter.timeStyle = .short
     let timeString = formatter.string(from: candleLightingTime)
-    content.body = String(localized: "Candle lightning today at \(timeString). Shabbat Shalom!")
+    content.body = String(localized: "Candle lighting today at \(timeString). Shabbat Shalom!")
     
     // Create trigger using the system calendar and timezone
-    // Test date for local development
-    // let testDate = Date(timeIntervalSinceNow: 70)
-    
     let calendar = Calendar.current
     let notificationDate = calendar.date(
       bySettingHour: 9,  // 9 AM
@@ -112,41 +123,96 @@ class BackgroundTaskService {
       from: notificationDate
     )
     
-    let trigger: UNCalendarNotificationTrigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+    let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
     
     let request = UNNotificationRequest(
-      identifier: UUID().uuidString,
+      identifier: "morning-notification-\(UUID().uuidString)",
       content: content,
       trigger: trigger
     )
     
     do {
-//      center.removeAllPendingNotificationRequests()
       try await center.add(request)
-      print("Scheduled notification successfully for 9 AM")
+      print("Scheduled morning notification successfully for 9 AM")
       
       // For debugging purposes
-       let pending = await center.pendingNotificationRequests()
-       print("Pending notifications: \(pending.count)")
-       pending.forEach { print($0.identifier) }
+      let pending = await center.pendingNotificationRequests()
+      print("Pending notifications: \(pending.count)")
+      pending.forEach { print($0.identifier) }
     } catch {
-      print("Error scheduling notification: \(error)")
+      print("Error scheduling morning notification: \(error)")
     }
   }
   
-  /// Scheduales the next time the task should run
+  /// Schedules a notification X minutes before candle lighting time
+  private func scheduleCandleLightingNotification(for candleLightingTime: Date, minutesBefore: Int) async {
+    let center = UNUserNotificationCenter.current()
+    
+    // First, check if we have notification permissions
+    let settings = await center.notificationSettings()
+    guard settings.authorizationStatus == .authorized else {
+      print("Notifications not authorized")
+      return
+    }
+    
+    // Create notification content
+    let content = UNMutableNotificationContent()
+    content.title = String(localized: "Shabbat Times")
+        
+    // Format the time using the correct timezone
+    let formatter = DateFormatter()
+    formatter.timeStyle = .short
+    let timeString = formatter.string(from: candleLightingTime)
+    
+    content.body = String(localized: "Candle lighting is in \(minutesBefore) minutes, at \(timeString).")
+
+    let calendar = Calendar.current
+    
+    guard let notificationTime = calendar.date(
+      byAdding: .minute,
+      value: -minutesBefore,
+      to: candleLightingTime
+    ) else {
+      print("Error: Failed to calculate notification time")
+      return
+    }
+    
+    let components = calendar.dateComponents(
+      [.year, .month, .day, .hour, .minute, .second],
+      from: notificationTime
+    )
+    
+    let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+    
+    let request = UNNotificationRequest(
+      identifier: "candle-lighting-notification-\(UUID().uuidString)",
+      content: content,
+      trigger: trigger
+    )
+    
+    do {
+      try await center.add(request)
+      
+      // For debugging purposes
+      let pending = await center.pendingNotificationRequests()
+      print("Pending notifications: \(pending.count)")
+    } catch {
+      print("Error scheduling candle lighting notification: \(error)")
+    }
+  }
+  
+  /// Schedules the next time the task should run
   func scheduleAppRefresh(_ date: Date) {
     let request = BGAppRefreshTaskRequest(identifier: "com.guytepper.Shabbat.refreshShabbatTimes")
     
-     request.earliestBeginDate = date
-//    request.earliestBeginDate = Date(timeIntervalSinceNow: 10) // 10 secs
+    request.earliestBeginDate = date
+    // request.earliestBeginDate = Date(timeIntervalSinceNow: 10) // 10 secs for testing
     
     do {
       try BGTaskScheduler.shared.submit(request)
-      print("Regitered app refresh.")
+      print("Registered app refresh.")
     } catch {
       print("Could not schedule app refresh: \(error)")
     }
   }
-  
 }
