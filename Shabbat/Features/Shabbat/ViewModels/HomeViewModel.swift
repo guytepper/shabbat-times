@@ -54,7 +54,10 @@ class HomeViewModel {
     }
     
     let now = Date()
-    return now >= candleLighting && now <= havdalah
+    let calendar = Calendar.current
+    let candleLightingDate = calendar.startOfDay(for: candleLighting)
+    let nowDate = calendar.startOfDay(for: now)
+    return nowDate == candleLightingDate || now >= candleLighting && now <= havdalah
   }
   
   func loadShabbatTimes() async {
