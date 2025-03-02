@@ -16,7 +16,9 @@ struct ShabbatApp: App {
       MainView()
         .modelContainer(for: [City.self, Settings.self])
         .onAppear {
-          BackgroundTaskService.shared.scheduleAppRefresh(Date())
+          DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            BackgroundTaskService.shared.scheduleAppRefresh(Date())
+          }
         }
     }
   }
