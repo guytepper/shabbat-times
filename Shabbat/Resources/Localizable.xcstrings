@@ -97,7 +97,6 @@
       "shouldTranslate" : false
     },
     "Display Options" : {
-      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
@@ -389,6 +388,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "זמני שבת"
+          }
+        }
+      }
+    },
+    "Shabbat times are provided by [HebCal](https://hebcal.com).\nParasha info provided by [Sefaria](https://www.sefaria.org.il)." : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "זמני שבת מסופקים על ידי [HebCal](https://hebcal.com).  \nמידע על פרשת השבוע מסופק על ידי [Sefaria](https://www.sefaria.org.il)."
           }
         }
       }
