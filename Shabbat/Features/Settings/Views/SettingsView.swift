@@ -112,9 +112,9 @@ struct SettingsView: View {
           }
 
           
-          //        #if DEBUG
-          //  NotificationDebugView()
-          //   #endif
+          #if DEBUG
+            NotificationDebugView()
+          #endif
         }
       .navigationTitle("Settings")
       .background(Color.gradientBackground(for: colorScheme))

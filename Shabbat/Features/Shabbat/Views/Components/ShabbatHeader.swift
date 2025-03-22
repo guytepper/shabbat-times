@@ -15,11 +15,11 @@ struct ShabbatHeader: View {
       let candleLightingTime = calendar.date(bySettingHour: 16, minute: 0, second: 0, of: now) ?? now
       
       if now < candleLightingTime {
-        return "🍞" // Challah for Friday before candle lighting
+        return "🍞"
       } else if now > calendar.date(byAdding: .hour, value: 3, to: candleLightingTime) ?? now {
-        return "🍷" // Kiddush cup
+        return "🍷"
       } else {
-        return "🕯" // Shabbat candles
+        return "🕯"
       }
     }
     
@@ -28,12 +28,12 @@ struct ShabbatHeader: View {
       if let morningCutoff = calendar.date(bySettingHour: 11, minute: 30, second: 0, of: now),
          let eveningCutoff = calendar.date(bySettingHour: 17, minute: 30, second: 0, of: now) {
         if now < morningCutoff {
-          return "🕍" // Synagogue
+          return "🕍"
         }
         else if now > eveningCutoff {
-          return "✨" // Havdalah
+          return "✨"
         } else {
-          return "✡️" // Star of David
+          return "✡️"
         }
       }
     }

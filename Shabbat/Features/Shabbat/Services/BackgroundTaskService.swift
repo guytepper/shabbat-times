@@ -59,6 +59,9 @@ class BackgroundTaskService {
       if let candleLighting = shabbatService.candleLighting?.formattedDate(timeZone: shabbatService.timeZone),
          let havdalah = shabbatService.havdalah?.formattedDate(timeZone: shabbatService.timeZone) {
         
+        // Remove all pending notifications
+        center.removeAllPendingNotificationRequests()
+        
         // Set up morning reminder notification if enabled
         if morningNotification {
           await scheduleMorningNotification(for: candleLighting)
