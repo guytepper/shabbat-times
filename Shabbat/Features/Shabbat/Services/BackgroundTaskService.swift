@@ -60,6 +60,7 @@ class BackgroundTaskService {
          let havdalah = shabbatService.havdalah?.formattedDate(timeZone: shabbatService.timeZone) {
         
         // Remove all pending notifications
+        let center = UNUserNotificationCenter.current()
         center.removeAllPendingNotificationRequests()
         
         // Set up morning reminder notification if enabled
