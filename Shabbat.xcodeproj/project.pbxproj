@@ -6,11 +6,62 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		C10524192D91676C00B1ACEF /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C10524182D91676C00B1ACEF /* WidgetKit.framework */; };
+		C105241B2D91676C00B1ACEF /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C105241A2D91676C00B1ACEF /* SwiftUI.framework */; };
+		C10524262D91676D00B1ACEF /* ShabbatWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C10524162D91676C00B1ACEF /* ShabbatWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C10524242D91676D00B1ACEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1DB9D832D049ABD00698722 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C10524152D91676C00B1ACEF;
+			remoteInfo = ShabbatWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C10524272D91676D00B1ACEF /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C10524262D91676D00B1ACEF /* ShabbatWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		C10524162D91676C00B1ACEF /* ShabbatWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShabbatWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C10524182D91676C00B1ACEF /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		C105241A2D91676C00B1ACEF /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		C105242E2D919D4500B1ACEF /* ShabbatWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShabbatWidgetExtension.entitlements; sourceTree = "<group>"; };
 		C1DB9D8B2D049ABE00698722 /* Shabbat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shabbat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		C105242B2D91676D00B1ACEF /* Exceptions for "ShabbatWidget" folder in "ShabbatWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = C10524152D91676C00B1ACEF /* ShabbatWidgetExtension */;
+		};
+		C105242D2D91975B00B1ACEF /* Exceptions for "Shabbat" folder in "ShabbatWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Features/Location/Models/City.swift,
+				Features/Location/Models/CityManager.swift,
+				Features/Settings/Models/Settings.swift,
+				Features/Shabbat/Services/ShabbatService.swift,
+			);
+			target = C10524152D91676C00B1ACEF /* ShabbatWidgetExtension */;
+		};
 		C1DB7CCA2D0591F7005E2D72 /* Exceptions for "Shabbat" folder in "Shabbat" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -21,10 +72,19 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		C105241C2D91676C00B1ACEF /* ShabbatWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				C105242B2D91676D00B1ACEF /* Exceptions for "ShabbatWidget" folder in "ShabbatWidgetExtension" target */,
+			);
+			path = ShabbatWidget;
+			sourceTree = "<group>";
+		};
 		C1DB9D8D2D049ABE00698722 /* Shabbat */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				C1DB7CCA2D0591F7005E2D72 /* Exceptions for "Shabbat" folder in "Shabbat" target */,
+				C105242D2D91975B00B1ACEF /* Exceptions for "Shabbat" folder in "ShabbatWidgetExtension" target */,
 			);
 			path = Shabbat;
 			sourceTree = "<group>";
@@ -32,6 +92,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C10524132D91676C00B1ACEF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C105241B2D91676C00B1ACEF /* SwiftUI.framework in Frameworks */,
+				C10524192D91676C00B1ACEF /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C1DB9D882D049ABD00698722 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -42,10 +111,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C10524172D91676C00B1ACEF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C10524182D91676C00B1ACEF /* WidgetKit.framework */,
+				C105241A2D91676C00B1ACEF /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C1DB9D822D049ABD00698722 = {
 			isa = PBXGroup;
 			children = (
+				C105242E2D919D4500B1ACEF /* ShabbatWidgetExtension.entitlements */,
 				C1DB9D8D2D049ABE00698722 /* Shabbat */,
+				C105241C2D91676C00B1ACEF /* ShabbatWidget */,
+				C10524172D91676C00B1ACEF /* Frameworks */,
 				C1DB9D8C2D049ABE00698722 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				C1DB9D8B2D049ABE00698722 /* Shabbat.app */,
+				C10524162D91676C00B1ACEF /* ShabbatWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,6 +143,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C10524152D91676C00B1ACEF /* ShabbatWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C105242A2D91676D00B1ACEF /* Build configuration list for PBXNativeTarget "ShabbatWidgetExtension" */;
+			buildPhases = (
+				C10524122D91676C00B1ACEF /* Sources */,
+				C10524132D91676C00B1ACEF /* Frameworks */,
+				C10524142D91676C00B1ACEF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				C105241C2D91676C00B1ACEF /* ShabbatWidget */,
+			);
+			name = ShabbatWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = ShabbatWidgetExtension;
+			productReference = C10524162D91676C00B1ACEF /* ShabbatWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		C1DB9D8A2D049ABD00698722 /* Shabbat */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C1DB9D9A2D049ABF00698722 /* Build configuration list for PBXNativeTarget "Shabbat" */;
@@ -68,10 +172,12 @@
 				C1DB9D872D049ABD00698722 /* Sources */,
 				C1DB9D882D049ABD00698722 /* Frameworks */,
 				C1DB9D892D049ABD00698722 /* Resources */,
+				C10524272D91676D00B1ACEF /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C10524252D91676D00B1ACEF /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				C1DB9D8D2D049ABE00698722 /* Shabbat */,
@@ -90,9 +196,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1610;
+				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
+					C10524152D91676C00B1ACEF = {
+						CreatedOnToolsVersion = 16.0;
+					};
 					C1DB9D8A2D049ABD00698722 = {
 						CreatedOnToolsVersion = 16.1;
 					};
@@ -114,11 +223,19 @@
 			projectRoot = "";
 			targets = (
 				C1DB9D8A2D049ABD00698722 /* Shabbat */,
+				C10524152D91676C00B1ACEF /* ShabbatWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C10524142D91676C00B1ACEF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C1DB9D892D049ABD00698722 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -129,6 +246,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C10524122D91676C00B1ACEF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C1DB9D872D049ABD00698722 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -138,7 +262,76 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		C10524252D91676D00B1ACEF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C10524152D91676C00B1ACEF /* ShabbatWidgetExtension */;
+			targetProxy = C10524242D91676D00B1ACEF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		C10524282D91676D00B1ACEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ShabbatWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UE6BVYPPFX;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShabbatWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShabbatWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = guytepper.Shabbat.ShabbatWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C10524292D91676D00B1ACEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ShabbatWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UE6BVYPPFX;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShabbatWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ShabbatWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = guytepper.Shabbat.ShabbatWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		C1DB9D982D049ABF00698722 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -342,6 +535,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C105242A2D91676D00B1ACEF /* Build configuration list for PBXNativeTarget "ShabbatWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C10524282D91676D00B1ACEF /* Debug */,
+				C10524292D91676D00B1ACEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C1DB9D862D049ABD00698722 /* Build configuration list for PBXProject "Shabbat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
