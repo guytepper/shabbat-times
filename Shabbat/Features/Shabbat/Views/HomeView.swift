@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 import MapKit
+import WidgetKit
 
 struct HomeView: View {
   @Environment(\.colorScheme) var colorScheme
@@ -91,6 +92,7 @@ struct HomeView: View {
 
           Task {
             await viewModel.loadShabbatTimes()
+            WidgetCenter.shared.reloadAllTimelines()
           }
         }
       }

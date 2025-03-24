@@ -1,4 +1,5 @@
 import WidgetKit
+import AppIntents
 import SwiftUI
 import SwiftData
 
@@ -13,8 +14,6 @@ let exampleEntry = ShabbatEntry(
 
 struct Provider: TimelineProvider {
   typealias Entry = ShabbatEntry
-
-  @Environment(\.modelContext) private var modelContext
   let shabbatService = ShabbatService()
   
   
@@ -28,7 +27,8 @@ struct Provider: TimelineProvider {
   
   func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
     Task {
-      // Get current city using a fetch descriptor
+      let container = try! ModelContainer(for: City.self)
+      let modelContext = await container.mainContext
       let descriptor = FetchDescriptor<City>()
       let cities = try? modelContext.fetch(descriptor)
       let city = cities?.first ?? City(
@@ -39,33 +39,38 @@ struct Provider: TimelineProvider {
       
       await shabbatService.fetchShabbatTimes(for: city)
       
-      if let candleLighting = shabbatService.candleLighting?.formattedDate(timeZone: shabbatService.timeZone),
-         let havdalah = shabbatService.havdalah?.formattedDate(timeZone: shabbatService.timeZone) {
-        
-        let entry = ShabbatEntry(
-          date: Date(),
+      guard let candleLighting = shabbatService.candleLighting?.formattedDate(timeZone: shabbatService.timeZone),
+            let havdalah = shabbatService.havdalah?.formattedDate(timeZone: shabbatService.timeZone) else {
+        completion(Timeline(entries: [placeholder(in: context)], policy: .atEnd))
+        return
+      }
+      
+      var entries: [ShabbatEntry] = []
+      let calendar = Calendar.current
+      let startOfToday = calendar.startOfDay(for: Date())
+      let startOfHavdalahDay = calendar.startOfDay(for: havdalah)
+      
+      var currentDay = startOfToday
+      while currentDay <= startOfHavdalahDay {
+        entries.append(ShabbatEntry(
+          date: currentDay,
           candleLightingDate: candleLighting,
           havdalahDate: havdalah,
           city: city,
           timeZone: shabbatService.timeZone ?? TimeZone.current.identifier
-        )
-        
-        let timeline = Timeline(
-          entries: [entry],
-          policy: .after(havdalah)
-        )
-        
-        completion(timeline)
-      } else {
-        completion(Timeline(entries: [placeholder(in: context)], policy: .atEnd))
+        ))
+        guard let nextDay = calendar.date(byAdding: .day, value: 1, to: currentDay) else { break }
+        currentDay = nextDay
       }
+      
+      let timeline = Timeline(
+        entries: entries,
+        policy: .after(havdalah)
+      )
+      
+      completion(timeline)
     }
   }
-  
-  
-  //    func relevances() async -> WidgetRelevances<Void> {
-  //        // Generate a list containing the contexts this widget is relevant in.
-  //    }
 }
 
 struct ShabbatEntry: TimelineEntry {
@@ -106,16 +111,15 @@ struct ShabbatWidgetEntryView : View {
         }
         .fontDesign(.rounded)
         
-        
         Spacer()
         
         VStack(alignment: .leading) {
-          Text(entry.date, style: .time)
+          Text(entry.candleLightingDate, style: .time)
             .font(.title)
             .bold()
             .foregroundColor(Color.orange)
           
-          Text("Mar 24 ⋅ New York")
+          Text("Mar 24 ⋅ \(entry.city.name)")
             .font(.caption)
         }
         .fontDesign(.rounded)
