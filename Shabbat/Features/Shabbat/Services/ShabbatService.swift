@@ -53,6 +53,7 @@ class ShabbatService {
   var candleLighting: ShabbatItem?
   var havdalah: ShabbatItem?
   var parasah: ShabbatItem?
+  var holiday: ShabbatItem?
   var error: Error?
   
   @MainActor
@@ -84,6 +85,7 @@ class ShabbatService {
       candleLighting = response.items.first { $0.category == "candles" }
       havdalah = response.items.first { $0.category == "havdalah" }
       parasah = response.items.first { $0.category == "parashat" }
+      holiday = response.items.first { $0.category == "holiday" }
       timeZone = response.location.tzid
       
       error = nil

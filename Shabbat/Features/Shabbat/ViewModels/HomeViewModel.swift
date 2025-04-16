@@ -44,7 +44,7 @@ class HomeViewModel {
   }
   
   var parashaName: String {
-    shabbatService.parasah?.title ?? ""
+    shabbatService.parasah?.title ?? shabbatService.holiday?.title ?? "Error"
   }
   
   var isShabbat: Bool {
