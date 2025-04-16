@@ -112,21 +112,13 @@ class HomeViewModel {
     let calendar = Calendar.current
     let now = Date()
     
-    // Check if it's the same day
-    let sameDay = calendar.isDate(now, inSameDayAs: candleLighting)
-    
-    // Get days component for the general case
-    let components = calendar.dateComponents([.day, .hour], from: now, to: candleLighting)
-    guard let days: Int = components.day else { return nil }
+    let startOfToday = calendar.startOfDay(for: now)
+    let startOfShabbat = calendar.startOfDay(for: candleLighting)
+    let days = calendar.dateComponents([.day], from: startOfToday, to: startOfShabbat).day ?? 0
     
     switch days {
-    case -1:
-      // This happens when Shabbat ends and the day is still Shabbat
-      return String(localized: "today")
     case 0:
-      // If it's the same day, return "today"
-      // If it's not the same day but less than 24 hours, return "tomorrow"
-      return sameDay ? String(localized: "today") : String(localized: "tomorrow")
+      return String(localized: "today")
     case 1:
       return String(localized: "tomorrow")
     default:
