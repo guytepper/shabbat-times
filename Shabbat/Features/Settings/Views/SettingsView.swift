@@ -102,15 +102,18 @@ struct SettingsView: View {
           }
           
           HStack {
-            Spacer()
-            Text("Shabbat times are provided by [HebCal](https://hebcal.com).\nParasha info provided by [Sefaria](https://www.sefaria.org.il).")
-              .tint(.blue)
-              .opacity(0.7)
-              .multilineTextAlignment(.center)
-              .font(.callout)
-            Spacer()
+            Text("""
+              Made by [Guy Tepper](https://guytepper.com).
+              Source code [available on GitHub](https://github.com/guytepper/shabbat-times).
+              
+              Shabbat times provided by [HebCal](https://hebcal.com).
+              Parasha details provided by [Sefaria](https://www.sefaria.org.il).
+              """)
+            .tint(.blue)
+            .opacity(0.7)
+            .font(.callout)
           }
-
+          
           
           #if DEBUG
             NotificationDebugView()

@@ -159,6 +159,16 @@
         }
       }
     },
+    "Made by [Guy Tepper](https://guytepper.com).\nSource code [available on GitHub](https://github.com/guytepper/shabbat-times).\n\nShabbat times provided by [HebCal](https://hebcal.com).\nParasha details provided by [Sefaria](https://www.sefaria.org.il)." : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "נוצר ע”י [גיא טפר](https://guytepper.com).\nקוד המקור [זמין בגיטהאב](https://github.com/guytepper/shabbat-times).\n\nזמני שבת מסופקים על ידי [HebCal](https://hebcal.com).\nפרטי פרשה מסופקים על ידי [Sefaria](https://www.sefaria.org.il)."
+          }
+        }
+      }
+    },
     "Morning Notification" : {
       "localizations" : {
         "he" : {
@@ -388,16 +398,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "זמני שבת"
-          }
-        }
-      }
-    },
-    "Shabbat times are provided by [HebCal](https://hebcal.com).\nParasha info provided by [Sefaria](https://www.sefaria.org.il)." : {
-      "localizations" : {
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "זמני שבת מסופקים על ידי [HebCal](https://hebcal.com).  \nמידע על פרשת השבוע מסופק על ידי [Sefaria](https://www.sefaria.org.il)."
           }
         }
       }
