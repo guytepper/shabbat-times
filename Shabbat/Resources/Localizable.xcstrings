@@ -313,7 +313,6 @@
       }
     },
     "Reset Onboarding" : {
-      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
