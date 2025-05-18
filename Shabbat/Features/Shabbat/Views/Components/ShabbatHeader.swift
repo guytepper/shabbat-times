@@ -4,7 +4,13 @@ struct ShabbatHeader: View {
   let cityName: String
   let showLocationPicker: () -> Void
   
-  private var dayIcon: String {
+  @State private var isAnimating = false
+  @State private var currentIconIndex = 0
+  @State private var isCustomIcon = false
+  
+  private let availableIcons = ["david_star", "candles", "chalah", "synagouge", "stars"]
+  
+  private var defaultDayIcon: String {
     let calendar = Calendar.current
     let today = calendar.component(.weekday, from: Date())
     let now = Date()
@@ -41,6 +47,10 @@ struct ShabbatHeader: View {
     return "david_star"
   }
   
+  private var dayIcon: String {
+    isCustomIcon ? availableIcons[currentIconIndex] : defaultDayIcon
+  }
+  
   var body: some View {
     VStack {
       Button(action: showLocationPicker) {
@@ -56,6 +66,18 @@ struct ShabbatHeader: View {
         .frame(height: 180)
         .padding(.top, 12)
         .padding(.bottom, 24)
+        .scaleEffect(isAnimating ? 1.1 : 1.0)
+        .animation(.spring(response: 0.3, dampingFraction: 0.6), value: isAnimating)
+        .onTapGesture {
+          withAnimation {
+            isAnimating = true
+            isCustomIcon = true
+            currentIconIndex = (currentIconIndex + 1) % availableIcons.count
+          }
+          DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            isAnimating = false
+          }
+        }
     }
   }
 }
