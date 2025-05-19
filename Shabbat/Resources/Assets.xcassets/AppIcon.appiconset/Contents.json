@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "shabbat-light.png",
+      "filename" : "shabbat-times-icon.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -13,7 +13,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "shabbat-dark.png",
+      "filename" : "shabbat-times-icon-dark.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -25,7 +25,7 @@
           "value" : "tinted"
         }
       ],
-      "filename" : "shabbat-tinted.png",
+      "filename" : "shabbat-times-icon-tint.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
