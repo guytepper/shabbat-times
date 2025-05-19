@@ -6,6 +6,7 @@ struct SettingsView: View {
   @Environment(\.colorScheme) private var colorScheme
   @Environment(\.modelContext) private var modelContext
   @State private var settingsManager: SettingsManager
+  @State private var showCredits = false
   
   init(modelContext: ModelContext) {
     self.settingsManager = SettingsManager(modelContext: modelContext)
@@ -101,19 +102,11 @@ struct SettingsView: View {
             }
           }
           
-          HStack {
-            Text("""
-              Made by [Guy Tepper](https://guytepper.com).
-              Source code [available on GitHub](https://github.com/guytepper/shabbat-times).
-              
-              Shabbat times provided by [HebCal](https://hebcal.com).
-              Parasha details provided by [Sefaria](https://www.sefaria.org.il).
-              """)
-            .tint(.blue)
-            .opacity(0.7)
-            .font(.callout)
+          Section {
+            Button("Credits") {
+              showCredits = true
+            }
           }
-          
           
           #if DEBUG
             NotificationDebugView()
@@ -122,6 +115,10 @@ struct SettingsView: View {
       .navigationTitle("Settings")
       .background(Color.gradientBackground(for: colorScheme))
       .scrollContentBackground(.hidden)
+      .sheet(isPresented: $showCredits) {
+        CreditsView()
+          .presentationDetents([.medium])
+      }
     }
   }
 }

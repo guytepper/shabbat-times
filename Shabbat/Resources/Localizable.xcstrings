@@ -93,6 +93,16 @@
     "Count: %lld" : {
       "shouldTranslate" : false
     },
+    "Credits" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "קרדיטים"
+          }
+        }
+      }
+    },
     "Debug - Pending Notifications" : {
       "shouldTranslate" : false
     },
@@ -159,12 +169,12 @@
         }
       }
     },
-    "Made by [Guy Tepper](https://guytepper.com).\nSource code [available on GitHub](https://github.com/guytepper/shabbat-times).\n\nShabbat times provided by [HebCal](https://hebcal.com).\nParasha details provided by [Sefaria](https://www.sefaria.org.il)." : {
+    "Made by [Guy Tepper](https://guytepper.com)" : {
       "localizations" : {
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "נוצר ע”י [גיא טפר](https://guytepper.com).\nקוד המקור [זמין בגיטהאב](https://github.com/guytepper/shabbat-times).\n\nזמני שבת מסופקים על ידי [HebCal](https://hebcal.com).\nפרטי פרשה מסופקים על ידי [Sefaria](https://www.sefaria.org.il)."
+            "value" : "נוצר ע”י [גיא טפר](https://guytepper.com)."
           }
         }
       }
@@ -248,6 +258,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "לא הצלחנו לפתוח את הקישור לאתר ספרייה."
+          }
+        }
+      }
+    },
+    "Parasha details provided by [Sefaria](https://www.sefaria.org.il)" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "פרטי הפרשה מסופקים על ידי [Sefaria](https://www.sefaria.org.il)."
           }
         }
       }
@@ -398,6 +418,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "זמני שבת"
+          }
+        }
+      }
+    },
+    "Shabbat times provided by [HebCal](https://hebcal.com)" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "זמני השבת מסופקים על ידי [HebCal](https://hebcal.com)."
+          }
+        }
+      }
+    },
+    "Source code [available on GitHub](https://github.com/guytepper/shabbat-times)" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "קוד המקור [זמין בגיטהאב](https://github.com/guytepper/shabbat-times)."
           }
         }
       }
