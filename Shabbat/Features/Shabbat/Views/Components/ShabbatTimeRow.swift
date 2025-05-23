@@ -8,7 +8,21 @@ struct ShabbatTimeRow: View {
   
   private var formattedTime: String {
     let formatter = DateFormatter()
-    formatter.dateFormat = "HH:mm"
+    
+    // Check if current locale is Hebrew
+    let currentLocale = Locale.current
+    let isHebrew = currentLocale.languageCode == "he"
+    
+    if isHebrew {
+      // For Hebrew, use 24-hour format with POSIX locale to avoid Hebrew AM/PM
+      formatter.locale = Locale(identifier: "en_US_POSIX")
+      formatter.dateFormat = "HH:mm"
+    } else {
+      // For other locales (like English), use 12-hour format with AM/PM
+      formatter.locale = currentLocale
+      formatter.dateFormat = "h:mm a"
+    }
+    
     formatter.timeZone = timeZone
     return formatter.string(from: time)
   }
