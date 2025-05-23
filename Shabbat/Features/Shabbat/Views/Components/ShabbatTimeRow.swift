@@ -11,7 +11,7 @@ struct ShabbatTimeRow: View {
     
     // Check if current locale is Hebrew
     let currentLocale = Locale.current
-    let isHebrew = currentLocale.languageCode == "he"
+    let isHebrew = currentLocale.language.languageCode!.identifier == "he"
     
     if isHebrew {
       // For Hebrew, use 24-hour format with POSIX locale to avoid Hebrew AM/PM
