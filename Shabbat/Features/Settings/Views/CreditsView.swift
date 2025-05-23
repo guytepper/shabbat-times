@@ -19,7 +19,7 @@ struct CreditsView: View {
           Image("namaste")
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .frame(height: 180)
+            .frame(height: 140)
             .scaledToFit()
           Spacer()
         }
