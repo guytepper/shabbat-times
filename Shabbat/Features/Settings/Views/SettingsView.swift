@@ -117,7 +117,6 @@ struct SettingsView: View {
       .scrollContentBackground(.hidden)
       .sheet(isPresented: $showCredits) {
         CreditsView()
-          .presentationDetents([.medium])
       }
     }
   }
