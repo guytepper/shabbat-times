@@ -54,7 +54,8 @@ class HomeViewModel {
     }
     
     let now = Date()
-    let calendar = Calendar.current
+    var calendar = Calendar.current
+    calendar.timeZone = timeZone 
     
     let nowDate = calendar.startOfDay(for: now)
     let candleLightingDate = calendar.startOfDay(for: candleLighting)
@@ -109,7 +110,8 @@ class HomeViewModel {
   var daysUntilShabbat: String? {
     guard let candleLighting = candleLighting else { return nil }
     
-    let calendar = Calendar.current
+    var calendar = Calendar.current
+    calendar.timeZone = timeZone
     let now = Date()
     
     let startOfToday = calendar.startOfDay(for: now)
