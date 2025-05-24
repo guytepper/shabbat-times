@@ -120,7 +120,7 @@ struct RemindersView: View {
           .multilineTextAlignment(.center)
           .padding(.bottom, 12)
         
-        Button("Enable Notifications") {
+        Button {
           Task {
             do {
               let granted = try await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge])
@@ -140,13 +140,15 @@ struct RemindersView: View {
               print("Error requesting notification authorization: \(error.localizedDescription)")
             }
           }
+        } label: {
+          Text("Enable Notifications")
+            .frame(maxWidth: 400)
+            .padding()
+            .background(.blue)
+            .foregroundColor(.white)
+            .cornerRadius(16)
+            .padding(.bottom, 8)
         }
-        .frame(maxWidth: 400)
-        .padding(16)
-        .background(.blue)
-        .foregroundColor(.white)
-        .cornerRadius(16)
-        .padding(.bottom, 8)
         
         Button("Not Now")  {
           settingsManager.updateSettings { settings in
