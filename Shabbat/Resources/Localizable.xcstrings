@@ -11,6 +11,9 @@
         }
       }
     },
+    "09:00" : {
+
+    },
     "Bilingual" : {
       "localizations" : {
         "he" : {
@@ -69,6 +72,9 @@
           }
         }
       }
+    },
+    "Candle lighting today at 6:23 PM. Shabbat Shalom!" : {
+
     },
     "Close" : {
       "localizations" : {
@@ -145,6 +151,9 @@
           }
         }
       }
+    },
+    "Friday, May 23th" : {
+
     },
     "Hebrew" : {
       "localizations" : {
@@ -333,7 +342,6 @@
       }
     },
     "Reset Onboarding" : {
-      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
