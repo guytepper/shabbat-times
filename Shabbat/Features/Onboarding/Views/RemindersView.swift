@@ -17,10 +17,6 @@ struct RemindersView: View {
     Locale.current.language.languageCode?.identifier == "he"
   }
   
-  private var topPadding: CGFloat {
-    isHebrew ? 135 : 120
-  }
-  
   private var fridayDateText: String {
     let calendar = Calendar.current
     let today = Date()
@@ -53,12 +49,33 @@ struct RemindersView: View {
   
   var body: some View {
     VStack {
+      Spacer()
+      
       ZStack {
         Image("iphone_mock")
           .resizable()
           .scaledToFit()
           .frame(maxWidth: 320)
-          .padding(24)
+          .overlay(
+            VStack {
+              Text(fridayDateText)
+                .foregroundStyle(.white)
+                .font(.headline)
+                .fontWeight(.bold)
+                .opacity(0.8)
+              
+              Text("09:00")
+                .foregroundStyle(.white)
+                .fontDesign(.rounded)
+                .fontWeight(.bold)
+                .font(.system(size: 52))
+              
+              Spacer()
+            }
+            .padding(.top, 75)
+            .padding(.horizontal, 16)
+            .opacity(0.8)
+          )
           .mask(
             LinearGradient(
               gradient: Gradient(stops: [
@@ -71,32 +88,15 @@ struct RemindersView: View {
             )
           )
         
-        // Notification Banner - Centered
         if showNotification {
           NotificationBanner()
             .padding(.horizontal, 24)
             .transition(.scale.combined(with: .opacity))
         }
-        
-        VStack {
-          Text(fridayDateText)
-            .foregroundStyle(.white)
-            .font(.headline)
-            .fontWeight(.bold)
-            .opacity(0.8)
-          
-          Text("09:00")
-            .foregroundStyle(.white)
-            .fontDesign(.rounded)
-            .fontWeight(.bold)
-            .font(.system(size: 52))
-          
-          Spacer()
-        }
-        .padding(.top, topPadding)
-        .opacity(0.8)
-        
       }
+      .frame(maxHeight: 500)
+      
+      Spacer()
       .onAppear {
         // Show notification with delay
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -106,7 +106,7 @@ struct RemindersView: View {
         }
       }
       
-      Spacer()
+      Spacer() 
       
       VStack(spacing: 8) {
         Text("Shabbat Notification")
@@ -188,6 +188,7 @@ struct NotificationBanner: View {
       
       Spacer()
     }
+    .frame(maxWidth: 380)
     .padding(.horizontal, 16)
     .padding(.vertical, 12)
     .background(
