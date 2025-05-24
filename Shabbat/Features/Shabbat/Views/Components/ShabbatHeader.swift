@@ -73,6 +73,9 @@ struct ShabbatHeader: View {
             isAnimating = true
             isCustomIcon = true
             currentIconIndex = (currentIconIndex + 1) % availableIcons.count
+            
+            let generator = UIImpactFeedbackGenerator(style: .medium)
+            generator.impactOccurred()
           }
           DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             isAnimating = false
