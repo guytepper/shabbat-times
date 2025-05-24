@@ -61,7 +61,7 @@ struct WelcomeView: View {
       .padding()
       .background(Color.blue)
       .foregroundColor(.white)
-      .cornerRadius(12)
+      .cornerRadius(16)
     }
     .fullScreenCover(isPresented: $showLocationPicker) {
       LocationSelectionView { city in
@@ -131,11 +131,11 @@ struct EmojisView: View {
           .resizable()
           .aspectRatio(contentMode: .fit)
           .frame(width: 80 * offsetMultiplier, height: 80 * offsetMultiplier)
-          .rotationEffect(.degrees(sparkleAnimation ? 360 : 0))
           .offset(
             x: -120 * offsetMultiplier + (sparkleAnimation ? sin(Date().timeIntervalSince1970) * 8 : 0),
             y: -130 * offsetMultiplier + (sparkleAnimation ? cos(Date().timeIntervalSince1970) * 6 : 0)
           )
+          .rotationEffect(.degrees(-5 + rotationOffset2 * 8))
           .scaleEffect(starsVisible ? 1.0 : 0.3)
           .opacity(starsVisible ? 0.8 : 0.0)
           .animation(
@@ -143,11 +143,7 @@ struct EmojisView: View {
             .delay(0.8),
             value: starsVisible
           )
-          .animation(
-            .linear(duration: 12).repeatForever(autoreverses: false),
-            value: sparkleAnimation
-          )
-        
+
         Image("candles")
           .resizable()
           .aspectRatio(contentMode: .fit)
@@ -171,7 +167,7 @@ struct EmojisView: View {
           )
           .rotationEffect(.degrees(5 + rotationOffset1 * 3))
           .scaleEffect((chalahVisible ? 1.0 : 0.3) + scaleOffset1 * 0.05)
-          .opacity(chalahVisible ? 0.6 : 0.0)
+          .opacity(chalahVisible ? 0.65 : 0.0)
           .rotationEffect(.degrees(chalahVisible ? 0 : -45))
           .animation(
             .spring(response: 1.2, dampingFraction: 0.8)
@@ -204,6 +200,7 @@ struct EmojisView: View {
             x: 110 * offsetMultiplier + floatingOffset1 * 3,
             y: -90 * offsetMultiplier + floatingOffset2 * 5
           )
+          .rotationEffect(.degrees(5 + rotationOffset2))
           .scaleEffect((chalahVisible ? 1.0 : 0.1) + scaleOffset1 * 0.04)
           .opacity(chalahVisible ? 0.65 : 0.0)
           .animation(
