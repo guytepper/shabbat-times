@@ -12,7 +12,14 @@
       }
     },
     "09:00" : {
-
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "09:00"
+          }
+        }
+      }
     },
     "Bilingual" : {
       "localizations" : {
@@ -74,7 +81,14 @@
       }
     },
     "Candle lighting today at 6:23 PM. Shabbat Shalom!" : {
-
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הדלקת נרות היום ב- 18:23. שבת שלום!"
+          }
+        }
+      }
     },
     "Close" : {
       "localizations" : {
@@ -151,9 +165,6 @@
           }
         }
       }
-    },
-    "Friday, May 23th" : {
-
     },
     "Hebrew" : {
       "localizations" : {

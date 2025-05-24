@@ -13,6 +13,44 @@ struct RemindersView: View {
     SettingsManager(modelContext: modelContext)
   }
   
+  private var isHebrew: Bool {
+    Locale.current.language.languageCode?.identifier == "he"
+  }
+  
+  private var topPadding: CGFloat {
+    isHebrew ? 135 : 120
+  }
+  
+  private var fridayDateText: String {
+    let calendar = Calendar.current
+    let today = Date()
+    let todayWeekday = calendar.component(.weekday, from: today)
+    
+    // If today is Friday, use today's date, otherwise calculate the next Friday
+    let targetDate: Date
+    if todayWeekday == 6 {
+      targetDate = today
+    } else {
+      // Calculate next Friday
+      let daysUntilFriday: Int = (6 - todayWeekday + 7) % 7
+      let adjustedDays = daysUntilFriday == 0 ? 7 : daysUntilFriday
+      targetDate = calendar.date(byAdding: .day, value: adjustedDays, to: today) ?? today
+    }
+    
+    let formatter = DateFormatter()
+    formatter.dateFormat = "EEEE, MMMM d"
+    
+    // Add ordinal suffix
+    let day = calendar.component(.day, from: targetDate)
+    let ordinalFormatter = NumberFormatter()
+    ordinalFormatter.numberStyle = .ordinal
+    let ordinalDay = ordinalFormatter.string(from: NSNumber(value: day)) ?? "\(day)"
+    
+    let baseString = formatter.string(from: targetDate)
+    let dayString = formatter.dateFormat.contains("d") ? String(day) : ""
+    return baseString.replacingOccurrences(of: dayString, with: ordinalDay)
+  }
+  
   var body: some View {
     VStack {
       ZStack {
@@ -41,7 +79,7 @@ struct RemindersView: View {
         }
         
         VStack {
-          Text("Friday, May 23th")
+          Text(fridayDateText)
             .foregroundStyle(.white)
             .font(.headline)
             .fontWeight(.bold)
@@ -55,7 +93,7 @@ struct RemindersView: View {
           
           Spacer()
         }
-        .padding(.top, 120)
+        .padding(.top, topPadding)
         .opacity(0.8)
         
       }
