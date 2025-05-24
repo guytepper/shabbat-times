@@ -5,6 +5,7 @@ import UserNotifications
 struct RemindersView: View {
   @Environment(\.colorScheme) private var colorScheme
   @Environment(\.modelContext) private var modelContext
+  @Environment(\.horizontalSizeClass) private var horizontalSizeClass
   
   @Binding var tabSelection: Int
   @State private var showNotification: Bool = false
@@ -55,7 +56,7 @@ struct RemindersView: View {
         Image("iphone_mock")
           .resizable()
           .scaledToFit()
-          .frame(maxWidth: 320)
+          .frame(maxWidth: horizontalSizeClass == .regular ? 480 : 320)
           .overlay(
             VStack {
               Text(fridayDateText)
@@ -68,13 +69,13 @@ struct RemindersView: View {
                 .foregroundStyle(.white)
                 .fontDesign(.rounded)
                 .fontWeight(.bold)
-                .font(.system(size: 52))
+                .font(.system(size: horizontalSizeClass == .regular ? 78 : 52))
               
               Spacer()
             }
-            .padding(.top, 75)
-            .padding(.horizontal, 16)
-            .opacity(0.8)
+              .padding(.top, horizontalSizeClass == .regular ? 110 : 75)
+              .padding(.horizontal, horizontalSizeClass == .regular ? 24 : 16)
+              .opacity(0.8)
           )
           .mask(
             LinearGradient(
@@ -90,23 +91,23 @@ struct RemindersView: View {
         
         if showNotification {
           NotificationBanner()
-            .padding(.horizontal, 24)
+            .padding(.horizontal, horizontalSizeClass == .regular ? 36 : 24)
             .transition(.scale.combined(with: .opacity))
         }
       }
-      .frame(maxHeight: 500)
+      .frame(maxHeight: horizontalSizeClass == .regular ? 750 : 500)
       
       Spacer()
-      .onAppear {
-        // Show notification with delay
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-          withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
-            showNotification = true
+        .onAppear {
+          // Show notification with delay
+          DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
+              showNotification = true
+            }
           }
         }
-      }
       
-      Spacer() 
+      Spacer()
       
       VStack(spacing: 8) {
         Text("Shabbat Notification")
@@ -160,6 +161,8 @@ struct RemindersView: View {
 }
 
 struct NotificationBanner: View {
+  @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+  
   var body: some View {
     HStack(spacing: 12) {
       HStack {
@@ -188,7 +191,7 @@ struct NotificationBanner: View {
       
       Spacer()
     }
-    .frame(maxWidth: 380)
+    .frame(maxWidth: horizontalSizeClass == .regular ? 520 : 380)
     .padding(.horizontal, 16)
     .padding(.vertical, 12)
     .background(
