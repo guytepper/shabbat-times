@@ -12,8 +12,7 @@ class SettingsManager {
     if let existingSettings = try? modelContext.fetch(descriptor).first {
       settings = existingSettings
     } else {
-      let defaultParashaLanguage = Locale.current.identifier == "he" ? "he" : "en"
-      let newSettings = Settings(parashaLanguage: defaultParashaLanguage)
+      let newSettings = Settings()
       modelContext.insert(newSettings)
       try? modelContext.save()
       settings = newSettings

@@ -22,6 +22,7 @@
       }
     },
     "Bilingual" : {
+      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
@@ -127,6 +128,7 @@
       "shouldTranslate" : false
     },
     "Display Options" : {
+      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
@@ -147,6 +149,7 @@
       }
     },
     "English" : {
+      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
@@ -167,6 +170,7 @@
       }
     },
     "Hebrew" : {
+      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
@@ -293,6 +297,7 @@
       }
     },
     "Parasha Language" : {
+      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
@@ -323,6 +328,7 @@
       }
     },
     "Reading the Parasha on the Sefaria website will be in the chosen language." : {
+      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {

@@ -83,25 +83,6 @@ struct SettingsView: View {
             }
           }
           
-          Section("Display Options") {
-            VStack(alignment: .leading, spacing: 6) {
-              Picker("Parasha Language", selection: Binding(
-                get: { settings.parashaLanguage },
-                set: { newValue in
-                  settingsManager.updateSettings { settings in
-                    settings.parashaLanguage = newValue
-                  }})) {
-                    Text("English").tag("en")
-                    Text("Hebrew").tag("he")
-                    Text("Bilingual").tag("bi")
-                  }
-              
-              Text("Reading the Parasha on the Sefaria website will be in the chosen language.")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-            }
-          }
-          
           Section {
             Button("Credits") {
               showCredits = true

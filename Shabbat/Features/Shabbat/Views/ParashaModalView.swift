@@ -63,7 +63,7 @@ struct ParashaModalView: View {
     Button {
       let baseURL = "https://www.sefaria.org.il/"
       let parashaUrl = parasha!.url
-      let langParam = "?lang=\(settings?.parashaLanguage ?? "bi")"
+      let langParam = "?lang=\(isHebrewLocale ? "he" : "en")"
       let urlString = baseURL + parashaUrl + langParam
       
       if let url = URL(string: urlString) {
