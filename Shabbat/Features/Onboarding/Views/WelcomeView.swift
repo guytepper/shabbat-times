@@ -95,6 +95,12 @@ struct EmojisView: View {
   @State private var starsVisible = false
   @State private var chalahVisible = false
   @State private var sparkleAnimation = false
+  @State private var floatingOffset1: CGFloat = 0
+  @State private var floatingOffset2: CGFloat = 0
+  @State private var rotationOffset1: Double = 0
+  @State private var rotationOffset2: Double = 0
+  @State private var scaleOffset1: CGFloat = 1.0
+  @State private var scaleOffset2: CGFloat = 1.0
   
   var body: some View {
     GeometryReader { geometry in
@@ -159,9 +165,12 @@ struct EmojisView: View {
           .resizable()
           .aspectRatio(contentMode: .fit)
           .frame(width: 70 * offsetMultiplier, height: 70 * offsetMultiplier)
-          .offset(x: 130 * offsetMultiplier, y: 100 * offsetMultiplier)
-          .rotationEffect(.degrees(5))
-          .scaleEffect(chalahVisible ? 1.0 : 0.3)
+          .offset(
+            x: 130 * offsetMultiplier + floatingOffset1 * 4,
+            y: 100 * offsetMultiplier + floatingOffset2 * 6
+          )
+          .rotationEffect(.degrees(5 + rotationOffset1 * 3))
+          .scaleEffect((chalahVisible ? 1.0 : 0.3) + scaleOffset1 * 0.05)
           .opacity(chalahVisible ? 0.6 : 0.0)
           .rotationEffect(.degrees(chalahVisible ? 0 : -45))
           .animation(
@@ -174,9 +183,12 @@ struct EmojisView: View {
           .resizable()
           .aspectRatio(contentMode: .fit)
           .frame(width: 65 * offsetMultiplier, height: 65 * offsetMultiplier)
-          .rotationEffect(.degrees(-15))
-          .offset(x: -130 * offsetMultiplier, y: 90 * offsetMultiplier)
-          .scaleEffect(starsVisible ? 1.0 : 0.2)
+          .rotationEffect(.degrees(-15 + rotationOffset2 * 8))
+          .offset(
+            x: -130 * offsetMultiplier + floatingOffset2 * 5,
+            y: 90 * offsetMultiplier + floatingOffset1 * 4
+          )
+          .scaleEffect((starsVisible ? 1.0 : 0.2) + scaleOffset2 * 0.06)
           .opacity(starsVisible ? 0.6 : 0.0)
           .animation(
             .spring(response: 1.8, dampingFraction: 0.5)
@@ -188,8 +200,11 @@ struct EmojisView: View {
           .resizable()
           .aspectRatio(contentMode: .fit)
           .frame(width: 70 * offsetMultiplier, height: 70 * offsetMultiplier)
-          .offset(x: 110 * offsetMultiplier, y: -90 * offsetMultiplier)
-          .scaleEffect(chalahVisible ? 1.0 : 0.1)
+          .offset(
+            x: 110 * offsetMultiplier + floatingOffset1 * 3,
+            y: -90 * offsetMultiplier + floatingOffset2 * 5
+          )
+          .scaleEffect((chalahVisible ? 1.0 : 0.1) + scaleOffset1 * 0.04)
           .opacity(chalahVisible ? 0.65 : 0.0)
           .animation(
             .spring(response: 2.0, dampingFraction: 0.7)
@@ -214,6 +229,31 @@ struct EmojisView: View {
       
       DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
         sparkleAnimation = true
+        
+        // Start continuous floating animations with different timings
+        withAnimation(.easeInOut(duration: 3.0).repeatForever(autoreverses: true)) {
+          floatingOffset1 = 1.0
+        }
+        
+        withAnimation(.easeInOut(duration: 4.0).repeatForever(autoreverses: true).delay(0.5)) {
+          floatingOffset2 = 1.0
+        }
+        
+        withAnimation(.easeInOut(duration: 5.0).repeatForever(autoreverses: true)) {
+          rotationOffset1 = 1.0
+        }
+        
+        withAnimation(.easeInOut(duration: 6.0).repeatForever(autoreverses: true).delay(1.0)) {
+          rotationOffset2 = 1.0
+        }
+        
+        withAnimation(.easeInOut(duration: 2.5).repeatForever(autoreverses: true)) {
+          scaleOffset1 = 1.0
+        }
+        
+        withAnimation(.easeInOut(duration: 3.5).repeatForever(autoreverses: true).delay(0.8)) {
+          scaleOffset2 = 1.0
+        }
       }
     }
   }
