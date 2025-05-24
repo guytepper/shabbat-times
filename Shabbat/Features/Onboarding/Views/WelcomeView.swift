@@ -91,43 +91,127 @@ struct WelcomeView: View {
 
 
 struct EmojisView: View {
-  @State private var animatedEmojis = Array(repeating: false, count: 5)
-  
-  let emojis = ["✨", "🕯️", "🍷", "📖", "🕍"]
-  
-  // Adjust sizes based on device type
-  private var emojiSize: CGFloat {
-    UIDevice.current.userInterfaceIdiom == .pad ? 96 : 58
-  }
-  
-  private var radius: CGFloat {
-    UIDevice.current.userInterfaceIdiom == .pad ? 150 : 90
-  }
+  @State private var candlesVisible = false
+  @State private var starsVisible = false
+  @State private var chalahVisible = false
+  @State private var sparkleAnimation = false
   
   var body: some View {
-    ZStack {
-      ForEach(Array(emojis.enumerated()), id: \.offset) { index, emoji in
-        Text(emoji)
-          .shadow(color: .black.opacity(0.1), radius: 6)
-          .font(.system(size: emojiSize))
-          .offset(
-            x: radius * cos(2 * .pi * Double(index) / Double(emojis.count)),
-            y: radius * sin(2 * .pi * Double(index) / Double(emojis.count))
+    GeometryReader { geometry in
+      let offsetMultiplier = geometry.size.width > 600 ? 2.4 : 1.0
+      
+      ZStack {
+        Circle()
+          .fill(
+            RadialGradient(
+              gradient: Gradient(colors: [
+                Color.blue.opacity(0.15),
+                Color.purple.opacity(0.1),
+                Color.clear
+              ]),
+              center: .center,
+              startRadius: 0,
+              endRadius: 150 * offsetMultiplier
+            )
           )
-          .scaleEffect(animatedEmojis[index] ? 1 : 0)
+          .frame(width: 300 * offsetMultiplier, height: 300 * offsetMultiplier)
+          .scaleEffect(sparkleAnimation ? 1.2 : 0.8)
           .animation(
-            .spring(response: 0.6, dampingFraction: 0.6)
-            .delay(Double(index) * 0.5),
-            value: animatedEmojis[index]
+            .easeInOut(duration: 4.0).repeatForever(autoreverses: true),
+            value: sparkleAnimation
+          )
+        
+        Image("stars")
+          .resizable()
+          .aspectRatio(contentMode: .fit)
+          .frame(width: 80 * offsetMultiplier, height: 80 * offsetMultiplier)
+          .rotationEffect(.degrees(sparkleAnimation ? 360 : 0))
+          .offset(
+            x: -120 * offsetMultiplier + (sparkleAnimation ? sin(Date().timeIntervalSince1970) * 8 : 0),
+            y: -80 * offsetMultiplier + (sparkleAnimation ? cos(Date().timeIntervalSince1970) * 6 : 0)
+          )
+          .scaleEffect(starsVisible ? 1.0 : 0.3)
+          .opacity(starsVisible ? 0.8 : 0.0)
+          .animation(
+            .spring(response: 1.0, dampingFraction: 0.7)
+            .delay(0.8),
+            value: starsVisible
+          )
+          .animation(
+            .linear(duration: 12).repeatForever(autoreverses: false),
+            value: sparkleAnimation
+          )
+        
+        Image("candles")
+          .resizable()
+          .aspectRatio(contentMode: .fit)
+          .frame(height: 160 * offsetMultiplier)
+          .shadow(color: .orange.opacity(0.3), radius: 15)
+          .scaleEffect(candlesVisible ? 1.1 : 0.5)
+          .opacity(candlesVisible ? 1.0 : 0.0)
+          .animation(
+            .spring(response: 1.5, dampingFraction: 0.6)
+            .delay(0.4),
+            value: candlesVisible
+          )
+        
+        Image("chalah")
+          .resizable()
+          .aspectRatio(contentMode: .fit)
+          .frame(width: 70 * offsetMultiplier, height: 70 * offsetMultiplier)
+          .offset(x: 130 * offsetMultiplier, y: 60 * offsetMultiplier)
+          .scaleEffect(chalahVisible ? 1.0 : 0.3)
+          .opacity(chalahVisible ? 0.75 : 0.0)
+          .rotationEffect(.degrees(chalahVisible ? 0 : -45))
+          .animation(
+            .spring(response: 1.2, dampingFraction: 0.8)
+            .delay(1.2),
+            value: chalahVisible
+          )
+        
+        Image("david_star")
+          .resizable()
+          .aspectRatio(contentMode: .fit)
+          .frame(width: 65 * offsetMultiplier, height: 65 * offsetMultiplier)
+          .offset(x: -130 * offsetMultiplier, y: 70 * offsetMultiplier)
+          .scaleEffect(starsVisible ? 1.0 : 0.2)
+          .opacity(starsVisible ? 0.6 : 0.0)
+          .animation(
+            .spring(response: 1.8, dampingFraction: 0.5)
+            .delay(1.6),
+            value: starsVisible
+          )
+        
+        Image("synagouge")
+          .resizable()
+          .aspectRatio(contentMode: .fit)
+          .frame(width: 70 * offsetMultiplier, height: 70 * offsetMultiplier)
+          .offset(x: 110 * offsetMultiplier, y: -90 * offsetMultiplier)
+          .scaleEffect(chalahVisible ? 1.0 : 0.1)
+          .opacity(chalahVisible ? 0.75 : 0.0)
+          .animation(
+            .spring(response: 2.0, dampingFraction: 0.7)
+            .delay(2.0),
+            value: chalahVisible
           )
       }
+      .frame(width: geometry.size.width, height: 220 * offsetMultiplier)
+      .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
     }
-    .frame(height: radius * 2.5) // Give enough space for the circle
+    .frame(height: 220)
     .onAppear {
-      for index in animatedEmojis.indices {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-          animatedEmojis[index] = true
-        }
+      withAnimation { candlesVisible = true }
+      
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+        withAnimation { starsVisible = true }
+      }
+      
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        withAnimation { chalahVisible = true }
+      }
+      
+      DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+        sparkleAnimation = true
       }
     }
   }
