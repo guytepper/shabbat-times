@@ -128,7 +128,7 @@ struct EmojisView: View {
           .rotationEffect(.degrees(sparkleAnimation ? 360 : 0))
           .offset(
             x: -120 * offsetMultiplier + (sparkleAnimation ? sin(Date().timeIntervalSince1970) * 8 : 0),
-            y: -80 * offsetMultiplier + (sparkleAnimation ? cos(Date().timeIntervalSince1970) * 6 : 0)
+            y: -130 * offsetMultiplier + (sparkleAnimation ? cos(Date().timeIntervalSince1970) * 6 : 0)
           )
           .scaleEffect(starsVisible ? 1.0 : 0.3)
           .opacity(starsVisible ? 0.8 : 0.0)
@@ -159,9 +159,10 @@ struct EmojisView: View {
           .resizable()
           .aspectRatio(contentMode: .fit)
           .frame(width: 70 * offsetMultiplier, height: 70 * offsetMultiplier)
-          .offset(x: 130 * offsetMultiplier, y: 60 * offsetMultiplier)
+          .offset(x: 130 * offsetMultiplier, y: 100 * offsetMultiplier)
+          .rotationEffect(.degrees(5))
           .scaleEffect(chalahVisible ? 1.0 : 0.3)
-          .opacity(chalahVisible ? 0.75 : 0.0)
+          .opacity(chalahVisible ? 0.6 : 0.0)
           .rotationEffect(.degrees(chalahVisible ? 0 : -45))
           .animation(
             .spring(response: 1.2, dampingFraction: 0.8)
@@ -173,7 +174,8 @@ struct EmojisView: View {
           .resizable()
           .aspectRatio(contentMode: .fit)
           .frame(width: 65 * offsetMultiplier, height: 65 * offsetMultiplier)
-          .offset(x: -130 * offsetMultiplier, y: 70 * offsetMultiplier)
+          .rotationEffect(.degrees(-15))
+          .offset(x: -130 * offsetMultiplier, y: 90 * offsetMultiplier)
           .scaleEffect(starsVisible ? 1.0 : 0.2)
           .opacity(starsVisible ? 0.6 : 0.0)
           .animation(
@@ -188,7 +190,7 @@ struct EmojisView: View {
           .frame(width: 70 * offsetMultiplier, height: 70 * offsetMultiplier)
           .offset(x: 110 * offsetMultiplier, y: -90 * offsetMultiplier)
           .scaleEffect(chalahVisible ? 1.0 : 0.1)
-          .opacity(chalahVisible ? 0.75 : 0.0)
+          .opacity(chalahVisible ? 0.65 : 0.0)
           .animation(
             .spring(response: 2.0, dampingFraction: 0.7)
             .delay(2.0),
