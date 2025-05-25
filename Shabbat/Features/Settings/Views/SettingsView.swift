@@ -87,12 +87,14 @@ struct SettingsView: View {
             Button("🙏 Credits") {
               showCredits = true
             }
+            .foregroundStyle(Color(uiColor: .label))
             
             Button("📨 Send Feedback") {
               if let url = URL(string: "mailto:hey@guytepper.com") {
                 UIApplication.shared.open(url)
               }
             }
+            .foregroundStyle(Color(uiColor: .label))
           }
           
           #if DEBUG
