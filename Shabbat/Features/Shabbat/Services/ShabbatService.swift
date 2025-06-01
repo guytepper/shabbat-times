@@ -41,7 +41,6 @@ struct ShabbatItem: Codable, Identifiable {
   func formattedDate(timeZone: String?) -> Date? {
     let formatter = ISO8601DateFormatter()
     formatter.formatOptions = [.withInternetDateTime]
-    formatter.timeZone = TimeZone(identifier: timeZone ?? TimeZone.current.identifier)
     return formatter.date(from: date)
   }
 }
@@ -67,7 +66,7 @@ class ShabbatService {
     // Candle-lighting time minutes before sunset
     // For Jerusalem, it's common to light candles 40 minutes before sunset.
     // Otherwise, it's 30 minutes before sunset.
-    let beforeSunset = city.name == "Jerusalem" ? 40 : 30
+    let beforeSunset = city.name == "Jerusalem" ? 40 : 18
     let latitude = city.coordinate.latitude
     let longitude = city.coordinate.longitude
     

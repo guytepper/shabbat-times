@@ -110,8 +110,16 @@ class BackgroundTaskService {
     // Format the time using the correct timezone
     let formatter = DateFormatter()
     formatter.timeStyle = .short
+    
+    // Use the city's timezone from the API response
+    if let cityTimeZone = shabbatService.timeZone {
+      formatter.timeZone = TimeZone(identifier: cityTimeZone)
+    }
+    
     let timeString = formatter.string(from: candleLightingTime)
-    content.body = String(localized: "Candle lighting today at \(timeString). Shabbat Shalom!")
+    
+    let timezoneInfo = getTimezoneInfo()
+    content.body = String(localized: "Candle lighting today at \(timeString)\(timezoneInfo). Shabbat Shalom!")
     
     // Create trigger using the system calendar and timezone
     let calendar = Calendar.current
@@ -166,9 +174,16 @@ class BackgroundTaskService {
     // Format the time using the correct timezone
     let formatter = DateFormatter()
     formatter.timeStyle = .short
+    
+    // Use the city's timezone from the API response
+    if let cityTimeZone = shabbatService.timeZone {
+      formatter.timeZone = TimeZone(identifier: cityTimeZone)
+    }
+    
     let timeString = formatter.string(from: candleLightingTime)
     
-    content.body = String(localized: "Candle lighting is in \(minutesBefore) minutes, at \(timeString).")
+    let timezoneInfo = getTimezoneInfo()
+    content.body = String(localized: "Candle lighting is in \(minutesBefore) minutes, at \(timeString)\(timezoneInfo).")
 
     let calendar = Calendar.current
     
@@ -217,6 +232,27 @@ class BackgroundTaskService {
       print("Registered app refresh.")
     } catch {
       print("Could not schedule app refresh: \(error)")
+    }
+  }
+  
+  // MARK: - Helper Methods
+  
+  /// Returns timezone clarification text if user's timezone differs from city's timezone
+  private func getTimezoneInfo() -> String {
+    let needsTimezoneClarity: Bool = {
+      guard let cityTimeZone = shabbatService.timeZone,
+            let cityTZ = TimeZone(identifier: cityTimeZone) else { return false }
+      let userTZ = TimeZone.current
+      let now = Date()
+      return cityTZ.secondsFromGMT(for: now) != userTZ.secondsFromGMT(for: now)
+    }()
+    
+    if needsTimezoneClarity {
+      let cityName = String(shabbatService.timeZone?.split(separator: "/").last ?? "")
+        .replacingOccurrences(of: "_", with: " ")
+      return String(localized: " (\(cityName) timezone)")
+    } else {
+      return ""
     }
   }
 }

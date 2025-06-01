@@ -1,6 +1,27 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    " (%@ timezone)" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(איזור זמן %@)"
+          }
+        }
+      }
+    },
+    " (%@ Timezone)" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(איזור זמן %@)"
+          }
+        }
+      }
+    },
     "%lld minutes before" : {
       "localizations" : {
         "he" : {
@@ -44,28 +65,34 @@
         }
       }
     },
-    "Candle lighting is in %lld minutes, at %@." : {
+    "Candle lighting is in %lld minutes, at %@%@." : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Candle lighting is in %1$lld minutes, at %2$@."
+            "value" : "Candle lighting is in %1$lld minutes, at %2$@%3$@."
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "הדלקת נרות שבת בעוד %1$lld דקות, בשעה %2$@."
+            "value" : "הדלקת נרות שבת בעוד %1$lld דקות, בשעה %2$@ %3$@"
           }
         }
       }
     },
-    "Candle lighting today at %@. Shabbat Shalom!" : {
+    "Candle lighting today at %@%@. Shabbat Shalom!" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Candle lighting today at %1$@%2$@. Shabbat Shalom!"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "הדלקת נרות היום ב- %@. שבת שלום!"
+            "value" : "הדלקת נרות היום ב- %1$@ %2$@. שבת שלום!"
           }
         }
       }
