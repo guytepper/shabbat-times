@@ -11,17 +11,6 @@
         }
       }
     },
-    " (%@ Timezone)" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "(איזור זמן %@)"
-          }
-        }
-      }
-    },
     "%lld minutes before" : {
       "localizations" : {
         "he" : {
@@ -289,6 +278,19 @@
         }
       }
     },
+    "Print Rating Debug Info" : {
+
+    },
+    "Rate Shabbat Times" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "דרגו את זמני השבת"
+          }
+        }
+      }
+    },
     "Read on Sefaria" : {
       "localizations" : {
         "he" : {
@@ -328,6 +330,9 @@
           }
         }
       }
+    },
+    "Reset Rating Data" : {
+      "shouldTranslate" : false
     },
     "Search for a city..." : {
       "localizations" : {

@@ -17,6 +17,9 @@ struct ShabbatApp: App {
         .modelContainer(for: [City.self, Settings.self])
         .onAppear {
           BackgroundTaskService.shared.scheduleAppRefresh(Date().addingTimeInterval(10))
+          
+          // Track app opens for rating prompts
+          RatingManager.shared.incrementUsageCount()
         }
     }
   }

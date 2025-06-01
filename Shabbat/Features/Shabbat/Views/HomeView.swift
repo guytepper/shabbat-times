@@ -61,6 +61,17 @@ struct HomeView: View {
               }
             }
             .foregroundStyle(Color(uiColor: .label))
+            
+            Button("Reset Rating Data") {
+              RatingManager.shared.resetRatingData()
+            }
+            .foregroundStyle(Color(uiColor: .label))
+            
+            Button("Print Rating Debug Info") {
+              let state = RatingManager.shared.getCurrentState()
+              print("Rating Manager State: \(state)")
+            }
+            .foregroundStyle(Color(uiColor: .label))
             #endif
           }
         }
