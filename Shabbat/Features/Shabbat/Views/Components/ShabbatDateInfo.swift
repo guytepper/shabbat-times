@@ -5,10 +5,12 @@ struct ShabbatDateInfo: View {
   let nextShabbatDates: String?
   let daysUntilShabbat: String?
   let isShabbat: Bool
+  let shouldShowHolidayTitle: Bool
+  let holidayTitle: String?
   
   var body: some View {
     VStack(spacing: 6) {
-      Text(isShabbat ? "shabbat shalom" : "next shabbat")
+      Text(displayMessage)
         .fontWidth(.expanded)
       
       if let dates = nextShabbatDates {
@@ -25,6 +27,16 @@ struct ShabbatDateInfo: View {
       if let daysUntil = daysUntilShabbat, !isShabbat {
         Text(daysUntil)
       }
+    }
+  }
+  
+  private var displayMessage: String {
+    if shouldShowHolidayTitle, let holidayTitle = holidayTitle {
+      return holidayTitle.lowercased()
+    } else if isShabbat {
+      return String(localized: "shabbat shalom")
+    } else {
+      return String(localized: "next shabbat")
     }
   }
 }

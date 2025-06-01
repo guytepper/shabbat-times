@@ -41,7 +41,9 @@ struct HomeView: View {
             ShabbatDateInfo(
               nextShabbatDates: viewModel.nextShabbatDates,
               daysUntilShabbat: viewModel.daysUntilShabbat,
-              isShabbat: viewModel.isShabbat
+              isShabbat: viewModel.isShabbat,
+              shouldShowHolidayTitle: viewModel.shouldShowHolidayTitle,
+              holidayTitle: viewModel.holidayTitle
             )
             .padding(.bottom, 24)
 
@@ -49,10 +51,12 @@ struct HomeView: View {
             ShabbatTimesView(viewModel: viewModel)
               .padding(.bottom, 8)
             
-            ParashaButton(
-              parasahName: viewModel.parashaName,
-              action: { showParashaModal = true }
-            )
+            if viewModel.shouldShowParashaButton {
+              ParashaButton(
+                parasahName: viewModel.parashaName,
+                action: { showParashaModal = true }
+              )
+            }
             
             #if DEBUG
             Button("Reset Onboarding") {

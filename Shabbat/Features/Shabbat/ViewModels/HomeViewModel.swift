@@ -47,6 +47,23 @@ class HomeViewModel {
     shabbatService.parasah?.title ?? shabbatService.holiday?.title ?? "Error"
   }
   
+  var shouldShowHolidayTitle: Bool {
+    holiday != nil
+  }
+  
+  var holidayTitle: String? {
+    holiday?.title
+  }
+  
+  var shouldShowParashaButton: Bool {
+    // Only show parasha button if there's no holiday
+    return holiday == nil
+  }
+  
+  private var holiday: ShabbatItem? {
+    shabbatService.holiday
+  }
+  
   var isShabbat: Bool {
     guard let candleLighting = candleLighting,
           let havdalah = havdalah else {

@@ -39,9 +39,20 @@ struct ShabbatItem: Codable, Identifiable {
   }
   
   func formattedDate(timeZone: String?) -> Date? {
-    let formatter = ISO8601DateFormatter()
-    formatter.formatOptions = [.withInternetDateTime]
-    return formatter.date(from: date)
+    // First try to parse as full ISO8601 datetime (for candles/havdalah)
+    let iso8601Formatter = ISO8601DateFormatter()
+    iso8601Formatter.formatOptions = [.withInternetDateTime]
+    if let date = iso8601Formatter.date(from: date) {
+      return date
+    }
+    
+    // If that fails, try to parse as date-only (API format holidays is yyyy-MM-dd)
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    if let timeZoneId = timeZone {
+      dateFormatter.timeZone = TimeZone(identifier: timeZoneId)
+    }
+    return dateFormatter.date(from: date)
   }
 }
 
@@ -84,7 +95,11 @@ class ShabbatService {
       candleLighting = response.items.first { $0.category == "candles" }
       havdalah = response.items.first { $0.category == "havdalah" }
       parasah = response.items.first { $0.category == "parashat" }
-      holiday = response.items.first { $0.category == "holiday" }
+      
+      // Find the current or next holiday based on date
+      let allHolidays = response.items.filter { $0.category == "holiday" }
+      holiday = findCurrentOrNextHoliday(from: allHolidays)
+      
       timeZone = response.location.tzid
       
       error = nil
@@ -92,5 +107,29 @@ class ShabbatService {
       self.error = error
       print(error)
     }
+  }
+  
+  private func findCurrentOrNextHoliday(from holidays: [ShabbatItem]) -> ShabbatItem? {
+    guard !holidays.isEmpty else { return nil }
+    
+    let now = Date()
+    var calendar = Calendar.current
+    
+    // Use the API's timezone
+    if let timeZoneId = timeZone {
+      calendar.timeZone = TimeZone(identifier: timeZoneId) ?? TimeZone.current
+    }
+    
+    let today = calendar.startOfDay(for: now)
+    
+    // Find the closest holiday that's today or in the future
+    return holidays
+      .compactMap { holiday -> (ShabbatItem, Date)? in
+        guard let holidayDate = holiday.formattedDate(timeZone: timeZone) else { return nil }
+        let holidayDay = calendar.startOfDay(for: holidayDate)
+        return holidayDay >= today ? (holiday, holidayDay) : nil
+      }
+      .min(by: { $0.1 < $1.1 })?
+      .0
   }
 }

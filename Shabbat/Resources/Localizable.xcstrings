@@ -282,6 +282,7 @@
 
     },
     "Rate Shabbat Times" : {
+      "extractionState" : "stale",
       "localizations" : {
         "he" : {
           "stringUnit" : {
