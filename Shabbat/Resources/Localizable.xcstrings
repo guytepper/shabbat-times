@@ -21,17 +21,6 @@
         }
       }
     },
-    "Bilingual" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "דו-לשוני"
-          }
-        }
-      }
-    },
     "Body: %@" : {
       "shouldTranslate" : false
     },
@@ -127,17 +116,6 @@
     "Debug - Pending Notifications" : {
       "shouldTranslate" : false
     },
-    "Display Options" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "הגדרות תצוגה"
-          }
-        }
-      }
-    },
     "Enable Notifications" : {
       "localizations" : {
         "he" : {
@@ -148,34 +126,12 @@
         }
       }
     },
-    "English" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "אנגלית"
-          }
-        }
-      }
-    },
     "Friday morning shabbat times notification." : {
       "localizations" : {
         "he" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "קבלת נוטיפקצייה עם זמני השבת בשישי בבוקר."
-          }
-        }
-      }
-    },
-    "Hebrew" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "עברית"
           }
         }
       }
@@ -296,17 +252,6 @@
         }
       }
     },
-    "Parasha Language" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "שפה הפרשה"
-          }
-        }
-      }
-    },
     "parashat hashavua" : {
       "localizations" : {
         "he" : {
@@ -323,17 +268,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "קריאת הפרשה"
-          }
-        }
-      }
-    },
-    "Reading the Parasha on the Sefaria website will be in the chosen language." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "קריאת הפרשה באתר ״ספריה״ תהיה בשפה שנבחרה."
           }
         }
       }
@@ -394,6 +328,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "בחירת עיר"
+          }
+        }
+      }
+    },
+    "Send Feedback" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שליחת פידבק"
           }
         }
       }

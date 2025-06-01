@@ -26,7 +26,7 @@ struct SettingsView: View {
         List {
           Section("Notifications") {
             VStack(alignment: .leading, spacing: 6) {
-              Toggle("🌞 Morning Notification", isOn: Binding(
+              Toggle("Morning Notification", isOn: Binding(
                 get: { settings.morningNotification },
                 set: { newValue in
                   settingsManager.updateSettings { settings in
@@ -47,7 +47,7 @@ struct SettingsView: View {
             }
             
             VStack(alignment: .leading, spacing: 6) {
-              Toggle("🕯️ Candle Lighting", isOn: Binding(
+              Toggle("Candle Lighting", isOn: Binding(
                 get: { settings.candleLightningNotification },
                 set: { newValue in
                   settingsManager.updateSettings { settings in
@@ -84,12 +84,12 @@ struct SettingsView: View {
           }
           
           Section {
-            Button("🙏 Credits") {
+            Button("Credits") {
               showCredits = true
             }
             .foregroundStyle(Color(uiColor: .label))
             
-            Button("📨 Send Feedback") {
+            Button("Send Feedback") {
               if let url = URL(string: "mailto:hey@guytepper.com") {
                 UIApplication.shared.open(url)
               }
