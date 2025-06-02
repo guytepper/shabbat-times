@@ -70,18 +70,18 @@
         }
       }
     },
-    "Candle lighting today at %@%@. Shabbat Shalom!" : {
+    "Candle lighting today at %@%@. %@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Candle lighting today at %1$@%2$@. Shabbat Shalom!"
+            "value" : "Candle lighting today at %1$@%2$@. %3$@"
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "הדלקת נרות היום ב- %1$@ %2$@. שבת שלום!"
+            "value" : "הדלקת נרות היום ב- %1$@ %2$@. %3$@"
           }
         }
       }
@@ -148,6 +148,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "קבלת נוטיפקצייה עם זמני השבת בשישי בבוקר."
+          }
+        }
+      }
+    },
+    "Happy holidays!" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "חג שמח!"
+          }
+        }
+      }
+    },
+    "Holiday Ends" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "צאת החג"
           }
         }
       }
@@ -279,7 +299,7 @@
       }
     },
     "Print Rating Debug Info" : {
-
+      "shouldTranslate" : false
     },
     "Rate Shabbat Times" : {
       "extractionState" : "stale",
@@ -411,6 +431,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "שבת שלום"
+          }
+        }
+      }
+    },
+    "Shabbat Shalom!" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שבת שלום!"
           }
         }
       }

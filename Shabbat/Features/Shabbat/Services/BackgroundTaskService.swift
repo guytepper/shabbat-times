@@ -3,14 +3,14 @@ import SwiftData
 import UserNotifications
 
 /*
-  In order to debug the task, set up a breakpoint right after the call to:
-      try BGTaskScheduler.shared.submit(request)
+ In order to debug the task, set up a breakpoint right after the call to:
+ try BGTaskScheduler.shared.submit(request)
  
-  and execute the following command in the debugger:
-      e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"com.guytepper.Shabbat.refreshShabbatTimes"]
+ and execute the following command in the debugger:
+ e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"com.guytepper.Shabbat.refreshShabbatTimes"]
  
-  The task will run once you resume the program execution.
-*/
+ The task will run once you resume the program execution.
+ */
 
 class BackgroundTaskService {
   static let shared = BackgroundTaskService()
@@ -71,7 +71,7 @@ class BackgroundTaskService {
         // Set up candle lighting reminder notification if enabled
         if candleLightingNotification {
           let minutesBefore = settingsManager.settings.candleLightingNotificationMinutes
-
+          
           await scheduleCandleLightingNotification(
             for: candleLighting,
             minutesBefore: minutesBefore
@@ -119,7 +119,9 @@ class BackgroundTaskService {
     let timeString = formatter.string(from: candleLightingTime)
     
     let timezoneInfo = getTimezoneInfo()
-    content.body = String(localized: "Candle lighting today at \(timeString)\(timezoneInfo). Shabbat Shalom!")
+    
+    let greeting = getGreeting()
+    content.body = String(localized: "Candle lighting today at \(timeString)\(timezoneInfo). \(greeting)")
     
     // Create trigger using the system calendar and timezone
     let calendar = Calendar.current
@@ -170,7 +172,7 @@ class BackgroundTaskService {
     // Create notification content
     let content = UNMutableNotificationContent()
     content.title = String(localized: "Shabbat Times")
-        
+    
     // Format the time using the correct timezone
     let formatter = DateFormatter()
     formatter.timeStyle = .short
@@ -184,7 +186,7 @@ class BackgroundTaskService {
     
     let timezoneInfo = getTimezoneInfo()
     content.body = String(localized: "Candle lighting is in \(minutesBefore) minutes, at \(timeString)\(timezoneInfo).")
-
+    
     let calendar = Calendar.current
     
     guard let notificationTime = calendar.date(
@@ -236,6 +238,15 @@ class BackgroundTaskService {
   }
   
   // MARK: - Helper Methods
+  
+  /// Returns appropriate greeting based on whether there's a holiday
+  private func getGreeting() -> String {
+    if shabbatService.holiday != nil {
+      return String(localized: "Happy holidays!")
+    } else {
+      return String(localized: "Shabbat Shalom!")
+    }
+  }
   
   /// Returns timezone clarification text if user's timezone differs from city's timezone
   private func getTimezoneInfo() -> String {

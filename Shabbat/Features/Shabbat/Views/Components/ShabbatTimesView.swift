@@ -4,6 +4,14 @@ struct ShabbatTimesView: View {
   let viewModel: HomeViewModel
   @Environment(\.horizontalSizeClass) private var horizontalSizeClass
   
+  private var havdalahTitle: String {
+    if viewModel.shouldShowHolidayTitle {
+      return String(localized: "Holiday Ends")
+    } else {
+      return String(localized: "Shabbat Ends")
+    }
+  }
+  
   var body: some View {
     Group {
       if horizontalSizeClass == .regular {
@@ -17,7 +25,7 @@ struct ShabbatTimesView: View {
   private func timeColumn() -> some View {
     VStack(spacing: 16) {
       ShabbatTimeRow(
-        title: ShabbatTimeType.candleLighting.title,
+        title: String(localized: "Candle Lighting"),
         time: viewModel.candleLighting ?? Date(),
         timeZone: viewModel.timeZone,
         timeColor: .orange
@@ -26,7 +34,7 @@ struct ShabbatTimesView: View {
       Divider()
       
       ShabbatTimeRow(
-        title: ShabbatTimeType.havdalah.title,
+        title: havdalahTitle,
         time: viewModel.havdalah ?? Date(),
         timeZone: viewModel.timeZone,
         timeColor: .purple
@@ -44,7 +52,7 @@ struct ShabbatTimesView: View {
   private func timeRow() -> some View {
     HStack(spacing: 16) {
       ShabbatTimeRow(
-        title: ShabbatTimeType.candleLighting.title,
+        title: String(localized: "Candle Lighting"),
         time: viewModel.candleLighting ?? Date(),
         timeZone: viewModel.timeZone,
         timeColor: .orange
@@ -57,7 +65,7 @@ struct ShabbatTimesView: View {
       )
       
       ShabbatTimeRow(
-        title: ShabbatTimeType.havdalah.title,
+        title: havdalahTitle,
         time: viewModel.havdalah ?? Date(),
         timeZone: viewModel.timeZone,
         timeColor: .purple
