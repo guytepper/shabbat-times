@@ -14,6 +14,15 @@ struct ParashaModalView: View {
     Locale.current.language.languageCode?.identifier == "he"
   }
   
+  var attributedDescription: AttributedString {
+    guard let parasha = parasha else { return AttributedString("") }
+    do {
+      return try AttributedString(markdown: parasha.description)
+    } catch {
+      return AttributedString(parasha.description)
+    }
+  }
+  
   var body: some View {
     NavigationStack {
       ScrollView {
@@ -28,7 +37,7 @@ struct ParashaModalView: View {
               .fontWeight(.bold)
               .padding(.bottom, 8)
             
-            Text(parasha.description)
+            Text(attributedDescription)
               .lineSpacing(5)
               .padding(.bottom)
               .contextMenu {
