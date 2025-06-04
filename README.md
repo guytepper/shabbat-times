@@ -5,8 +5,6 @@ Built with SwiftUI and uses the [HebCal API](https://www.hebcal.com/home/197/sha
 
 **Available on the [App Store](https://apps.apple.com/app/shabbat-candle-times/id6741048381).**
 
-<img src="./screenshot.png" alt="" width="650">
-
 ## Contributing
 
 Contributions are welcome. Just fork this repo and create a PR.  
