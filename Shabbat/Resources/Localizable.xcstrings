@@ -3,6 +3,12 @@
   "strings" : {
     " (%@ timezone)" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " (%@ timezone)"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13,6 +19,12 @@
     },
     "%lld minutes before" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld minutes before"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23,6 +35,12 @@
     },
     "09:00" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "09:00"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36,6 +54,12 @@
     },
     "Cancel" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -46,6 +70,12 @@
     },
     "Candle Lighting" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Candle Lighting"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -88,6 +118,12 @@
     },
     "Candle lighting today at 6:23 PM. Shabbat Shalom!" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Candle lighting today at 6:23 PM. Shabbat Shalom!"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -98,6 +134,12 @@
     },
     "Close" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -108,6 +150,12 @@
     },
     "Copy" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -121,6 +169,12 @@
     },
     "Credits" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Credits"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -134,6 +188,12 @@
     },
     "Enable Notifications" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enable Notifications"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -144,6 +204,12 @@
     },
     "Friday morning shabbat times notification." : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Friday morning shabbat times notification."
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -154,6 +220,12 @@
     },
     "Happy holidays!" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Happy holidays!"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -164,6 +236,12 @@
     },
     "Holiday Ends" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Holiday Ends"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -177,6 +255,12 @@
     },
     "in %lld days" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "in %lld days"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -187,6 +271,12 @@
     },
     "Made by [Guy Tepper](https://guytepper.com)" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Made by [Guy Tepper](https://guytepper.com)"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -197,6 +287,12 @@
     },
     "Morning Notification" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Morning Notification"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -207,6 +303,12 @@
     },
     "next shabbat" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "next shabbat"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -220,6 +322,12 @@
     },
     "Not Now" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not Now"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -230,6 +338,12 @@
     },
     "Notification Time" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notification Time"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -240,6 +354,12 @@
     },
     "Notifications" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -250,6 +370,12 @@
     },
     "OK" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -260,6 +386,12 @@
     },
     "Oy! Something went wrong" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oy! Something went wrong"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -270,6 +402,12 @@
     },
     "Oy! The link to Sefaria could not be opened." : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oy! The link to Sefaria could not be opened."
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -280,6 +418,12 @@
     },
     "Parasha details provided by [Sefaria](https://www.sefaria.org.il)" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parasha details provided by [Sefaria](https://www.sefaria.org.il)"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -290,6 +434,12 @@
     },
     "parashat hashavua" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "parashat hashavua"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -314,6 +464,12 @@
     },
     "Read on Sefaria" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read on Sefaria"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -324,6 +480,12 @@
     },
     "Receive a notification prior to the candle lighting time." : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Receive a notification prior to the candle lighting time."
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -334,6 +496,12 @@
     },
     "Receive candle lightning times every friday morning." : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Receive candle lightning times every friday morning."
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -344,6 +512,12 @@
     },
     "Reset Onboarding" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset Onboarding"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -357,6 +531,12 @@
     },
     "Search for a city..." : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search for a city..."
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -367,6 +547,12 @@
     },
     "Select a city to get local shabbat times for." : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select a city to get local shabbat times for."
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -377,6 +563,12 @@
     },
     "Select City" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select City"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -387,6 +579,12 @@
     },
     "Send Feedback" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send Feedback"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -397,6 +595,12 @@
     },
     "Settings" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -407,6 +611,12 @@
     },
     "Shabbat Ends" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shabbat Ends"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -417,6 +627,12 @@
     },
     "Shabbat Notification" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shabbat Notification"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -427,6 +643,12 @@
     },
     "shabbat shalom" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "shabbat shalom"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -437,6 +659,12 @@
     },
     "Shabbat Shalom!" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shabbat Shalom!"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -447,6 +675,12 @@
     },
     "Shabbat Times" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shabbat Times"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -457,6 +691,12 @@
     },
     "Shabbat times provided by [HebCal](https://hebcal.com)" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shabbat times provided by [HebCal](https://hebcal.com)"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -467,6 +707,12 @@
     },
     "Source code [available on GitHub](https://github.com/guytepper/shabbat-times)" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Source code [available on GitHub](https://github.com/guytepper/shabbat-times)"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -480,6 +726,12 @@
     },
     "today" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "today"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -490,6 +742,12 @@
     },
     "tomorrow" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "tomorrow"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -500,6 +758,12 @@
     },
     "Try Again" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try Again"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -510,6 +774,12 @@
     },
     "Unable to Open Link" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unable to Open Link"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -523,6 +793,12 @@
     },
     "Welcome to" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
