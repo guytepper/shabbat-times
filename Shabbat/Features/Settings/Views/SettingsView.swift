@@ -95,6 +95,13 @@ struct SettingsView: View {
               }
             }
             .foregroundStyle(Color(uiColor: .label))
+            
+            Button("Rate Shabbat Times") {
+              if let url = URL(string: "https://apps.apple.com/app/shabbat-candle-times/id6741048381?action=write-review") {
+                UIApplication.shared.open(url)
+              }
+            }
+            .foregroundStyle(Color(uiColor: .label))
           }
           
           #if DEBUG
