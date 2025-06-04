@@ -1,6 +1,8 @@
 # Shabbat Times
 
-Shabbat Times is an iOS app that displays this week's Shabbat times. Built with SwiftUI. Uses the [HebCal API](https://www.hebcal.com/home/197/shabbat-times-rest-api) and [Sefaria API](https://developers.sefaria.org/reference/getting-started).
+Shabbat Times is an iOS app that displays this week's Shabbat times. Built with SwiftUI and uses the [HebCal API](https://www.hebcal.com/home/197/shabbat-times-rest-api) & [Sefaria API](https://developers.sefaria.org/reference/getting-started).
+
+Available on the App Store: [Shabbat Times](https://apps.apple.com/app/shabbat-candle-times/id6741048381)
 
 <img src="./screenshot.png" alt="" width="650">
 
