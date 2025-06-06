@@ -77,7 +77,7 @@ class ShabbatService {
     // Candle-lighting time minutes before sunset
     // For Jerusalem, it's common to light candles 40 minutes before sunset.
     // Otherwise, it's 30 minutes before sunset.
-    let beforeSunset = city.name == "Jerusalem" ? 40 : 18
+    let beforeSunset = (city.name == "Jerusalem" || city.name == "ירושלים") ? 40 : 18
     let latitude = city.coordinate.latitude
     let longitude = city.coordinate.longitude
     
