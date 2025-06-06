@@ -59,6 +59,8 @@ struct ShabbatHeader: View {
           .fontWeight(.bold)
           .foregroundStyle(.blue)
       }
+      .accessibilityLabel("Current city: \(cityName)")
+      .accessibilityHint("Double tap to change city")
       
       Image(dayIcon)
         .resizable()
@@ -81,6 +83,7 @@ struct ShabbatHeader: View {
             isAnimating = false
           }
         }
+        .accessibilityHidden(true)
     }
   }
 }
