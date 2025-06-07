@@ -96,6 +96,7 @@ struct RemindersView: View {
         }
       }
       .frame(maxHeight: horizontalSizeClass == .regular ? 750 : 500)
+      .accessibilityHidden(true)
       
       Spacer()
         .onAppear {
@@ -149,6 +150,7 @@ struct RemindersView: View {
             .cornerRadius(16)
             .padding(.bottom, 8)
         }
+        .accessibilityHint("Enable Friday morning Shabbat time notifications")
         
         Button("Not Now")  {
           settingsManager.updateSettings { settings in
@@ -156,6 +158,7 @@ struct RemindersView: View {
           }
         }
         .foregroundStyle(Color(uiColor: .label))
+        .accessibilityHint("Skip notifications setup and continue to the app")
       }
       .padding()
     }

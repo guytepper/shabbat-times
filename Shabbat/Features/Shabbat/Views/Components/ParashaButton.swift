@@ -25,5 +25,7 @@ struct ParashaButton: View {
       .clipShape(RoundedRectangle(cornerRadius: 16))
     }
     .buttonStyle(.plain)
+    .accessibilityLabel("This week's Torah portion: \(parasahName)")
+    .accessibilityHint("Double tap to read more about this week's Torah portion")
   }
 }

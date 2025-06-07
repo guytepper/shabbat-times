@@ -22,12 +22,15 @@ struct ShabbatDateInfo: View {
             )
             .weight(.bold)
           )
+          .accessibilityLabel(accessibleDateString(from: dates))
       }
       
       if let daysUntil = daysUntilShabbat, !isShabbat {
         Text(daysUntil)
       }
     }
+    .accessibilityElement(children: .ignore)
+    .accessibilityLabel(accessibilityDescription)
   }
   
   private var displayMessage: String {
@@ -38,5 +41,26 @@ struct ShabbatDateInfo: View {
     } else {
       return String(localized: "next shabbat")
     }
+  }
+  
+  private var accessibilityDescription: String {
+    var description = displayMessage
+    
+    if let dates = nextShabbatDates {
+      description += ". \(accessibleDateString(from: dates))"
+    }
+    
+    if let daysUntil = daysUntilShabbat, !isShabbat {
+      description += ". \(daysUntil)"
+    }
+    
+    return description
+  }
+  
+  private func accessibleDateString(from dateString: String) -> String {
+    // Replace common date range separators with "to" for better VoiceOver pronunciation
+    let localizedTo = String(localized: " to ")
+    return dateString
+      .replacingOccurrences(of: "-", with: localizedTo)
   }
 }
