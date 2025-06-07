@@ -91,6 +91,16 @@
         }
       }
     },
+    "App Version: %@" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "גרסת האפליקצייה: %@"
+          }
+        }
+      }
+    },
     "Body: %@" : {
       "shouldTranslate" : false
     },
@@ -1011,6 +1021,16 @@
     },
     "User Info: %@" : {
       "shouldTranslate" : false
+    },
+    "v%@" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "v%@"
+          }
+        }
+      }
     },
     "Welcome to" : {
       "localizations" : {

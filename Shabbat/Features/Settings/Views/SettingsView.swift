@@ -21,6 +21,10 @@ struct SettingsView: View {
     center.removeAllPendingNotificationRequests()
   }
   
+  private var appVersion: String {
+    Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0"
+  }
+  
   var body: some View {
     NavigationStack {
         List {
@@ -118,11 +122,21 @@ struct SettingsView: View {
               Text("Share App")
             }
             .foregroundStyle(Color(uiColor: .label))
+          } footer: {
+            HStack {
+              Spacer()
+              Text("v\(appVersion)")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+              Spacer()
+            }
+            .accessibilityLabel("App Version: \(appVersion)")
+            .padding(.top, 8)
           }
 
-          #if DEBUG
-            NotificationDebugView()
-          #endif
+           #if DEBUG
+             NotificationDebugView()
+           #endif            
         }
       .navigationTitle("Settings")
       .background(Color.gradientBackground(for: colorScheme))
