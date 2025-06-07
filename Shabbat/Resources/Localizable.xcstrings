@@ -864,6 +864,16 @@
         }
       }
     },
+    "Shabbat Times App" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "אפליקציית זמני השבת"
+          }
+        }
+      }
+    },
     "Shabbat times provided by [HebCal](https://hebcal.com)" : {
       "localizations" : {
         "en" : {
@@ -876,6 +886,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "זמני השבת מסופקים על ידי [HebCal](https://hebcal.com)."
+          }
+        }
+      }
+    },
+    "Share App" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שתפו את זמני השבת"
           }
         }
       }

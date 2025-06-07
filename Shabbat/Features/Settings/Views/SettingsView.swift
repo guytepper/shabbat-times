@@ -110,8 +110,16 @@ struct SettingsView: View {
               }
             }
             .foregroundStyle(Color(uiColor: .label))
+            
+            ShareLink(
+              item: URL(string: "https://apps.apple.com/app/shabbat-candle-times/id6741048381")!,
+              subject: Text("Shabbat Times App"),
+            ) {
+              Text("Share App")
+            }
+            .foregroundStyle(Color(uiColor: .label))
           }
-          
+
           #if DEBUG
             NotificationDebugView()
           #endif
