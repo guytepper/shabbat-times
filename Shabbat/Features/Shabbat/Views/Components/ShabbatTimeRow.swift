@@ -26,6 +26,14 @@ struct ShabbatTimeRow: View {
     formatter.timeZone = timeZone
     return formatter.string(from: time)
   }
+  
+  private var accessibleTimeDescription: String {
+    let formatter = DateFormatter()
+    formatter.timeZone = timeZone
+    formatter.dateStyle = .none
+    formatter.timeStyle = .short
+    return formatter.string(from: time)
+  }
     
   var body: some View {
     HStack(alignment: .center) {
@@ -43,5 +51,9 @@ struct ShabbatTimeRow: View {
       }
     }
     .padding(.vertical, 16)
+    .accessibilityElement(children: .ignore)
+    .accessibilityLabel("\(title)")
+    .accessibilityValue(formattedTime)
+    .accessibilityAddTraits(.isStaticText)
   }
 }

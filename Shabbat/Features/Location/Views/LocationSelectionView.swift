@@ -67,6 +67,7 @@ struct LocationSelectionView: View {
     HStack {
       Image(systemName: "magnifyingglass")
         .foregroundColor(.secondary)
+        .accessibilityHidden(true)
       
       TextField("Search for a city...", text: $viewModel.searchText)
         .textFieldStyle(.plain)
@@ -83,6 +84,8 @@ struct LocationSelectionView: View {
           Image(systemName: "xmark.circle.fill")
             .foregroundColor(.secondary)
         }
+        .accessibilityLabel("Clear search")
+        .accessibilityHint("Double tap to clear the search text")
       }
     }
     .padding(8)
@@ -106,6 +109,8 @@ struct LocationSelectionView: View {
             .foregroundColor(.secondary)
         }
       }
+      .accessibilityElement(children: .ignore)
+      .accessibilityLabel("\(city.name), \(city.country)")
     }
     .listStyle(.plain)
   }

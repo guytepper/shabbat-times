@@ -40,10 +40,13 @@ struct SettingsView: View {
                   }
                 }
               ))
+              .accessibilityLabel("Morning Notification")
+              .accessibilityHint("Friday morning shabbat times notification.")
               
               Text("Friday morning shabbat times notification.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
+                .accessibilityHidden(true)
             }
             
             VStack(alignment: .leading, spacing: 6) {
@@ -58,10 +61,13 @@ struct SettingsView: View {
                   BackgroundTaskService.shared.scheduleAppRefresh(Date())
                 }
               ))
+              .accessibilityLabel("Candle Lighting")
+              .accessibilityHint("Receive notification before candle lighting time.")
               
-              Text("Receive a notification prior to the candle lighting time.")
+              Text("Receive notification before candle lighting time.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
+                .accessibilityHidden(true)
               
               if settings.candleLightningNotification {
                 Picker("Notification Time", selection: Binding(
@@ -79,6 +85,8 @@ struct SettingsView: View {
                   }
                 }
                 .padding(.top, 12)
+                .accessibilityLabel("Notification Time")
+                .accessibilityHint("Choose how many minutes before candle lighting to receive notification")
               }
             }
           }

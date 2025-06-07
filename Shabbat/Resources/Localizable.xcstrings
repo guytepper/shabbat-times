@@ -17,6 +17,48 @@
         }
       }
     },
+    " to " : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "עד ה-"
+          }
+        }
+      }
+    },
+    "%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
+    "%@, %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@, %2$@"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@"
+          }
+        }
+      }
+    },
     "%lld minutes before" : {
       "localizations" : {
         "en" : {
@@ -132,6 +174,38 @@
         }
       }
     },
+    "Choose how many minutes before candle lighting to receive notification" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose how many minutes before candle lighting to receive notification"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "בחרו כמה דקות לפני הדלקת נרות לקבל התראה"
+          }
+        }
+      }
+    },
+    "Clear search" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear search"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "מחיקת חיפוש"
+          }
+        }
+      }
+    },
     "Close" : {
       "localizations" : {
         "en" : {
@@ -183,8 +257,104 @@
         }
       }
     },
+    "Current city: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Current city: %@"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "העיר הנוכחית: %@"
+          }
+        }
+      }
+    },
     "Debug - Pending Notifications" : {
       "shouldTranslate" : false
+    },
+    "Double tap to change city" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double tap to change city"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הקישו פעמיים לשינוי העיר"
+          }
+        }
+      }
+    },
+    "Double tap to choose your city for Shabbat times" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double tap to choose your city for Shabbat times"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הקישו פעמיים לבחירת העיר לקבלת זמני השבת"
+          }
+        }
+      }
+    },
+    "Double tap to clear the search text" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double tap to clear the search text"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הקישו פעמיים כדי לנקות את טקסט החיפוש"
+          }
+        }
+      }
+    },
+    "Double tap to read more about this week's Torah portion" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double tap to read more about this week's Torah portion"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הקישו פעמיים כדי לקרוא עוד על פרשת השבוע"
+          }
+        }
+      }
+    },
+    "Enable Friday morning Shabbat time notifications" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enable Friday morning Shabbat time notifications"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הפעלת נוטיפקציות עבור זמני השבת ביום שישי בבוקר."
+          }
+        }
+      }
     },
     "Enable Notifications" : {
       "localizations" : {
@@ -197,7 +367,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "הפעלת התראות"
+            "value" : "הפעלת נוטיפקציות"
           }
         }
       }
@@ -213,7 +383,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "קבלת נוטיפקצייה עם זמני השבת בשישי בבוקר."
+            "value" : "קבלת נוטיפקציה עם זמני השבת בשישי בבוקר."
           }
         }
       }
@@ -452,8 +622,13 @@
       "shouldTranslate" : false
     },
     "Rate Shabbat Times" : {
-      "extractionState" : "stale",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rate Shabbat Times"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -478,22 +653,6 @@
         }
       }
     },
-    "Receive a notification prior to the candle lighting time." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Receive a notification prior to the candle lighting time."
-          }
-        },
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "קבלו התראה לפני זמן הדלקת נרות השבת."
-          }
-        }
-      }
-    },
     "Receive candle lightning times every friday morning." : {
       "localizations" : {
         "en" : {
@@ -506,6 +665,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "קבלו את זמני הדלקת הנרות כל שישי בבוקר."
+          }
+        }
+      }
+    },
+    "Receive notification before candle lighting time." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Receive notification before candle lighting time."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "קבלו נוטיפקציה לפני זמן הדלקת נרות השבת."
           }
         }
       }
@@ -705,6 +880,22 @@
         }
       }
     },
+    "Skip notifications setup and continue to the app" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skip notifications setup and continue to the app"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "המשיכו לאפליקצייה ללא הגדרת נוטיפיקציות"
+          }
+        }
+      }
+    },
     "Source code [available on GitHub](https://github.com/guytepper/shabbat-times)" : {
       "localizations" : {
         "en" : {
@@ -717,6 +908,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "קוד המקור [זמין בגיטהאב](https://github.com/guytepper/shabbat-times)."
+          }
+        }
+      }
+    },
+    "This week's Torah portion: %@" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "פרשת השבוע: %@"
           }
         }
       }
@@ -803,6 +1004,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ברוכים הבאים ל"
+          }
+        }
+      }
+    },
+    "Welcome to Shabbat Times" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to Shabbat Times"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ברוכים הבאים לזמני השבת"
           }
         }
       }

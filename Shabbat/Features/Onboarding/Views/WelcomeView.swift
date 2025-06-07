@@ -18,6 +18,7 @@ struct WelcomeView: View {
       Spacer()
       
       EmojisView()
+        .accessibilityHidden(true)
       
       Spacer()
       
@@ -35,6 +36,8 @@ struct WelcomeView: View {
             .shadow(color: colorScheme == .dark ? .white :  .black.opacity(0.2), radius: 8)
         }
         .padding(.bottom, 12)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Welcome to Shabbat Times")
         
         Text("Select a city to get local shabbat times for.")
           .font(.body)
@@ -63,6 +66,7 @@ struct WelcomeView: View {
       .foregroundColor(.white)
       .cornerRadius(16)
     }
+    .accessibilityHint("Double tap to choose your city for Shabbat times")
     .fullScreenCover(isPresented: $showLocationPicker) {
       LocationSelectionView { city in
         cityManager.saveCity(
@@ -79,7 +83,6 @@ struct WelcomeView: View {
         }
       }
     }
-    
   }
 }
 
