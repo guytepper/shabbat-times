@@ -19,6 +19,12 @@
     },
     " to " : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " to "
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -60,7 +66,20 @@
       }
     },
     "%lld minutes" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld minutes"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld דקות"
+          }
+        }
+      }
     },
     "%lld minutes before" : {
       "localizations" : {
@@ -96,6 +115,12 @@
     },
     "App Version: %@" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Version: %@"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -204,7 +229,20 @@
       }
     },
     "Choose how many minutes before sunset candle lighting time is calculated." : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose how many minutes before sunset candle lighting time is calculated."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "כמה דקות לפני שקיעת השמש יחושבו זמני הדלקת הנרות."
+          }
+        }
+      }
     },
     "Clear search" : {
       "localizations" : {
@@ -472,7 +510,20 @@
       }
     },
     "Minutes Before Sunset" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minutes Before Sunset"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "דקות לפני השקיעה"
+          }
+        }
+      }
     },
     "Morning Notification" : {
       "localizations" : {
