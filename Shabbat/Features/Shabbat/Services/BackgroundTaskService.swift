@@ -53,8 +53,11 @@ class BackgroundTaskService {
     }
     
     Task {
+      // Get the user's configured candle lighting minutes setting
+      let candleLightingMinutes = settingsManager.settings.candleLightingMinutesBeforeSunset
+      
       // Fetch the upcoming Shabbat Times from the API
-      await shabbatService.fetchShabbatTimes(for: city)
+      await shabbatService.fetchShabbatTimes(for: city, candleLightingMinutes: candleLightingMinutes)
       
       if let candleLighting = shabbatService.candleLighting?.formattedDate(timeZone: shabbatService.timeZone),
          let havdalah = shabbatService.havdalah?.formattedDate(timeZone: shabbatService.timeZone) {

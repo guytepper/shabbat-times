@@ -83,7 +83,18 @@ class HomeViewModel {
   
   func loadShabbatTimes() async {
     if let city = cityManager?.getCurrentCity() {
-      await shabbatService.fetchShabbatTimes(for: city)
+      let settingsManager = SettingsManager(modelContext: modelContext)
+      var candleLightingMinutes = settingsManager.settings.candleLightingMinutesBeforeSunset
+      
+      // If user hasn't customized their setting and the city is Jerusalem, set default to 40 minutes
+      if !settingsManager.settings.hasCustomizedCandleLightingMinutes && (city.name == "Jerusalem" || city.name == "ירושלים") {
+        candleLightingMinutes = 40
+        settingsManager.updateSettings { settings in
+          settings.candleLightingMinutesBeforeSunset = 40
+        }
+      }
+      
+      await shabbatService.fetchShabbatTimes(for: city, candleLightingMinutes: candleLightingMinutes)
     }
   }
   

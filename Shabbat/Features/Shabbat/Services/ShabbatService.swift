@@ -67,17 +67,14 @@ class ShabbatService {
   var error: Error?
   
   @MainActor
-  func fetchShabbatTimes(for city: City) async {
+  func fetchShabbatTimes(for city: City, candleLightingMinutes: Int = 20) async {
     isLoading = true
     
     defer {
       isLoading = false
     }
     
-    // Candle-lighting time minutes before sunset
-    // For Jerusalem, it's common to light candles 40 minutes before sunset.
-    // Otherwise, it's 30 minutes before sunset.
-    let beforeSunset = (city.name == "Jerusalem" || city.name == "ירושלים") ? 40 : 18
+    let beforeSunset = candleLightingMinutes
     let latitude = city.coordinate.latitude
     let longitude = city.coordinate.longitude
     

@@ -95,6 +95,34 @@ struct SettingsView: View {
             }
           }
           
+          Section("Candle Lighting") {
+            VStack(alignment: .leading, spacing: 6) {
+              Text("Minutes Before Sunset")
+              
+              Text("Choose how many minutes before sunset candle lighting time is calculated.")
+                .padding(.bottom, 8)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+              
+              Picker("Minutes Before Sunset", selection: Binding(
+                get: { settings.candleLightingMinutesBeforeSunset },
+                set: { newValue in
+                  settingsManager.updateSettings { settings in
+                    settings.candleLightingMinutesBeforeSunset = newValue
+                    settings.hasCustomizedCandleLightingMinutes = true
+                  }
+                }
+              )) {
+                ForEach([20, 30, 40], id: \.self) { minutes in
+                  Text("\(minutes) minutes").tag(minutes)
+                }
+              }
+              .pickerStyle(.segmented)
+              .padding(.bottom, 2)
+            }
+          }
+
+          
           Section {
             Button("Credits") {
               showCredits = true

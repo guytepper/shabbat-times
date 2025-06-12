@@ -59,6 +59,9 @@
         }
       }
     },
+    "%lld minutes" : {
+
+    },
     "%lld minutes before" : {
       "localizations" : {
         "en" : {
@@ -199,6 +202,9 @@
           }
         }
       }
+    },
+    "Choose how many minutes before sunset candle lighting time is calculated." : {
+
     },
     "Clear search" : {
       "localizations" : {
@@ -464,6 +470,9 @@
           }
         }
       }
+    },
+    "Minutes Before Sunset" : {
+
     },
     "Morning Notification" : {
       "localizations" : {
