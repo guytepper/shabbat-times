@@ -22,8 +22,8 @@ struct NotificationDebugView: View {
   
   func sendTestNotification() {
     let content = UNMutableNotificationContent()
-    content.title = "Test Notification"
-    content.body = "If you see this, notifications are working."
+    content.title = String(localized: "Test Notification")
+    content.body = String(localized: "If you see this, notifications are working.")
     content.sound = .default
     
     let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)

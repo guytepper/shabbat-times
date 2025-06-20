@@ -322,7 +322,14 @@
       }
     },
     "Debug" : {
-
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "בדיקות"
+          }
+        }
+      }
     },
     "Double tap to change city" : {
       "localizations" : {
@@ -464,6 +471,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "צאת החג"
+          }
+        }
+      }
+    },
+    "If you see this, notifications are working." : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "אם זה הנוטיפיקציה הזו מופיעה, ההתראות פועלות."
           }
         }
       }
@@ -790,23 +807,6 @@
         }
       }
     },
-    "Reset Onboarding" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reset Onboarding"
-          }
-        },
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "איפוס למסך פתיחה"
-          }
-        }
-      }
-    },
     "Search for a city..." : {
       "localizations" : {
         "en" : {
@@ -1041,6 +1041,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "קוד המקור [זמין בגיטהאב](https://github.com/guytepper/shabbat-times)."
+          }
+        }
+      }
+    },
+    "Test Notification" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "נוטיפיקציית בדיקה"
           }
         }
       }
