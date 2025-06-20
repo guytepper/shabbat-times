@@ -3,6 +3,8 @@ import SwiftData
 
 @main
 struct ShabbatApp: App {
+  @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+  
   init() {
     // Register background task
     BackgroundTaskService.shared.registerBackgroundTasks()
@@ -34,6 +36,22 @@ struct ShabbatApp: App {
       }
       print("RocketSim Connect successfully linked")
       #endif
+  }
+}
+
+class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    UNUserNotificationCenter.current().delegate = self
+    return true
+  }
+  
+  // Handle notifications when the app is in the foreground
+  func userNotificationCenter(
+    _ center: UNUserNotificationCenter,
+    willPresent notification: UNNotification,
+    withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+  ) {
+    completionHandler([.banner, .sound, .list])
   }
 }
 
