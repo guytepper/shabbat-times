@@ -129,9 +129,6 @@
         }
       }
     },
-    "Body: %@" : {
-      "shouldTranslate" : false
-    },
     "Cancel" : {
       "localizations" : {
         "en" : {
@@ -292,9 +289,6 @@
         }
       }
     },
-    "Count: %lld" : {
-      "shouldTranslate" : false
-    },
     "Credits" : {
       "localizations" : {
         "en" : {
@@ -327,8 +321,8 @@
         }
       }
     },
-    "Debug - Pending Notifications" : {
-      "shouldTranslate" : false
+    "Debug" : {
+
     },
     "Double tap to change city" : {
       "localizations" : {
@@ -474,9 +468,6 @@
         }
       }
     },
-    "ID: %@" : {
-      "shouldTranslate" : false
-    },
     "in %lld days" : {
       "localizations" : {
         "en" : {
@@ -493,6 +484,16 @@
         }
       }
     },
+    "Last schedule: %@" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "תכנון נוטיפקציות אחרון: %@"
+          }
+        }
+      }
+    },
     "Made by [Guy Tepper](https://guytepper.com)" : {
       "localizations" : {
         "en" : {
@@ -505,6 +506,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "נוצר ע”י [גיא טפר](https://guytepper.com)."
+          }
+        }
+      }
+    },
+    "Manually Schedule Notifications" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הגדרת נוטיפיקציות ידנית"
           }
         }
       }
@@ -541,6 +552,16 @@
         }
       }
     },
+    "Never scheduled" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "לא נקבע מעולם"
+          }
+        }
+      }
+    },
     "next shabbat" : {
       "localizations" : {
         "en" : {
@@ -557,9 +578,6 @@
         }
       }
     },
-    "Next trigger: %@" : {
-      "shouldTranslate" : false
-    },
     "Not Now" : {
       "localizations" : {
         "en" : {
@@ -572,6 +590,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "לא כרגע"
+          }
+        }
+      }
+    },
+    "Notification Status: %@" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "סטטוס נוטיפיקציה: %@"
           }
         }
       }
@@ -688,8 +716,15 @@
         }
       }
     },
-    "Print Rating Debug Info" : {
-      "shouldTranslate" : false
+    "Pending Shabbat alerts: %lld" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "נוטיפיקציות שבת ממתינות: %lld"
+          }
+        }
+      }
     },
     "Rate Shabbat Times" : {
       "localizations" : {
@@ -756,6 +791,7 @@
       }
     },
     "Reset Onboarding" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -770,9 +806,6 @@
           }
         }
       }
-    },
-    "Reset Rating Data" : {
-      "shouldTranslate" : false
     },
     "Search for a city..." : {
       "localizations" : {
@@ -834,6 +867,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "שליחת פידבק"
+          }
+        }
+      }
+    },
+    "Send Test Notification Now" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שליחת התראת בדיקה"
           }
         }
       }
@@ -1012,9 +1055,6 @@
         }
       }
     },
-    "Title: %@" : {
-      "shouldTranslate" : false
-    },
     "today" : {
       "localizations" : {
         "en" : {
@@ -1079,15 +1119,22 @@
         }
       }
     },
-    "User Info: %@" : {
-      "shouldTranslate" : false
-    },
     "v%@" : {
       "localizations" : {
         "he" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "v%@"
+          }
+        }
+      }
+    },
+    "View Pending Notifications (%lld)" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "נוטיפיקציות ממתינות (%lld)"
           }
         }
       }

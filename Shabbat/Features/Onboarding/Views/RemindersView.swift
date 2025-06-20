@@ -132,8 +132,8 @@ struct RemindersView: View {
                   settings.morningNotification = true
                 }
                 
-                // Schedule a background notification refresh
-                BackgroundTaskService.shared.scheduleAppRefresh(Date())
+                // Schedule notifications in foreground for immediate reliability
+                await BackgroundTaskService.shared.scheduleNotificationsInForeground(context: modelContext)
               } else {
                 print("Notification permission denied.")
               }

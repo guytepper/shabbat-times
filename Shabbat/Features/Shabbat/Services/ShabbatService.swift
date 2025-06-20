@@ -67,7 +67,7 @@ class ShabbatService {
   var error: Error?
   
   @MainActor
-  func fetchShabbatTimes(for city: City, candleLightingMinutes: Int = 20) async {
+  func fetchShabbatTimes(for city: City, candleLightingMinutes: Int = 20, forDate: Date? = nil) async {
     isLoading = true
     
     defer {
@@ -78,7 +78,15 @@ class ShabbatService {
     let latitude = city.coordinate.latitude
     let longitude = city.coordinate.longitude
     
-    let urlString = "https://www.hebcal.com/shabbat?cfg=json&geo=pos&latitude=\(latitude)&longitude=\(longitude)&M=on&b=\(beforeSunset)"
+    var urlString = "https://www.hebcal.com/shabbat?cfg=json&geo=pos&latitude=\(latitude)&longitude=\(longitude)&M=on&b=\(beforeSunset)"
+    
+    if let date = forDate {
+      let calendar = Calendar.current
+      let year = calendar.component(.year, from: date)
+      let month = calendar.component(.month, from: date)
+      let day = calendar.component(.day, from: date)
+      urlString += "&gy=\(year)&gm=\(month)&gd=\(day)"
+    }
     
     guard let url = URL(string: urlString) else {
       error = NSError(domain: "Invalid URL", code: -1)

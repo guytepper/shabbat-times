@@ -40,7 +40,9 @@ struct SettingsView: View {
                   if newValue == false {
                     removePendingNotifications()
                   } else {
-                    BackgroundTaskService.shared.scheduleAppRefresh(Date())
+                    Task {
+                      await BackgroundTaskService.shared.scheduleNotificationsInForeground(context: modelContext)
+                    }
                   }
                 }
               ))
@@ -61,8 +63,9 @@ struct SettingsView: View {
                     settings.candleLightningNotification = newValue
                   }
                   
-                  removePendingNotifications()
-                  BackgroundTaskService.shared.scheduleAppRefresh(Date())
+                  Task {
+                    await BackgroundTaskService.shared.scheduleNotificationsInForeground(context: modelContext)
+                  }
                 }
               ))
               .accessibilityLabel("Candle Lighting")
@@ -81,7 +84,9 @@ struct SettingsView: View {
                       settings.candleLightingNotificationMinutes = newValue
                     }
                     // Reschedule notifications with new time
-                    BackgroundTaskService.shared.scheduleAppRefresh(Date())
+                    Task {
+                      await BackgroundTaskService.shared.scheduleNotificationsInForeground(context: modelContext)
+                    }
                   }
                 )) {
                   ForEach([10, 15, 30, 45, 60], id: \.self) { minutes in
@@ -162,9 +167,9 @@ struct SettingsView: View {
             .padding(.top, 8)
           }
 
-           #if DEBUG
-             NotificationDebugView()
-           #endif            
+          if AppEnvironment.shouldShowDebugView {
+            NotificationDebugView()
+          }
         }
       .navigationTitle("Settings")
       .background(Color.gradientBackground(for: colorScheme))

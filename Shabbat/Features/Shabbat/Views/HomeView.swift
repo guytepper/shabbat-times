@@ -57,26 +57,6 @@ struct HomeView: View {
                 action: { showParashaModal = true }
               )
             }
-            
-            #if DEBUG
-            Button("Reset Onboarding") {
-              settingsManager.updateSettings { settings in
-                settings.finishedOnboarding = false
-              }
-            }
-            .foregroundStyle(Color(uiColor: .label))
-            
-            Button("Reset Rating Data") {
-              RatingManager.shared.resetRatingData()
-            }
-            .foregroundStyle(Color(uiColor: .label))
-            
-            Button("Print Rating Debug Info") {
-              let state = RatingManager.shared.getCurrentState()
-              print("Rating Manager State: \(state)")
-            }
-            .foregroundStyle(Color(uiColor: .label))
-            #endif
           }
         }
         .padding()
@@ -85,12 +65,18 @@ struct HomeView: View {
         Task {
           await viewModel.loadShabbatTimes()
           try await viewModel.loadParasha()
+          
+          // Schedule notifications in foreground when app is opened
+          await BackgroundTaskService.shared.validateAndRescheduleIfNeeded(context: modelContext)
         }
       }
       .refreshable {
         do {
           try await viewModel.loadParasha()
           await viewModel.loadShabbatTimes()
+          
+          // Also reschedule notifications when user refreshes
+          await BackgroundTaskService.shared.scheduleNotificationsInForeground(context: modelContext)
         } catch {
           // TODO: Handle errors
           print(error)
@@ -101,11 +87,11 @@ struct HomeView: View {
         LocationSelectionView { city in
           viewModel.saveNewCity(city: city)
           
-          // Scheduale friday notification for the new selected city
-          BackgroundTaskService.shared.scheduleAppRefresh(Date())
-
           Task {
             await viewModel.loadShabbatTimes()
+            
+            // Schedule notifications for the new selected city
+            await BackgroundTaskService.shared.scheduleNotificationsInForeground(context: modelContext)
           }
         }
       }
