@@ -7,6 +7,7 @@ struct SettingsView: View {
   @Environment(\.modelContext) private var modelContext
   @State private var settingsManager: SettingsManager
   @State private var showCredits = false
+  @State private var showLanguageAlert = false
   
   init(modelContext: ModelContext) {
     self.settingsManager = SettingsManager(modelContext: modelContext)
@@ -126,6 +127,13 @@ struct SettingsView: View {
               .padding(.bottom, 2)
             }
           }
+          
+          Section {
+            Button("Change Language") {
+              showLanguageAlert = true
+            }
+            .foregroundStyle(Color(uiColor: .label))
+          }
 
           
           Section {
@@ -176,6 +184,15 @@ struct SettingsView: View {
       .scrollContentBackground(.hidden)
       .sheet(isPresented: $showCredits) {
         CreditsView()
+      }
+      .alert("Change Language", isPresented: $showLanguageAlert) {
+        Button("Open Settings") {
+          if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(settingsUrl)
+          }
+        }
+      } message: {
+        Text("In the settings screen that opens, tap on “Language”, and then select the desired language. After making your selection, return to the app.")
       }
     }
   }

@@ -209,6 +209,16 @@
         }
       }
     },
+    "Change Language" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שינוי שפה"
+          }
+        }
+      }
+    },
     "Choose how many minutes before candle lighting to receive notification" : {
       "localizations" : {
         "en" : {
@@ -501,6 +511,16 @@
         }
       }
     },
+    "In the settings screen that opens, tap on “Language”, and then select the desired language. After making your selection, return to the app." : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "במסך ההגדרות שיפתח, יש ללחוץ ״שפה״ ולאחר מכן לבחור בשפה הרצויה. לאחר הבחירה יש לחזור לאפליקצייה."
+          }
+        }
+      }
+    },
     "Last schedule: %@" : {
       "localizations" : {
         "he" : {
@@ -665,6 +685,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "אישור"
+          }
+        }
+      }
+    },
+    "Open Settings" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "פתיחת הגדרות"
           }
         }
       }
