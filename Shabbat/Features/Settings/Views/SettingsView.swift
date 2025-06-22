@@ -192,7 +192,7 @@ struct SettingsView: View {
           }
         }
       } message: {
-        Text("In the settings screen that opens, tap on “Language”, and then select the desired language. After making your selection, return to the app.")
+        Text("In the settings screen that opens, tap on “Language”, and then select the desired language.\nAfter making your selection, return to the app.")
       }
     }
   }

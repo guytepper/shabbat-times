@@ -511,12 +511,12 @@
         }
       }
     },
-    "In the settings screen that opens, tap on “Language”, and then select the desired language. After making your selection, return to the app." : {
+    "In the settings screen that opens, tap on “Language”, and then select the desired language.\nAfter making your selection, return to the app." : {
       "localizations" : {
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "במסך ההגדרות שיפתח, יש ללחוץ ״שפה״ ולאחר מכן לבחור בשפה הרצויה. לאחר הבחירה יש לחזור לאפליקצייה."
+            "value" : "במסך ההגדרות שיפתח, יש ללחוץ ״שפה״ ולאחר מכן לבחור בשפה הרצויה.\nלאחר הבחירה יש לחזור לאפליקציה."
           }
         }
       }
