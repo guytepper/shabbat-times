@@ -43,28 +43,7 @@ class BackgroundTaskService {
   func scheduleNotificationsInForeground(context: ModelContext? = nil) async {
     await scheduleNotifications(isBackground: false, context: context)
   }
-  
-  /// Validate and reschedule missing notifications
-  func validateAndRescheduleIfNeeded(context: ModelContext? = nil) async {
-    let center = UNUserNotificationCenter.current()
-    let pendingNotifications = await center.pendingNotificationRequests()
-    
-    // Check if we have any Shabbat notifications for the next 2 weeks
-    let twoWeeksFromNow = Calendar.current.date(byAdding: .day, value: 14, to: Date()) ?? Date()
-    let hasUpcomingNotifications = pendingNotifications.contains { notification in
-      guard let trigger = notification.trigger as? UNCalendarNotificationTrigger,
-            let nextDate = trigger.nextTriggerDate() else { return false }
-      return nextDate <= twoWeeksFromNow && 
-             (notification.identifier.contains("morning-notification") || 
-              notification.identifier.contains("candle-lighting-notification"))
-    }
-    
-    if !hasUpcomingNotifications {
-      print("No upcoming Shabbat notifications found, rescheduling...")
-      await scheduleNotificationsInForeground(context: context)
-    }
-  }
-  
+
   // MARK: - Background Task Handling
   
   private func handleAppRefresh(task: BGAppRefreshTask) {

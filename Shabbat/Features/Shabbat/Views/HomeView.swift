@@ -67,7 +67,7 @@ struct HomeView: View {
           try await viewModel.loadParasha()
           
           // Schedule notifications in foreground when app is opened
-          await BackgroundTaskService.shared.validateAndRescheduleIfNeeded(context: modelContext)
+          await BackgroundTaskService.shared.scheduleNotificationsInForeground(context: modelContext)
         }
       }
       .refreshable {

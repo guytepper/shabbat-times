@@ -21,10 +21,6 @@ struct ShabbatApp: App {
           // Track app opens for rating prompts
           RatingManager.shared.incrementUsageCount()
         }
-        .task {
-          // Schedule notifications in foreground for better reliability
-          await BackgroundTaskService.shared.validateAndRescheduleIfNeeded()
-        }
     }
   }
   
