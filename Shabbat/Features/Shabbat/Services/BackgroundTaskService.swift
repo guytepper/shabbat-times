@@ -268,6 +268,7 @@ class BackgroundTaskService {
     // Create notification content
     let content = UNMutableNotificationContent()
     content.title = String(localized: "Shabbat Times")
+    content.sound = .default
     
     // Format the time using the correct timezone
     let formatter = DateFormatter()
@@ -323,6 +324,7 @@ class BackgroundTaskService {
     // Create notification content
     let content = UNMutableNotificationContent()
     content.title = String(localized: "Shabbat Times")
+    content.sound = .default
     content.interruptionLevel = .timeSensitive
     content.relevanceScore = 1.0
     
