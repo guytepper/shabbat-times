@@ -95,7 +95,6 @@ struct SettingsView: View {
                   }
                 }
                 .padding(.top, 12)
-                .accessibilityLabel("Notification Time")
                 .accessibilityHint("Choose how many minutes before candle lighting to receive notification")
               }
             }
