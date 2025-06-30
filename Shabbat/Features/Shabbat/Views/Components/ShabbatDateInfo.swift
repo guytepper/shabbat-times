@@ -22,6 +22,7 @@ struct ShabbatDateInfo: View {
             )
             .weight(.bold)
           )
+          .multilineTextAlignment(.center)
           .accessibilityLabel(accessibleDateString(from: dates))
       }
       

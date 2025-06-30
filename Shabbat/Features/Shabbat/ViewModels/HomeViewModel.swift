@@ -109,7 +109,7 @@ class HomeViewModel {
       coordinate: city.coordinate
     )
   }
-  
+
   var nextShabbatDates: String? {
     let startDate = candleLighting ?? Date()
     let endDate = havdalah ?? Date()
@@ -129,12 +129,26 @@ class HomeViewModel {
     let startMonth = monthFormatter.string(from: startDate)
     let endMonth = monthFormatter.string(from: endDate)
     
+    let gregorianRange: String
     if startMonth == endMonth {
-      return "\(startDay) - \(endDay) \(startMonth)"
+      gregorianRange = "\(startDay) - \(endDay) \(startMonth)"
     } else {
-      return "\(startDay) \(startMonth) - \(endDay) \(endMonth)"
+      gregorianRange = "\(startDay) \(startMonth) - \(endDay) \(endMonth)"
     }
+
+    let start = startDate.hebrewDateString(from: timeZone)
+    let end = endDate.hebrewDateString(from: timeZone)
+
+    let hebrewRange: String
+    if start.month == end.month {
+        hebrewRange = "\(start.hebrewDay) - \(end.hebrewDay) \(start.month)"
+    } else {
+        hebrewRange = "\(start.hebrewDay) \(start.month) - \(end.hebrewDay) \(end.month)"
+    }
+
+    return "\(gregorianRange)\n\(hebrewRange)"
   }
+
   var daysUntilShabbat: String? {
     guard let candleLighting = candleLighting else { return nil }
     
