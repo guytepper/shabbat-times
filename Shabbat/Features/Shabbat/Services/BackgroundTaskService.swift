@@ -101,8 +101,8 @@ class BackgroundTaskService {
     let settingsManager = SettingsManager(modelContext: modelContext)
     let settings = settingsManager.settings
     
-    // If both notifications are disabled, don't proceed
-    if !settings.morningNotification && !settings.candleLightningNotification {
+    // If all notifications are disabled, don't proceed
+    if !settings.morningNotification && !settings.candleLightningNotification && !settings.shabbatEndNotification {
       print("All notifications disabled")
       return
     }
@@ -149,6 +149,18 @@ class BackgroundTaskService {
           let minutesBefore = settings.candleLightingNotificationMinutes
           await scheduleCandleLightingNotification(
             for: shabbatData.candleLighting,
+            minutesBefore: minutesBefore,
+            timeZone: shabbatData.timeZone,
+            holiday: shabbatData.holiday,
+            week: week
+          )
+          notificationsScheduled += 1
+        }
+        
+        if settings.shabbatEndNotification {
+          let minutesBefore = settings.shabbatEndNotificationMinutes
+          await scheduleShabbatEndNotification(
+            for: shabbatData.havdalah,
             minutesBefore: minutesBefore,
             timeZone: shabbatData.timeZone,
             holiday: shabbatData.holiday,
@@ -243,14 +255,52 @@ class BackgroundTaskService {
   
   // MARK: - Notification Scheduling
   
+  /// Generic notification scheduling function to reduce repetition
+  private func scheduleNotification(
+    at date: Date,
+    body: String,
+    identifierPrefix: String,
+    week: Int,
+    isTimeSensitive: Bool = false
+  ) async {
+    let center = UNUserNotificationCenter.current()
+    
+    let content = UNMutableNotificationContent()
+    content.title = String(localized: "Shabbat Times")
+    content.sound = .default
+    content.body = body
+    
+    if isTimeSensitive {
+      content.interruptionLevel = .timeSensitive
+      content.relevanceScore = 1.0
+    }
+    
+    let calendar = Calendar.current
+    let components = calendar.dateComponents(
+      [.year, .month, .day, .hour, .minute, .second],
+      from: date
+    )
+    
+    let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+    
+    let request = UNNotificationRequest(
+      identifier: "\(identifierPrefix)-week\(week)-\(UUID().uuidString)",
+      content: content,
+      trigger: trigger
+    )
+    
+    do {
+      try await center.add(request)
+      print("Scheduled \(identifierPrefix) notification for week \(week) at \(date)")
+    } catch {
+      print("Error scheduling \(identifierPrefix) notification for week \(week): \(error)")
+    }
+  }
+  
   private func clearOldShabbatNotifications() async {
     let center = UNUserNotificationCenter.current()
     let pendingNotifications = await center.pendingNotificationRequests()
-    
-    // Only remove our Shabbat notifications, not all notifications
-    let shabbatNotificationIds = pendingNotifications
-      .filter { $0.identifier.contains("morning-notification") || $0.identifier.contains("candle-lighting-notification") }
-      .map { $0.identifier }
+    let shabbatNotificationIds = pendingNotifications.map { $0.identifier }
     
     center.removePendingNotificationRequests(withIdentifiers: shabbatNotificationIds)
     print("Cleared \(shabbatNotificationIds.count) old Shabbat notifications")
@@ -263,52 +313,31 @@ class BackgroundTaskService {
     holiday: String?,
     week: Int
   ) async {
-    let center = UNUserNotificationCenter.current()
-    
-    // Create notification content
-    let content = UNMutableNotificationContent()
-    content.title = String(localized: "Shabbat Times")
-    content.sound = .default
-    
     // Format the time using the correct timezone
     let formatter = DateFormatter()
     formatter.timeStyle = .short
     formatter.timeZone = TimeZone(identifier: timeZone)
     
     let timeString = formatter.string(from: candleLightingTime)
-    
     let timezoneInfo = getTimezoneInfo(for: timeZone)
     let greeting = getGreeting(for: holiday)
-    content.body = String(localized: "Candle lighting today at \(timeString)\(timezoneInfo). \(greeting)")
+    let body = String(localized: "Candle lighting today at \(timeString)\(timezoneInfo). \(greeting)")
     
-    // Create trigger using the system calendar and timezone
+    // Schedule at 9 AM on the same day
     let calendar = Calendar.current
     let notificationDate = calendar.date(
-      bySettingHour: 9,  // 9 AM
+      bySettingHour: 9,
       minute: 0,
       second: 0,
       of: candleLightingTime
     ) ?? candleLightingTime
     
-    let components = calendar.dateComponents(
-      [.year, .month, .day, .hour, .minute, .second],
-      from: notificationDate
+    await scheduleNotification(
+      at: notificationDate,
+      body: body,
+      identifierPrefix: "morning-notification",
+      week: week
     )
-    
-    let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
-    
-    let request = UNNotificationRequest(
-      identifier: "morning-notification-week\(week)-\(UUID().uuidString)",
-      content: content,
-      trigger: trigger
-    )
-    
-    do {
-      try await center.add(request)
-      print("Scheduled morning notification for week \(week) at 9 AM on \(notificationDate)")
-    } catch {
-      print("Error scheduling morning notification for week \(week): \(error)")
-    }
   }
   
   /// Schedules a notification X minutes before candle lighting time
@@ -319,24 +348,14 @@ class BackgroundTaskService {
     holiday: String?,
     week: Int
   ) async {
-    let center = UNUserNotificationCenter.current()
-    
-    // Create notification content
-    let content = UNMutableNotificationContent()
-    content.title = String(localized: "Shabbat Times")
-    content.sound = .default
-    content.interruptionLevel = .timeSensitive
-    content.relevanceScore = 1.0
-    
     // Format the time using the correct timezone
     let formatter = DateFormatter()
     formatter.timeStyle = .short
     formatter.timeZone = TimeZone(identifier: timeZone)
     
     let timeString = formatter.string(from: candleLightingTime)
-    
     let timezoneInfo = getTimezoneInfo(for: timeZone)
-    content.body = String(localized: "Candle lighting is in \(minutesBefore) minutes, at \(timeString)\(timezoneInfo).")
+    let body = String(localized: "Candle lighting is in \(minutesBefore) minutes, at \(timeString)\(timezoneInfo).")
     
     let calendar = Calendar.current
     
@@ -349,25 +368,65 @@ class BackgroundTaskService {
       return
     }
     
-    let components = calendar.dateComponents(
-      [.year, .month, .day, .hour, .minute, .second],
-      from: notificationTime
+    await scheduleNotification(
+      at: notificationTime,
+      body: body,
+      identifierPrefix: "candle-lighting-notification",
+      week: week,
+      isTimeSensitive: true
     )
+  }
+  
+  /// Schedules a notification X minutes before Shabbat end time, or at exact time if minutesBefore is 0
+  private func scheduleShabbatEndNotification(
+    for shabbatEndTime: Date,
+    minutesBefore: Int,
+    timeZone: String,
+    holiday: String?,
+    week: Int
+  ) async {
+    let formatter = DateFormatter()
+    formatter.timeStyle = .short
+    formatter.timeZone = TimeZone(identifier: timeZone)
     
-    let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+    let timeString = formatter.string(from: shabbatEndTime)
+    let timezoneInfo = getTimezoneInfo(for: timeZone)
+    let endGreeting = getEndGreeting(for: holiday)
     
-    let request = UNNotificationRequest(
-      identifier: "candle-lighting-notification-week\(week)-\(UUID().uuidString)",
-      content: content,
-      trigger: trigger
-    )
+    let body: String
+    let notificationTime: Date
+    let identifierPrefix: String
     
-    do {
-      try await center.add(request)
-      print("Scheduled candle lighting notification for week \(week) at \(notificationTime)")
-    } catch {
-      print("Error scheduling candle lighting notification for week \(week): \(error)")
+    // Different message and timing based on minutesBefore
+    if minutesBefore == 0 {
+      // Exact time notification message
+      body = String(localized: "Shabbat ended at \(timeString)\(timezoneInfo). \(endGreeting)")
+      notificationTime = shabbatEndTime
+      identifierPrefix = "shabbat-end-exact-notification"
+    } else {
+      // Minutes before notification
+      body = String(localized: "Shabbat ends in \(minutesBefore) minutes, at \(timeString)\(timezoneInfo). \(endGreeting)")
+      
+      let calendar = Calendar.current
+      guard let calculatedTime = calendar.date(
+        byAdding: .minute,
+        value: -minutesBefore,
+        to: shabbatEndTime
+      ) else {
+        print("Error: Failed to calculate Shabbat end notification time for week \(week)")
+        return
+      }
+      notificationTime = calculatedTime
+      identifierPrefix = "shabbat-end-notification"
     }
+    
+    await scheduleNotification(
+      at: notificationTime,
+      body: body,
+      identifierPrefix: identifierPrefix,
+      week: week,
+      isTimeSensitive: true
+    )
   }
   
   // MARK: - Background Task Scheduling
@@ -419,6 +478,15 @@ class BackgroundTaskService {
     }
   }
   
+  /// Returns appropriate ending greeting based on whether there's a holiday
+  private func getEndGreeting(for holiday: String?) -> String {
+    if holiday != nil {
+      return String(localized: "Happy holidays!")
+    } else {
+      return String(localized: "Shavua Tov!")
+    }
+  }
+  
   /// Returns timezone clarification text if user's timezone differs from city's timezone
   private func getTimezoneInfo(for cityTimeZone: String) -> String {
     guard let cityTZ = TimeZone(identifier: cityTimeZone) else { return "" }
@@ -443,7 +511,7 @@ class BackgroundTaskService {
     let center = UNUserNotificationCenter.current()
     let pending = await center.pendingNotificationRequests()
     let shabbatNotifications = pending.filter { 
-      $0.identifier.contains("morning-notification") || $0.identifier.contains("candle-lighting-notification") 
+      $0.identifier.contains("morning-notification") || $0.identifier.contains("candle-lighting-notification") || $0.identifier.contains("shabbat-end-notification") || $0.identifier.contains("shabbat-end-exact-notification")
     }
     
     print("=== Notification Debug Info ===")

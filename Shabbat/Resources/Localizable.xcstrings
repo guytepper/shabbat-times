@@ -129,6 +129,22 @@
         }
       }
     },
+    "At exact time" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "At exact time"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "בזמן המדויק"
+          }
+        }
+      }
+    },
     "Cancel" : {
       "localizations" : {
         "en" : {
@@ -235,6 +251,23 @@
         }
       }
     },
+    "Choose how many minutes before Shabbat ends to receive notification" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose how many minutes before Shabbat ends to receive notification"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "בחרו כמה דקות לפני צאת השבת לקבל התראה"
+          }
+        }
+      }
+    },
     "Choose how many minutes before sunset candle lighting time is calculated." : {
       "localizations" : {
         "en" : {
@@ -247,6 +280,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "כמה דקות לפני שקיעת השמש יחושבו זמני הדלקת הנרות."
+          }
+        }
+      }
+    },
+    "Choose when to receive Shabbat end notification" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose when to receive Shabbat end notification"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "בחרו מתי לקבל התראת צאת שבת"
           }
         }
       }
@@ -763,12 +812,12 @@
         }
       }
     },
-    "Pending Shabbat alerts: %lld" : {
+    "Pending notifications: %lld" : {
       "localizations" : {
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "נוטיפיקציות שבת ממתינות: %lld"
+            "value" : "נוטיפיקציות ממתינות: %lld"
           }
         }
       }
@@ -821,6 +870,23 @@
         }
       }
     },
+    "Receive notification at the exact moment Shabbat ends." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Receive notification at the exact moment Shabbat ends."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "קבלת התראה בצאת השבת."
+          }
+        }
+      }
+    },
     "Receive notification before candle lighting time." : {
       "localizations" : {
         "en" : {
@@ -833,6 +899,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "קבלו נוטיפקציה לפני זמן הדלקת נרות השבת."
+          }
+        }
+      }
+    },
+    "Receive notification before Shabbat ends." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Receive notification before Shabbat ends."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "קבלו נוטיפקציה לפני צאת השבת."
           }
         }
       }
@@ -927,6 +1009,38 @@
         }
       }
     },
+    "Shabbat End" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shabbat End"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "צאת שבת"
+          }
+        }
+      }
+    },
+    "Shabbat ended at %@%@. %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shabbat ended at %1$@%2$@. %3$@"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "השבת הסתיימה בשעה %1$@ %2$@. %3$@"
+          }
+        }
+      }
+    },
     "Shabbat Ends" : {
       "localizations" : {
         "en" : {
@@ -939,6 +1053,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "צאת שבת"
+          }
+        }
+      }
+    },
+    "Shabbat ends in %lld minutes, at %@%@. %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shabbat ends in %1$lld minutes, at %2$@%3$@. %4$@"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "השבת נגמרת בעוד %1$lld דקות, בשעה %2$@ %3$@. %4$@"
           }
         }
       }
@@ -1039,6 +1169,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "שתפו את זמני השבת"
+          }
+        }
+      }
+    },
+    "Shavua Tov!" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shavua Tov!"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שבוע טוב!"
           }
         }
       }

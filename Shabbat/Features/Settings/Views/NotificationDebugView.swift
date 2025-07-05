@@ -12,7 +12,6 @@ struct NotificationDebugView: View {
   func fetchDebugInfo() async {
     let center = UNUserNotificationCenter.current()
     pendingNotifications = await center.pendingNotificationRequests()
-      .filter { $0.identifier.contains("morning") || $0.identifier.contains("candle") }
     
     let settings = await center.notificationSettings()
     notificationStatus = settings.authorizationStatus
@@ -59,7 +58,7 @@ struct NotificationDebugView: View {
             Text("Never scheduled")
           }
           
-          Text("Pending Shabbat alerts: \(pendingNotifications.count)")
+          Text("Pending notifications: \(pendingNotifications.count)")
         }
         .font(.caption)
         .foregroundStyle(.secondary)

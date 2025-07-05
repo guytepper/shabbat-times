@@ -8,6 +8,8 @@ class Settings {
   var morningNotification: Bool = false
   var candleLightningNotification: Bool = false
   var candleLightingNotificationMinutes: Int = 30
+  var shabbatEndNotification: Bool = false
+  var shabbatEndNotificationMinutes: Int = 10
   var candleLightingMinutesBeforeSunset: Int = 20
   var hasCustomizedCandleLightingMinutes: Bool = false
   
