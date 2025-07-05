@@ -133,10 +133,10 @@ struct SettingsView: View {
                     }
                   }
                 )) {
+                  Text(String(localized: "At exact time")).tag(0)
                   ForEach([10, 15, 30, 45, 60], id: \.self) { minutes in
                     Text(String(localized: "\(minutes) minutes before")).tag(minutes)
                   }
-                  Text(String(localized: "At exact time")).tag(0)
                 }
                 .padding(.top, 12)
                 .accessibilityHint("Choose when to receive Shabbat end notification")
