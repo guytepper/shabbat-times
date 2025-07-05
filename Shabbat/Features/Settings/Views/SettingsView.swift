@@ -98,6 +98,50 @@ struct SettingsView: View {
                 .accessibilityHint("Choose how many minutes before candle lighting to receive notification")
               }
             }
+            
+            VStack(alignment: .leading, spacing: 6) {
+              Toggle("Shabbat End", isOn: Binding(
+                get: { settings.shabbatEndNotification },
+                set: { newValue in
+                  settingsManager.updateSettings { settings in
+                    settings.shabbatEndNotification = newValue
+                  }
+                  
+                  Task {
+                    await BackgroundTaskService.shared.scheduleNotificationsInForeground(context: modelContext)
+                  }
+                }
+              ))
+              .accessibilityLabel("Shabbat End")
+              .accessibilityHint("Receive notification before Shabbat ends.")
+              
+              Text("Receive notification before Shabbat ends.")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .accessibilityHidden(true)
+              
+                            if settings.shabbatEndNotification {
+                Picker("Notification Time", selection: Binding(
+                  get: { settings.shabbatEndNotificationMinutes },
+                  set: { newValue in
+                    settingsManager.updateSettings { settings in
+                      settings.shabbatEndNotificationMinutes = newValue
+                    }
+                    // Reschedule notifications with new time
+                    Task {
+                      await BackgroundTaskService.shared.scheduleNotificationsInForeground(context: modelContext)
+                    }
+                  }
+                )) {
+                  Text(String(localized: "At exact time")).tag(0)
+                  ForEach([10, 15, 30, 45, 60], id: \.self) { minutes in
+                    Text(String(localized: "\(minutes) minutes before")).tag(minutes)
+                  }
+                }
+                .padding(.top, 12)
+                .accessibilityHint("Choose when to receive Shabbat end notification")
+              }
+            }
           }
           
           Section("Candle Lighting") {
