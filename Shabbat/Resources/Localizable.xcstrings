@@ -188,7 +188,7 @@
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "הדלקת נרות שבת בעוד %1$lld דקות, בשעה %2$@ %3$@"
+            "value" : "הדלקת נרות שבת בעוד %1$lld דקות, בשעה %2$@ %3$@."
           }
         }
       }
@@ -227,6 +227,12 @@
     },
     "Change Language" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change Language"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -247,23 +253,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "בחרו כמה דקות לפני הדלקת נרות לקבל התראה"
-          }
-        }
-      }
-    },
-    "Choose how many minutes before Shabbat ends to receive notification" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Choose how many minutes before Shabbat ends to receive notification"
-          }
-        },
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "בחרו כמה דקות לפני צאת השבת לקבל התראה"
           }
         }
       }
@@ -382,6 +371,12 @@
     },
     "Debug" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Debug"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -536,10 +531,16 @@
     },
     "If you see this, notifications are working." : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If you see this, notifications are working."
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "אם זה הנוטיפיקציה הזו מופיעה, ההתראות פועלות."
+            "value" : "אם הנוטיפיקציה הזו מופיעה, ההתראות פועלות."
           }
         }
       }
@@ -562,6 +563,12 @@
     },
     "In the settings screen that opens, tap on “Language”, and then select the desired language.\nAfter making your selection, return to the app." : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In the settings screen that opens, tap on “Language”, and then select the desired language.\nAfter making your selection, return to the app."
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -572,6 +579,12 @@
     },
     "Last schedule: %@" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last schedule: %@"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -598,6 +611,12 @@
     },
     "Manually Schedule Notifications" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manually Schedule Notifications"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -640,6 +659,12 @@
     },
     "Never scheduled" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Never scheduled"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -682,6 +707,12 @@
     },
     "Notification Status: %@" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notification Status: %@"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -740,6 +771,12 @@
     },
     "Open Settings" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Settings"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -814,6 +851,12 @@
     },
     "Pending notifications: %lld" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pending notifications: %lld"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -866,23 +909,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "קבלו את זמני הדלקת הנרות כל שישי בבוקר."
-          }
-        }
-      }
-    },
-    "Receive notification at the exact moment Shabbat ends." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Receive notification at the exact moment Shabbat ends."
-          }
-        },
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "קבלת התראה בצאת השבת."
           }
         }
       }
@@ -985,6 +1011,12 @@
     },
     "Send Test Notification Now" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send Test Notification Now"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1025,18 +1057,18 @@
         }
       }
     },
-    "Shabbat ended at %@%@. %@" : {
+    "Shabbat ended at %@%@." : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Shabbat ended at %1$@%2$@. %3$@"
+            "state" : "new",
+            "value" : "Shabbat ended at %1$@%2$@."
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "השבת הסתיימה בשעה %1$@ %2$@. %3$@"
+            "value" : "השבת הסתיימה בשעה %1$@ %2$@."
           }
         }
       }
@@ -1057,18 +1089,18 @@
         }
       }
     },
-    "Shabbat ends in %lld minutes, at %@%@. %@" : {
+    "Shabbat ends in %lld minutes, at %@%@." : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Shabbat ends in %1$lld minutes, at %2$@%3$@. %4$@"
+            "state" : "new",
+            "value" : "Shabbat ends in %1$lld minutes, at %2$@%3$@."
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "השבת נגמרת בעוד %1$lld דקות, בשעה %2$@ %3$@. %4$@"
+            "value" : "השבת נגמרת בעוד %1$lld דקות, בשעה %2$@ %3$@."
           }
         }
       }
@@ -1139,6 +1171,12 @@
     },
     "Shabbat Times App" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shabbat Times App"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1165,6 +1203,12 @@
     },
     "Share App" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share App"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1223,6 +1267,12 @@
     },
     "Test Notification" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Test Notification"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1233,6 +1283,12 @@
     },
     "This week's Torah portion: %@" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This week's Torah portion: %@"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1307,6 +1363,12 @@
     },
     "v%@" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "v%@"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1317,6 +1379,12 @@
     },
     "View Pending Notifications (%lld)" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Pending Notifications (%lld)"
+          }
+        },
         "he" : {
           "stringUnit" : {
             "state" : "translated",

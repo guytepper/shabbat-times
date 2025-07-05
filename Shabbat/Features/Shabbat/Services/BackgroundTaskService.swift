@@ -400,12 +400,12 @@ class BackgroundTaskService {
     // Different message and timing based on minutesBefore
     if minutesBefore == 0 {
       // Exact time notification message
-      body = String(localized: "Shabbat ended at \(timeString)\(timezoneInfo). \(endGreeting)")
+      body = String(localized: "Shabbat ended at \(timeString)\(timezoneInfo).")
       notificationTime = shabbatEndTime
       identifierPrefix = "shabbat-end-exact-notification"
     } else {
       // Minutes before notification
-      body = String(localized: "Shabbat ends in \(minutesBefore) minutes, at \(timeString)\(timezoneInfo). \(endGreeting)")
+      body = String(localized: "Shabbat ends in \(minutesBefore) minutes, at \(timeString)\(timezoneInfo).")
       
       let calendar = Calendar.current
       guard let calculatedTime = calendar.date(
