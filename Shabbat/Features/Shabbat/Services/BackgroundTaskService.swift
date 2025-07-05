@@ -184,7 +184,7 @@ class BackgroundTaskService {
     let candleLighting: Date
     let havdalah: Date
     let timeZone: String
-    let holiday: String?
+    let holiday: ShabbatItem?
   }
   
   private func fetchMultipleWeeksShabbatTimes(
@@ -241,7 +241,7 @@ class BackgroundTaskService {
       candleLighting: candleLighting,
       havdalah: havdalah,
       timeZone: timeZone,
-      holiday: service.holiday?.title
+      holiday: service.holiday
     )
   }
   
@@ -310,7 +310,7 @@ class BackgroundTaskService {
   private func scheduleMorningNotification(
     for candleLightingTime: Date,
     timeZone: String,
-    holiday: String?,
+    holiday: ShabbatItem?,
     week: Int
   ) async {
     // Format the time using the correct timezone
@@ -345,7 +345,7 @@ class BackgroundTaskService {
     for candleLightingTime: Date,
     minutesBefore: Int,
     timeZone: String,
-    holiday: String?,
+    holiday: ShabbatItem?,
     week: Int
   ) async {
     // Format the time using the correct timezone
@@ -382,7 +382,7 @@ class BackgroundTaskService {
     for shabbatEndTime: Date,
     minutesBefore: Int,
     timeZone: String,
-    holiday: String?,
+    holiday: ShabbatItem?,
     week: Int
   ) async {
     let formatter = DateFormatter()
@@ -397,15 +397,25 @@ class BackgroundTaskService {
     let notificationTime: Date
     let identifierPrefix: String
     
-    // Different message and timing based on minutesBefore
+    // Different message and timing based on minutesBefore and type of day
+    let isFastDay = holiday?.isFast ?? false
+    
     if minutesBefore == 0 {
       // Exact time notification message
-      body = String(localized: "Shabbat ended at \(timeString)\(timezoneInfo).")
+      if isFastDay {
+        body = String(localized: "Fast ended at \(timeString)\(timezoneInfo). \(endGreeting)")
+      } else {
+        body = String(localized: "Shabbat ended at \(timeString)\(timezoneInfo). \(endGreeting)")
+      }
       notificationTime = shabbatEndTime
       identifierPrefix = "shabbat-end-exact-notification"
     } else {
       // Minutes before notification
-      body = String(localized: "Shabbat ends in \(minutesBefore) minutes, at \(timeString)\(timezoneInfo).")
+      if isFastDay {
+        body = String(localized: "Fast ends in \(minutesBefore) minutes, at \(timeString)\(timezoneInfo).")
+      } else {
+        body = String(localized: "Shabbat ends in \(minutesBefore) minutes, at \(timeString)\(timezoneInfo).")
+      }
       
       let calendar = Calendar.current
       guard let calculatedTime = calendar.date(
@@ -470,20 +480,28 @@ class BackgroundTaskService {
   // MARK: - Helper Methods
   
   /// Returns appropriate greeting based on whether there's a holiday
-  private func getGreeting(for holiday: String?) -> String {
-    if holiday != nil {
-      return String(localized: "Happy holidays!")
-    } else {
+  private func getGreeting(for holiday: ShabbatItem?) -> String {
+    guard let holiday = holiday else {
       return String(localized: "Shabbat Shalom!")
+    }
+    
+    if holiday.isFast {
+      return String(localized: "Have an easy fast!")
+    } else {
+      return String(localized: "Happy holidays!")
     }
   }
   
   /// Returns appropriate ending greeting based on whether there's a holiday
-  private func getEndGreeting(for holiday: String?) -> String {
-    if holiday != nil {
-      return String(localized: "Happy holidays!")
-    } else {
+  private func getEndGreeting(for holiday: ShabbatItem?) -> String {
+    guard let holiday = holiday else {
       return String(localized: "Shavua Tov!")
+    }
+    
+    if holiday.isFast {
+      return String(localized: "Have a good week!")
+    } else {
+      return String(localized: "Happy holidays!")
     }
   }
   

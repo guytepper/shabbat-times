@@ -6,7 +6,11 @@ struct ShabbatTimesView: View {
   
   private var havdalahTitle: String {
     if viewModel.shouldShowHolidayTitle {
-      return String(localized: "Holiday Ends")
+      if viewModel.isFastDay {
+        return String(localized: "Fast Ends")
+      } else {
+        return String(localized: "Holiday Ends")
+      }
     } else {
       return String(localized: "Shabbat Ends")
     }

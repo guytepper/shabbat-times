@@ -481,6 +481,54 @@
         }
       }
     },
+    "Fast ended at %@%@. %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fast ended at %1$@%2$@. %3$@"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הצום הסתיים בשעה %1$@%2$@. %3$@"
+          }
+        }
+      }
+    },
+    "Fast Ends" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fast Ends"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "סיום הצום"
+          }
+        }
+      }
+    },
+    "Fast ends in %lld minutes, at %@%@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fast ends in %1$lld minutes, at %2$@%3$@."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הצום נגמר בעוד %1$lld דקות, בשעה %2$@%3$@."
+          }
+        }
+      }
+    },
     "Friday morning shabbat times notification." : {
       "localizations" : {
         "en" : {
@@ -509,6 +557,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "חג שמח!"
+          }
+        }
+      }
+    },
+    "Have a good week!" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Have a good week!"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שבוע טוב!"
+          }
+        }
+      }
+    },
+    "Have an easy fast!" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Have an easy fast!"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "צום קל!"
           }
         }
       }
@@ -1057,18 +1137,18 @@
         }
       }
     },
-    "Shabbat ended at %@%@." : {
+    "Shabbat ended at %@%@. %@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Shabbat ended at %1$@%2$@."
+            "state" : "translated",
+            "value" : "Shabbat ended at %1$@%2$@. %3$@"
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "השבת הסתיימה בשעה %1$@%2$@."
+            "value" : "השבת הסתיימה בשעה %1$@%2$@. %3$@"
           }
         }
       }

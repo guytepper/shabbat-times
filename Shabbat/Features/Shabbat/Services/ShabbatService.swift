@@ -18,6 +18,7 @@ struct ShabbatItem: Codable, Identifiable {
   let title: String
   let date: String
   let category: String
+  let subcat: String?
   let hebrew: String
   var link: String?
   
@@ -25,6 +26,7 @@ struct ShabbatItem: Codable, Identifiable {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     date = try container.decode(String.self, forKey: .date)
     category = try container.decode(String.self, forKey: .category)
+    subcat = try container.decodeIfPresent(String.self, forKey: .subcat)
     hebrew = try container.decode(String.self, forKey: .hebrew)
     link = try container.decodeIfPresent(String.self, forKey: .link)
     
@@ -36,6 +38,12 @@ struct ShabbatItem: Codable, Identifiable {
   
   var id: String {
     "\(category)-\(date)"
+  }
+  
+  // MARK: - Helper Methods
+  
+  var isFast: Bool {
+    return subcat == "fast"
   }
   
   func formattedDate(timeZone: String?) -> Date? {

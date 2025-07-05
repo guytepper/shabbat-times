@@ -55,6 +55,10 @@ class HomeViewModel {
     holiday?.title
   }
   
+  var isFastDay: Bool {
+    holiday?.isFast ?? false
+  }
+  
   var shouldShowParashaButton: Bool {
     // Only show parasha button if there's no holiday
     return holiday == nil
