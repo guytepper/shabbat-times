@@ -110,7 +110,8 @@ class ShabbatService {
       parasah = response.items.first { $0.category == "parashat" }
       
       // Find the current or next holiday based on date
-      let allHolidays = response.items.filter { $0.category == "holiday" }
+      // Exclude modern holidays (like Jabotinsky Day) from holiday notifications
+      let allHolidays = response.items.filter { $0.category == "holiday" && $0.subcat != "modern" }
       holiday = findCurrentOrNextHoliday(from: allHolidays)
       
       timeZone = response.location.tzid
