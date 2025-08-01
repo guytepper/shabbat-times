@@ -9,61 +9,17 @@
     {
       "layers" : [
         {
-          "blend-mode-specializations" : [
-            {
-              "appearance" : "tinted",
-              "value" : "normal"
-            }
-          ],
-          "fill-specializations" : [
-            {
-              "appearance" : "tinted",
-              "value" : "automatic"
-            }
-          ],
-          "glass-specializations" : [
-            {
-              "value" : false
-            },
-            {
-              "appearance" : "dark",
-              "value" : false
-            },
-            {
-              "appearance" : "tinted",
-              "value" : false
-            }
-          ],
-          "hidden" : true,
-          "image-name" : "chalah.png",
-          "name" : "chalah",
-          "opacity-specializations" : [
-            {
-              "value" : 1
-            },
-            {
-              "appearance" : "dark",
-              "value" : 1
-            },
-            {
-              "appearance" : "tinted",
-              "value" : 1
-            }
-          ]
-        },
-        {
-          "glass-specializations" : [
-            {
-              "value" : false
-            },
-            {
-              "appearance" : "dark",
-              "value" : false
-            }
-          ],
+          "glass" : false,
           "hidden" : false,
-          "image-name" : "chalah.png",
-          "name" : "chalah"
+          "image-name" : "shabbat-times-icon-tint.png",
+          "name" : "chalah-icon",
+          "position" : {
+            "scale" : 1,
+            "translation-in-points" : [
+              0,
+              -14
+            ]
+          }
         }
       ],
       "shadow" : {
