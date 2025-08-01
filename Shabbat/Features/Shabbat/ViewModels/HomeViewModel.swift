@@ -44,7 +44,7 @@ class HomeViewModel {
   }
   
   var parashaName: String {
-    shabbatService.parasah?.title ?? shabbatService.holiday?.title ?? "Error"
+    shabbatService.parasah?.title ?? "Error"
   }
   
   var shouldShowHolidayTitle: Bool {
@@ -60,8 +60,12 @@ class HomeViewModel {
   }
   
   var shouldShowParashaButton: Bool {
-    // Only show parasha button if there's no holiday
-    return holiday == nil
+    // Show parasha button if there's a parasha, unless it's a major holiday that replaces Torah reading
+    // Special Shabbat names (subcat: "shabbat") should still show the parasha
+    if let holiday = holiday {
+      return holiday.subcat == "shabbat" && shabbatService.parasah != nil
+    }
+    return shabbatService.parasah != nil
   }
   
   private var holiday: ShabbatItem? {
