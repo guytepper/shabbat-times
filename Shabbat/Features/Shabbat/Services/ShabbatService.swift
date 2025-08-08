@@ -74,6 +74,13 @@ class ShabbatService {
   var holiday: ShabbatItem?
   var error: Error?
   
+  // MARK: - Holidays to exclude from displaying
+  // These holidays are considered too minor or specific to show as main holidays
+  private let excludedHolidayTitles: Set<String> = [
+    "Shabbat Nachamu",
+    "שבת נחמו" // Hebrew for Shabbat Nachamu
+  ]
+  
   @MainActor
   func fetchShabbatTimes(for city: City, candleLightingMinutes: Int = 20, forDate: Date? = nil) async {
     isLoading = true
@@ -110,8 +117,14 @@ class ShabbatService {
       parasah = response.items.first { $0.category == "parashat" }
       
       // Find the current or next holiday based on date
-      // Exclude modern and minor holidays from holiday notifications
-      let allHolidays = response.items.filter { $0.category == "holiday" && $0.subcat != "modern" && $0.subcat != "minor" }
+      // Exclude modern and minor holidays, as well as specific holidays by title
+      let allHolidays = response.items.filter { item in
+        item.category == "holiday" && 
+        item.subcat != "modern" && 
+        item.subcat != "minor" &&
+        !excludedHolidayTitles.contains(item.title)
+      }
+      
       holiday = findCurrentOrNextHoliday(from: allHolidays)
       
       timeZone = response.location.tzid
