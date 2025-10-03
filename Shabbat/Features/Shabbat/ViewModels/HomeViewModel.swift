@@ -48,21 +48,21 @@ class HomeViewModel {
   }
   
   var shouldShowHolidayTitle: Bool {
-    holiday != nil
+    currentShabbatHoliday != nil
   }
   
   var holidayTitle: String? {
-    holiday?.title
+    currentShabbatHoliday?.title
   }
   
   var isFastDay: Bool {
-    holiday?.isFast ?? false
+    currentShabbatHoliday?.isFast ?? false
   }
   
   var shouldShowParashaButton: Bool {
     // Show parasha button if there's a parasha, unless it's a major holiday that replaces Torah reading
     // Special Shabbat names (subcat: "shabbat") should still show the parasha
-    if let holiday = holiday {
+    if let holiday = currentShabbatHoliday {
       return holiday.subcat == "shabbat" && shabbatService.parasah != nil
     }
     return shabbatService.parasah != nil
@@ -70,6 +70,30 @@ class HomeViewModel {
   
   private var holiday: ShabbatItem? {
     shabbatService.holiday
+  }
+
+  // Only surface holidays that overlap the current Shabbat window (or today if times are missing).
+  private var currentShabbatHoliday: ShabbatItem? {
+    guard let holiday = holiday,
+          let holidayDate = holiday.formattedDate(timeZone: shabbatService.timeZone) else {
+      return nil
+    }
+    
+    var calendar = Calendar.current
+    calendar.timeZone = timeZone
+    let holidayDay = calendar.startOfDay(for: holidayDate)
+    
+    if let candleLighting = candleLighting, let havdalah = havdalah {
+      let shabbatStart = calendar.startOfDay(for: candleLighting)
+      let shabbatEnd = calendar.startOfDay(for: havdalah)
+      guard holidayDay >= shabbatStart && holidayDay <= shabbatEnd else {
+        return nil
+      }
+      return holiday
+    }
+    
+    let today = calendar.startOfDay(for: Date())
+    return holidayDay == today ? holiday : nil
   }
   
   var isShabbat: Bool {
