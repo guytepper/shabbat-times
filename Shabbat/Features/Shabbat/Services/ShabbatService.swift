@@ -111,24 +111,66 @@ class ShabbatService {
     do {
       let (data, _) = try await URLSession.shared.data(from: url)
       let response = try JSONDecoder().decode(ShabbatResponse.self, from: data)
-      
-      candleLighting = response.items.first { $0.category == "candles" }
-      havdalah = response.items.first { $0.category == "havdalah" }
+
+      // Set timezone immediately so all date math uses the correct zone
+      timeZone = response.location.tzid
+
+      // Build ordered pairs of (candle lighting, havdalah)
+      let tzForParsing = timeZone
+      let candleEvents: [(item: ShabbatItem, date: Date)] = response.items
+        .filter { $0.category == "candles" }
+        .compactMap { item in
+          guard let d = item.formattedDate(timeZone: tzForParsing) else { return nil }
+          return (item, d)
+        }
+        .sorted { $0.date < $1.date }
+
+      let havdalahEvents: [(item: ShabbatItem, date: Date)] = response.items
+        .filter { $0.category == "havdalah" }
+        .compactMap { item in
+          guard let d = item.formattedDate(timeZone: tzForParsing) else { return nil }
+          return (item, d)
+        }
+        .sorted { $0.date < $1.date }
+
+      var pairs: [(c: (item: ShabbatItem, date: Date), h: (item: ShabbatItem, date: Date))] = []
+      var hIndex = 0
+      for c in candleEvents {
+        while hIndex < havdalahEvents.count && havdalahEvents[hIndex].date <= c.date {
+          hIndex += 1
+        }
+        if hIndex < havdalahEvents.count {
+          pairs.append((c: c, h: havdalahEvents[hIndex]))
+        }
+      }
+
+      // Choose the current pair (if now is between c..h),
+      // otherwise the next upcoming pair, otherwise fallback to the latest known pair
+      var cal = Calendar.current
+      if let tzid = timeZone, let tz = TimeZone(identifier: tzid) { cal.timeZone = tz }
+      let now = Date()
+
+      let currentPair = pairs.first(where: { now >= $0.c.date && now <= $0.h.date })
+        ?? pairs.first(where: { now < $0.c.date })
+        ?? pairs.last
+
+      candleLighting = currentPair?.c.item ?? candleEvents.first?.item
+      havdalah = currentPair?.h.item ?? havdalahEvents.first?.item
+
+      // Parasha (take the first available within the dataset)
       parasah = response.items.first { $0.category == "parashat" }
-      
+
       // Find the current or next holiday based on date
       // Exclude modern and minor holidays, as well as specific holidays by title
       let allHolidays = response.items.filter { item in
-        item.category == "holiday" && 
-        item.subcat != "modern" && 
+        item.category == "holiday" &&
+        item.subcat != "modern" &&
         item.subcat != "minor" &&
         !excludedHolidayTitles.contains(item.title)
       }
-      
+
       holiday = findCurrentOrNextHoliday(from: allHolidays)
-      
-      timeZone = response.location.tzid
-      
+
       error = nil
     } catch {
       self.error = error
