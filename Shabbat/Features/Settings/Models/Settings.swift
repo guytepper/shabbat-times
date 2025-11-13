@@ -12,6 +12,7 @@ class Settings {
   var shabbatEndNotificationMinutes: Int = 10
   var candleLightingMinutesBeforeSunset: Int = 20
   var hasCustomizedCandleLightingMinutes: Bool = false
+  var showSunsetTime: Bool = false
   
   init() {
     // Empty initializer is required by @Model
