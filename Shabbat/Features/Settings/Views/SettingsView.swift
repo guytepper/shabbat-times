@@ -145,14 +145,24 @@ struct SettingsView: View {
           }
           
           Section("Candle Lighting") {
+            Toggle("Show Sunset Time", isOn: Binding(
+              get: { settings.showSunsetTime },
+              set: { newValue in
+                settingsManager.updateSettings { settings in
+                  settings.showSunsetTime = newValue
+                }
+              }
+            ))
+            .accessibilityHint("Display the local sunset time.")
+            
             VStack(alignment: .leading, spacing: 6) {
               Text("Minutes Before Sunset")
-              
+
               Text("Choose how many minutes before sunset candle lighting time is calculated.")
                 .padding(.bottom, 8)
                 .font(.caption)
                 .foregroundStyle(.secondary)
-              
+
               Picker("Minutes Before Sunset", selection: Binding(
                 get: { settings.candleLightingMinutesBeforeSunset },
                 set: { newValue in

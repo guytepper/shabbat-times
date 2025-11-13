@@ -6,21 +6,25 @@ import SwiftData
 class HomeViewModel {
   private var shabbatService = ShabbatService()
   private var parashaService = ParashaService()
-  
+  private var sunsetService = SunsetService()
+
   private var cityManager: CityManager?
+  private let settingsManager: SettingsManager
   private let modelContext: ModelContext
-  
+
   @MainActor var isLoading: Bool { shabbatService.isLoading }
-  
+  @MainActor var isSunsetLoading: Bool { sunsetService.isLoading }
+
   var error: Error? { shabbatService.error }
-  
+
   var timeZone: TimeZone {
     TimeZone(identifier: shabbatService.timeZone ?? TimeZone.current.identifier) ?? .current
   }
-  
+
   init(modelContext: ModelContext) {
     self.modelContext = modelContext
     self.cityManager = CityManager(modelContext: modelContext)
+    self.settingsManager = SettingsManager(modelContext: modelContext)
   }
   
   var cityName: String {
@@ -34,7 +38,11 @@ class HomeViewModel {
   var havdalah: Date? {
     shabbatService.havdalah?.formattedDate(timeZone: shabbatService.timeZone)
   }
-  
+
+  var sunset: Date? {
+    sunsetService.sunset
+  }
+
   var parasha: ParashaInfo? {
     return parashaService.parasah
   }
@@ -66,6 +74,10 @@ class HomeViewModel {
       return holiday.subcat == "shabbat" && shabbatService.parasah != nil
     }
     return shabbatService.parasah != nil
+  }
+
+  var shouldShowSunsetTime: Bool {
+    settingsManager.settings.showSunsetTime
   }
   
   private var holiday: ShabbatItem? {
@@ -115,9 +127,8 @@ class HomeViewModel {
   
   func loadShabbatTimes() async {
     if let city = cityManager?.getCurrentCity() {
-      let settingsManager = SettingsManager(modelContext: modelContext)
       var candleLightingMinutes = settingsManager.settings.candleLightingMinutesBeforeSunset
-      
+
       // If user hasn't customized their setting and the city is Jerusalem, set default to 40 minutes
       if !settingsManager.settings.hasCustomizedCandleLightingMinutes && (city.name == "Jerusalem" || city.name == "ירושלים") {
         candleLightingMinutes = 40
@@ -125,8 +136,19 @@ class HomeViewModel {
           settings.candleLightingMinutesBeforeSunset = 40
         }
       }
-      
+
       await shabbatService.fetchShabbatTimes(for: city, candleLightingMinutes: candleLightingMinutes)
+
+      if shouldShowSunsetTime {
+        let referenceDate = shabbatService.candleLighting?.formattedDate(timeZone: shabbatService.timeZone)
+        await sunsetService.fetchSunset(
+          for: city,
+          referenceDate: referenceDate,
+          timeZoneIdentifier: shabbatService.timeZone
+        )
+      } else {
+        await sunsetService.reset()
+      }
     }
   }
   

@@ -385,6 +385,16 @@
         }
       }
     },
+    "Display the local sunset time." : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הצגת זמן השקיעה המקומי."
+          }
+        }
+      }
+    },
     "Double tap to change city" : {
       "localizations" : {
         "en" : {
@@ -669,6 +679,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "תכנון נוטיפקציות אחרון: %@"
+          }
+        }
+      }
+    },
+    "Loading" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "טוען"
           }
         }
       }
@@ -1313,6 +1333,16 @@
         }
       }
     },
+    "Show Sunset Time" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הצגת זמן שקיעה"
+          }
+        }
+      }
+    },
     "Skip notifications setup and continue to the app" : {
       "localizations" : {
         "en" : {
@@ -1341,6 +1371,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "קוד המקור [זמין בגיטהאב](https://github.com/guytepper/shabbat-times)."
+          }
+        }
+      }
+    },
+    "Sunset" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שקיעה"
           }
         }
       }
@@ -1437,6 +1477,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ארעה שגיאה בפתיחת הלינק"
+          }
+        }
+      }
+    },
+    "Unavailable" : {
+      "localizations" : {
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "לא זמין"
           }
         }
       }
